@@ -138,15 +138,11 @@ public class BattleDirector : MonoBehaviour
 }
 
 /*
-todo
-select - move square to the right
-or
-select - make square blink
+at the start of the battle initialize in static class:
+Enemy class
+Ally class
 
-disable select
 
-space again to confirm
-q to cancel selection
 
 
 */

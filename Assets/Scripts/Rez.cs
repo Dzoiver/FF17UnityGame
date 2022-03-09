@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Rez : MonoBehaviour
 {
-    float hp = 250f;
-    float damage = 10f;
+    public float hp = 250f;
+    public float damage = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +21,10 @@ public class Rez : MonoBehaviour
     void Damage()
     {
         
+    }
+
+    public void Attack(Fujin target)
+    {
+        target.hp -= damage;
     }
 }

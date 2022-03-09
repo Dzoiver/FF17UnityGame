@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Positions;
 using CharactersInBattle;
+using UnityEngine.UI;
 
 public class Target : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Target : MonoBehaviour
         target1.SetActive(false);
     }
 
+    public GameObject damageTextPrefab;
     // Update is called once per frame
     void Update()
     {
@@ -54,7 +56,23 @@ public class Target : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            Characters.enemies = 0;
+            foreach (GameObject g in Characters.enemiesArray)
+            Debug.Log(g);
+            // Characters.enemies = 0;
+            GameObject target = Characters.enemiesArray[currentPos];
+            Fujin fujin = target.GetComponent<Fujin>(); 
+            GameObject attacker = Characters.alliesArray[0];
+            Rez rez = attacker.GetComponent<Rez>(); 
+
+
+            rez.Attack(fujin);
+            damageTextPrefab.SetActive(true);
+            Text text = damageTextPrefab.GetComponent<Text>(); 
+            text.text = "-" + rez.damage.ToString();
+            damageTextPrefab.transform.position = Pos.enemyArray[currentPos].vector; 
+            DeActivate();
+            
+            //Characters.alliesArray[0].Attack(target);
             // CurrentPlayer.Attack(Target);
         }
 

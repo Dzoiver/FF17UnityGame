@@ -10,8 +10,8 @@ namespace CharactersInBattle
         static public int enemies = 0;
         static public int allies = 0;
 
-        static GameObject[] alliesArray;
-        static GameObject[] enemiesArray;
+        public static GameObject[] alliesArray;
+        public static GameObject[] enemiesArray;
 
         
 

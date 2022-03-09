@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Fujin : MonoBehaviour
 {
-    float hp = 200f;
-    float damage = 10f;
+    public float hp = 200f;
+    public float damage = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +16,10 @@ public class Fujin : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void modifyHP()
+    {
+        Debug.Log("hp rip");
     }
 }
