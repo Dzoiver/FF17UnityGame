@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CharactersInBattle;
 
-public class Fujin : MonoBehaviour
+public class Fujin : MonoBehaviour, IBattle
 {
     public float hp = 200f;
     public float damage = 10f;
@@ -21,5 +22,14 @@ public class Fujin : MonoBehaviour
     public void modifyHP()
     {
         Debug.Log("hp rip");
+    }
+
+    public float getHP()
+    {
+        return hp;
+    }
+        public float getDamage()
+    {
+        return damage;
     }
 }

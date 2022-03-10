@@ -5,6 +5,13 @@ using Positions;
 
 namespace CharactersInBattle
 {
+    public interface IBattle
+    {
+        float getHP();
+        float getDamage();
+    }
+
+
     static public class Characters
     {
         static public int enemies = 0;

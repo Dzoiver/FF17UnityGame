@@ -95,8 +95,10 @@ public class BattleDirector : MonoBehaviour
 
     void randomInitialATB()
     {
-        allyATB_1 = Random.Range(0f, maxATB);
-        enemyATB_1 = Random.Range(0f, maxATB);
+        allyATB_1 = 30f;
+        enemyATB_1 = 30f;
+        // allyATB_1 = Random.Range(0f, maxATB);
+        // enemyATB_1 = Random.Range(0f, maxATB);
     }
 
     public GameObject PlayerFighting;

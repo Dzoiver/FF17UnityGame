@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CharactersInBattle;
 
-public class Rex : MonoBehaviour
+public class Rez : MonoBehaviour, IBattle
 {
+    public float hp = 250f;
+    public float damage = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +17,20 @@ public class Rex : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public float getDamage()
+    {
+        return damage;
+    }
+
+    public float getHP()
+    {
+        return hp;
+    }
+
+    public void Attack(Fujin target)
+    {
+        target.hp -= damage;
     }
 }

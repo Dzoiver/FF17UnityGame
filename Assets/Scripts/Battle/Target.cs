@@ -56,21 +56,23 @@ public class Target : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            foreach (GameObject g in Characters.enemiesArray)
-            Debug.Log(g);
+            //foreach (GameObject g in Characters.enemiesArray)
+            
             // Characters.enemies = 0;
             GameObject target = Characters.enemiesArray[currentPos];
-            Fujin fujin = target.GetComponent<Fujin>(); 
             GameObject attacker = Characters.alliesArray[0];
-            Rez rez = attacker.GetComponent<Rez>(); 
+            IBattle attackerScript = attacker.GetComponent<IBattle>();
+            Debug.Log("attacker script: " + attackerScript);
+            IBattle targetScript = target.GetComponent<IBattle>();
+            Debug.Log("fujin hp: " + targetScript.getHP());
+            Debug.Log("rez attack damage: " + attackerScript.getDamage());
 
-
-            rez.Attack(fujin);
-            damageTextPrefab.SetActive(true);
-            Text text = damageTextPrefab.GetComponent<Text>(); 
-            text.text = "-" + rez.damage.ToString();
-            damageTextPrefab.transform.position = Pos.enemyArray[currentPos].vector; 
-            DeActivate();
+            // rez.Attack(fujin);
+            // damageTextPrefab.SetActive(true);
+            // Text text = damageTextPrefab.GetComponent<Text>(); 
+            // text.text = "-" + rez.damage.ToString();
+            // damageTextPrefab.transform.position = Pos.enemyArray[currentPos].vector; 
+            // DeActivate();
             
             //Characters.alliesArray[0].Attack(target);
             // CurrentPlayer.Attack(Target);
