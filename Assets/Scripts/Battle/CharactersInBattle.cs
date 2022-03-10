@@ -9,6 +9,16 @@ namespace CharactersInBattle
     {
         float getHP();
         float getDamage();
+        void Attack(IBattle target);
+        
+        float Hp {
+        get;
+        set;
+    }
+
+        float Damage {
+        get;
+    }
     }
 
 
@@ -17,17 +27,17 @@ namespace CharactersInBattle
         static public int enemies = 0;
         static public int allies = 0;
 
-        public static GameObject[] alliesArray;
-        public static GameObject[] enemiesArray;
+        public static GameObject[] alliesArray = new GameObject[3];
+        public static GameObject[] enemiesArray = new GameObject[3];
 
         
 
         static public void AddAlly(GameObject ally)
         {
-            if (enemies > 3)
+            if (allies > 3)
             return;
-            
-            alliesArray = new GameObject[] {ally};
+            Debug.Log(alliesArray);
+            alliesArray[allies] = ally;
             allies++;
             ally.transform.position = Pos.getFreeAllyPos();
             // alliesArray = ally.transform.position = Pos.pos4;
@@ -38,7 +48,7 @@ namespace CharactersInBattle
             if (enemies > 3)
             return;
 
-            enemiesArray = new GameObject[] {enemy};
+            enemiesArray[enemies] = enemy;
             enemies++;
             enemy.transform.position = Pos.getFreeEnemyPos();
         }

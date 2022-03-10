@@ -5,8 +5,17 @@ using CharactersInBattle;
 
 public class Rez : MonoBehaviour, IBattle
 {
-    public float hp = 250f;
-    public float damage = 10f;
+    private float hp = 250f;
+    float damage = 10f;
+
+    public float Hp {
+        get { return hp; }
+        set { hp = value; }
+    }
+
+    public float Damage {
+        get { return damage; }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +38,8 @@ public class Rez : MonoBehaviour, IBattle
         return hp;
     }
 
-    public void Attack(Fujin target)
+    public void Attack(IBattle target)
     {
-        target.hp -= damage;
+        target.Hp -= damage;
     }
 }

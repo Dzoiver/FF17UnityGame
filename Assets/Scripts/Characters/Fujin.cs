@@ -5,8 +5,17 @@ using CharactersInBattle;
 
 public class Fujin : MonoBehaviour, IBattle
 {
-    public float hp = 200f;
-    public float damage = 10f;
+    private float hp = 40f;
+    private float damage = 10f;
+
+    public float Hp {
+        get { return hp; }
+        set { hp = value; }
+    }
+
+    public float Damage {
+        get { return damage; }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +25,11 @@ public class Fujin : MonoBehaviour, IBattle
     // Update is called once per frame
     void Update()
     {
-        
+        if (hp <= 0)
+        {   
+            Characters.enemies--;
+            Destroy(gameObject);
+        }
     }
 
     public void modifyHP()
@@ -31,5 +44,10 @@ public class Fujin : MonoBehaviour, IBattle
         public float getDamage()
     {
         return damage;
+    }
+
+    public void Attack(IBattle target)
+    {
+
     }
 }
