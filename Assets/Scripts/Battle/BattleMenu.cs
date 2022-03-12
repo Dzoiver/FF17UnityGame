@@ -7,6 +7,7 @@ public class BattleMenu : MonoBehaviour
     public GameObject cursor;
     float blinkTime = 0.05f;
     float blinkTimeCurrent = 0f;
+    int currentATBID;
     // Start is called before the first frame update
     void Start()
     {
@@ -149,5 +150,16 @@ public class BattleMenu : MonoBehaviour
             }
 
         }
+    }
+    public void Activate(int atbID)
+    {
+        currentATBID = atbID;
+        gameObject.SetActive(true);
+    }
+
+    public void DeActivate()
+    {
+        // reset current id atb
+        gameObject.SetActive(false);
     }
 }

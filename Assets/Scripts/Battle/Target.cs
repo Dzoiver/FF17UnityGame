@@ -8,7 +8,11 @@ using UnityEngine.UI;
 public class Target : MonoBehaviour
 {
     public GameObject target1;
+    public GameObject battleMenu;
+    public GameObject director;
+
     int currentPos = 0;
+    int atbID;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +28,11 @@ public class Target : MonoBehaviour
 
     public void DeActivate() // Hides the cursor
     {
+        BattleMenu script = battleMenu.GetComponent<BattleMenu>(); 
+        script.DeActivate();
+        BattleDirector dirScript = director.GetComponent<BattleDirector>(); 
+        dirScript.resetATB(atbID);
+
         target1.SetActive(false);
     }
 
@@ -67,14 +76,14 @@ public class Target : MonoBehaviour
             Text text = damageTextPrefab.GetComponent<Text>(); 
             text.text = "-" + attackerScript.Damage;
             damageTextPrefab.transform.position = Pos.enemyArray[currentPos].vector; 
+
             damageTextPrefab.SetActive(true);
-            
             // Debug.Log("fujin hp: " + targetScript.getHP());
             // rez.Attack(fujin);
             
 
             
-            // DeActivate();
+            DeActivate();
             
             //Characters.alliesArray[0].Attack(target);
             // CurrentPlayer.Attack(Target);

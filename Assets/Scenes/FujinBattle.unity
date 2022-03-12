@@ -387,6 +387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target1: {fileID: 264330485}
+  battleMenu: {fileID: 1053821051}
+  director: {fileID: 804506668}
   damageTextPrefab: {fileID: 416152170}
 --- !u!1 &518223822
 GameObject:
