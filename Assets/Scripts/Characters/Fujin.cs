@@ -46,8 +46,8 @@ public class Fujin : MonoBehaviour, IBattle
         return damage;
     }
 
-    public void Attack(IBattle target)
+    public float Attack(IBattle target)
     {
-
+        return Damage;
     }
 }

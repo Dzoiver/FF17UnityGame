@@ -119,7 +119,7 @@ public class BattleMenu : MonoBehaviour
     {
         Target target = targetHandle.GetComponent<Target>(); 
         blinkCursor = true;
-        target.Activate();
+        target.Activate(currentATBID);
     }
 
         void MagicListOpen()
@@ -160,6 +160,7 @@ public class BattleMenu : MonoBehaviour
     public void DeActivate()
     {
         // reset current id atb
+        // currentATBID = atbID;
         gameObject.SetActive(false);
     }
 }

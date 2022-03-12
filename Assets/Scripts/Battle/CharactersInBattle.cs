@@ -9,7 +9,7 @@ namespace CharactersInBattle
     {
         float getHP();
         float getDamage();
-        void Attack(IBattle target);
+        float Attack(IBattle target);
         
         float Hp {
         get;

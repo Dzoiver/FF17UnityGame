@@ -20,8 +20,9 @@ public class Target : MonoBehaviour
         
     }
 
-    public void Activate() // Shows the cursor on targets
+    public void Activate(int index) // Shows the cursor on targets
     {
+        atbID = index;
         goToFirstEnemy();
         target1.SetActive(true);
     }
@@ -72,9 +73,9 @@ public class Target : MonoBehaviour
             GameObject attacker = Characters.alliesArray[0];
             IBattle attackerScript = attacker.GetComponent<IBattle>();
             IBattle targetScript = target.GetComponent<IBattle>();
-            attackerScript.Attack(targetScript);
+            float dmg = attackerScript.Attack(targetScript);
             Text text = damageTextPrefab.GetComponent<Text>(); 
-            text.text = "-" + attackerScript.Damage;
+            text.text = "-" + dmg;
             damageTextPrefab.transform.position = Pos.enemyArray[currentPos].vector; 
 
             damageTextPrefab.SetActive(true);

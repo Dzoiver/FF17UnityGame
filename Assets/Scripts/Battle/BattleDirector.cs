@@ -17,12 +17,12 @@ class ATB
     {
         get { return amount; }
         set {
-            if (amount < maxATB)
+            if (value < maxATB)
             {
             amount = value; 
             isReady = false;
             }
-            else
+            else if (value >= maxATB)
             {
             amount = maxATB;
             isReady = true;
@@ -54,26 +54,10 @@ class Character
 public class BattleDirector : MonoBehaviour
 {
     List<ATB> atbList = new List<ATB>();
-    // float allyATB_1 = 0f;
-    // float enemyATB_1 = 0f;
-
-    // float allyATB_2 = 0f;
-    // float enemyATB_2 = 0f;
-
-    // float allyATB_3 = 0f;
-    // float enemyATB_3 = 0f;
 
     float maxATB = 30f;
-    float atbRate = 0.03f;
+    float atbSpeed = 10f;
     float atbTime = 0f;
-    // bool isATBready1 = false;
-    // bool isEnemyATBready1 = false;
-
-    // bool isATBready2 = false;
-    // bool isEnemyATBready2 = false;
-
-    // bool isATBready3 = false;
-    // bool isEnemyATBready3 = false;
 
     bool menuAppeared = false;
 
@@ -82,11 +66,10 @@ public class BattleDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randomInitialATB();
         Pos.createAllpos();
         placeCharacters();
-        Debug.Log("check");
         fillATBlist();
+        randomInitialATB();
         ChangeATB();
     }
 
@@ -96,20 +79,17 @@ public class BattleDirector : MonoBehaviour
         if (Characters.enemies == 0 && !end)
         EndBattle();
 
-        fillATBs(0.02f);
+        fillATBs(atbSpeed * Time.deltaTime);
     }
 
     void fillATBlist()
     {
-        Debug.Log("Characters.enemies " + Characters.enemies);
         for (int i = 0; i < Characters.enemies; i++)
         {
             atbList.Add(new ATB(){ Amount = 0f, IsEnemy=true});
-            Debug.Log("new ATB at index " + i);
         }
         for (int i = Characters.enemies; i < Characters.allies + Characters.enemies; i++)
         {
-            Debug.Log("new ATB at index " + i);
             atbList.Add(new ATB(){ Amount = 0f, IsEnemy=false});
         }
     }
@@ -136,34 +116,19 @@ public class BattleDirector : MonoBehaviour
     public void ChangeATB()
     {
         // float currentHealth = Mathf.Clamp(allyATB_1 + value, 0, maxATB);
-        
-        UIATB.instance.SetValue(atbList[0].Amount / (float)maxATB);
+        UIATB.instance.SetValue(atbList[3].Amount / (float)maxATB);
     }
 
     void fillATBs(float rate)
     {
-        // foreach (float atb in atbList)
-        // {
-        //     if (atb < maxATB)
-        //     atb += rate;
-        // }
-        Debug.Log(atbList.Count + " atbList.Count");
         for (int i = 0; i < atbList.Count; i++)
         {
             atbList[i].Amount += rate;
-            if (atbList[i].IsReady)
-            battleMenuAppear(i);
+            if (atbList[i].IsReady && !atbList[i].IsEnemy)
+            {
+                battleMenuAppear(i);
+            }
         }
-
-        // if (allyATB_1 < maxATB)
-        // allyATB_1 += rate;
-        // else
-        // isATBready1 = true;
-
-        // if (enemyATB_1 < maxATB)
-        // enemyATB_1 += rate;
-        // else
-        // isEnemyATBready1 = true;
 
         ChangeATB();
     }
@@ -172,11 +137,9 @@ public class BattleDirector : MonoBehaviour
     {
         for (int i = 0; i < Characters.allies + Characters.enemies; i++)
         {
-            atbList[i].Amount = 5f;
+            atbList[i].Amount = 25f;
             // atbList[i].Amount = Random.Range(0f, maxATB);;
         }
-        // allyATB_1 = Random.Range(0f, maxATB);
-        // enemyATB_1 = Random.Range(0f, maxATB);
     }
 
     public GameObject PlayerFighting;
@@ -185,16 +148,16 @@ public class BattleDirector : MonoBehaviour
     void placeCharacters() // Better to rework this part so characters automatically being counted
     {
         GameObject playerObject = Instantiate(PlayerFighting);
-        GameObject playerObject1 = Instantiate(PlayerFighting);
-        GameObject playerObject2 = Instantiate(PlayerFighting);
+        // GameObject playerObject1 = Instantiate(PlayerFighting);
+        // GameObject playerObject2 = Instantiate(PlayerFighting);
         
         GameObject fujinObject = Instantiate(FujinFighting);
         GameObject fujinObject1 = Instantiate(FujinFighting);
         GameObject fujinObject2 = Instantiate(FujinFighting);
 
         Characters.AddAlly(playerObject);
-        Characters.AddAlly(playerObject1);
-        Characters.AddAlly(playerObject2);
+        // Characters.AddAlly(playerObject1);
+        // Characters.AddAlly(playerObject2);
 
         Characters.AddEnemy(fujinObject);
         Characters.AddEnemy(fujinObject1);
@@ -214,14 +177,15 @@ public class BattleDirector : MonoBehaviour
     void battleMenuAppear(int index)
     {
         menuAppeared = true;
-        int atbID = 0;
         BattleMenu script = battleMenu.GetComponent<BattleMenu>();
-        script.Activate(atbID);
+        script.Activate(index);
     }
 
     public void resetATB(int atbID)
     {
-
+        Debug.Log("amount = " + atbList[atbID].Amount);
+        atbList[atbID].Amount = 0f;
+        Debug.Log("amount = " + atbList[atbID].Amount);
     }
 }
 
