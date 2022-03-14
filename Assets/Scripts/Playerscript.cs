@@ -10,7 +10,6 @@ public class Playerscript : MonoBehaviour
     public float Speed = 25.0f;
     float horizontal;
     float vertical;
-    float enter;
     static public bool allowMovement = true;
     bool fujinDialogueTriggered = false;
     void Awake()
@@ -22,8 +21,6 @@ public class Playerscript : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         transform.position = Finfor.vector;
-        // transform.position = fInfo.playerVector;
-        Debug.Log("start pos = " + transform.position);
     }
 
     public GameObject menu; 
@@ -32,8 +29,6 @@ public class Playerscript : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-
-        enter = Input.GetAxis("Submit");
 
         if (Input.GetKeyDown("g") && !menu.activeSelf)
         {
@@ -58,9 +53,6 @@ public class Playerscript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "fightStartTrigger") // Change to battle scene when approaching fujin
-            GoToBattle();
-
         if (other.name == "DialogueTrigger" && !fujinDialogueTriggered)
         {
             GameObject dialogueObject = Instantiate(DialogueBoxPrefab);
@@ -68,18 +60,6 @@ public class Playerscript : MonoBehaviour
             boxComponent.Show(-4, 1, 0);
             fujinDialogueTriggered = true;
         }
-    }
-
-    void StopDialogue(Collider2D collider)
-    {
-    }
-
-    void GoToBattle()
-    {
-        Finfor.fujinStarted = true;
-        Finfor.vector = transform.position;
-        Debug.Log("update pos = " + transform.position);
-        SceneManager.LoadScene("FujinBattle");
     }
 
     void FixedUpdate()

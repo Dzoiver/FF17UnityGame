@@ -2761,6 +2761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1349101709}
   - component: {fileID: 1349101708}
+  - component: {fileID: 1349101710}
   m_Layer: 0
   m_Name: fightStartTrigger
   m_TagString: Untagged
@@ -2808,6 +2809,18 @@ Transform:
   m_Father: {fileID: 1640532080}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1349101710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349101707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4bf90710730c04d9b2b345ab53180a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1362513127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1256577330361206666, guid: a32f0bf2edfa6ed4cbd7fe4790906eb7,
@@ -3703,20 +3716,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueTrigger
       objectReference: {fileID: 0}
-    - target: {fileID: 8976625158647246068, guid: 50d0cb062de91994e960fc20034485e9,
-        type: 3}
-      propertyPath: dialogueObject
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8976625158647246069, guid: 50d0cb062de91994e960fc20034485e9,
         type: 3}
       propertyPath: m_Size.y
-      value: 9.409215
+      value: 9.552584
       objectReference: {fileID: 0}
     - target: {fileID: 8976625158647246069, guid: 50d0cb062de91994e960fc20034485e9,
         type: 3}
       propertyPath: m_Offset.y
-      value: -0.082747936
+      value: 0.059091568
       objectReference: {fileID: 0}
     - target: {fileID: 8976625158647246070, guid: 50d0cb062de91994e960fc20034485e9,
         type: 3}
@@ -3773,6 +3781,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8976625158647246068, guid: 50d0cb062de91994e960fc20034485e9, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50d0cb062de91994e960fc20034485e9, type: 3}

@@ -13,6 +13,7 @@ public class Finfor : MonoBehaviour
     public static bool fujinStarted = false;
     public static int currentPartyMembers = 0; 
     public static int currentBattleID; 
+    public static List<GameObject> enemyList = new List<GameObject>();
 
 
     // List<GameObject> charactersInParty = new List<GameObject>();

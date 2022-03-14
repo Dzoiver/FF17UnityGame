@@ -109,6 +109,7 @@ public class BattleDirector : MonoBehaviour
 
     void EndBattle()
     {
+        Finfor.enemyList.Clear();
         StartCoroutine(waiter());
     }
 
@@ -167,6 +168,10 @@ public class BattleDirector : MonoBehaviour
         GameObject playerObject = Instantiate(PlayerFighting);
         // GameObject playerObject1 = Instantiate(PlayerFighting);
         // GameObject playerObject2 = Instantiate(PlayerFighting);
+        for (int i = 0; i < Finfor.enemyList.Count; i++)
+        {
+            Characters.AddEnemy(Instantiate(Finfor.enemyList[i]));
+        }
         
         GameObject fujinObject = Instantiate(FujinFighting);
         GameObject fujinObject1 = Instantiate(FujinFighting);
@@ -176,9 +181,9 @@ public class BattleDirector : MonoBehaviour
         // Characters.AddAlly(playerObject1);
         // Characters.AddAlly(playerObject2);
 
-        Characters.AddEnemy(fujinObject);
-        Characters.AddEnemy(fujinObject1);
-        Characters.AddEnemy(fujinObject2);
+        // Characters.AddEnemy(fujinObject);
+        // Characters.AddEnemy(fujinObject1);
+        // Characters.AddEnemy(fujinObject2);
     }
 
     // void updateATBgraphics()
