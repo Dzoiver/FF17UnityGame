@@ -170,12 +170,13 @@ public class BattleDirector : MonoBehaviour
         // GameObject playerObject2 = Instantiate(PlayerFighting);
         for (int i = 0; i < Finfor.enemyList.Count; i++)
         {
+            Debug.Log("list: " + Finfor.enemyList[i]);
             Characters.AddEnemy(Instantiate(Finfor.enemyList[i]));
         }
         
-        GameObject fujinObject = Instantiate(FujinFighting);
-        GameObject fujinObject1 = Instantiate(FujinFighting);
-        GameObject fujinObject2 = Instantiate(FujinFighting);
+        // GameObject fujinObject = Instantiate(FujinFighting);
+        // GameObject fujinObject1 = Instantiate(FujinFighting);
+        // GameObject fujinObject2 = Instantiate(FujinFighting);
 
         Characters.AddAlly(playerObject);
         // Characters.AddAlly(playerObject1);
@@ -205,18 +206,6 @@ public class BattleDirector : MonoBehaviour
 
     public void resetATB(int atbID)
     {
-        Debug.Log("amount = " + atbList[atbID].Amount);
         atbList[atbID].Amount = 0f;
-        Debug.Log("amount = " + atbList[atbID].Amount);
     }
 }
-
-/*
-at the start of the battle initialize in static class:
-Enemy class
-Ally class
-
-
-
-
-*/

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1262530399246780992}
   - component: {fileID: 1262530399246780995}
   - component: {fileID: 2672267415996157995}
-  - component: {fileID: 7129348812984605827}
+  - component: {fileID: 7882058337538943887}
   m_Layer: 0
   m_Name: fujinEnemy
   m_TagString: Untagged
@@ -109,7 +109,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1515484, y: 1.6125746}
   m_EdgeRadius: 0
---- !u!114 &7129348812984605827
+--- !u!114 &7882058337538943887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,3 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b6e0556d86abd479d559feeeaa4055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FujinFighting: {fileID: 0}

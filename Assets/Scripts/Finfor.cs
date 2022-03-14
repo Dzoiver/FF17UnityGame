@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class Battle
-{
 
-}
+
 public class Finfor : MonoBehaviour
 {
     static public float hp = 250f;

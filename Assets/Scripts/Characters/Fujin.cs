@@ -13,6 +13,11 @@ public class Fujin : MonoBehaviour, IBattle
         set { hp = value; }
     }
 
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     public float Damage {
         get { return damage; }
     }
