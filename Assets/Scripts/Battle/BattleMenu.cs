@@ -161,6 +161,8 @@ public class BattleMenu : MonoBehaviour
     {
         // reset current id atb
         // currentATBID = atbID;
+        locked = false;
+        blinkCursor = false;
         gameObject.SetActive(false);
     }
 }

@@ -76,7 +76,10 @@ public class BattleDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Characters.enemies == 0 && !end)
+        if (end)
+        return;
+
+        if (Characters.enemies == 0)
         EndBattle();
 
         fillATBs(atbSpeed * Time.deltaTime);
@@ -110,7 +113,7 @@ public class BattleDirector : MonoBehaviour
     music1.Stop();
     victory1.Play(0);
     yield return new WaitForSeconds(5);
-    SceneManager.LoadScene("SampleScene");
+    SceneManager.LoadScene("Town");
     }
 
     public void ChangeATB()

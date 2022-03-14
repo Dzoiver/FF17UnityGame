@@ -74,11 +74,18 @@ public class Target : MonoBehaviour
             IBattle attackerScript = attacker.GetComponent<IBattle>();
             IBattle targetScript = target.GetComponent<IBattle>();
             float dmg = attackerScript.Attack(targetScript);
-            Text text = damageTextPrefab.GetComponent<Text>(); 
+            // GameObject fujinObject = Instantiate(FujinFighting); 
+            // GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+            // Projectile projectile = projectileObject.GetComponent<Projectile>();
+            // projectile.Launch(lookDirection, 300);
+            // animator.SetTrigger("Launch");
+            GameObject textObject = Instantiate(damageTextPrefab, transform, false);
+            textObject.transform.position = Pos.enemyArray[currentPos].vector;
+            
+             
+            Text text = textObject.GetComponent<Text>();
             text.text = "-" + dmg;
-            damageTextPrefab.transform.position = Pos.enemyArray[currentPos].vector; 
-
-            damageTextPrefab.SetActive(true);
+            textObject.SetActive(true);
             // Debug.Log("fujin hp: " + targetScript.getHP());
             // rez.Attack(fujin);
             
