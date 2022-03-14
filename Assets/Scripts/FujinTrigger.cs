@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FujinChar : MonoBehaviour
+public class FujinTrigger : MonoBehaviour
 {
-    // Start is called before the first frame upda
 
+    // Start is called before the first frame update
     void Start()
     {
         if (Finfor.fujinStarted)

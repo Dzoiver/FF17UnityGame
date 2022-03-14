@@ -63,8 +63,6 @@ public class Playerscript : MonoBehaviour
 
         if (other.name == "DialogueTrigger" && !fujinDialogueTriggered)
         {
-            if (!Finfor.isFujin)
-            return;
             GameObject dialogueObject = Instantiate(DialogueBoxPrefab);
             DialogueBox boxComponent = dialogueObject.GetComponent<DialogueBox>();
             boxComponent.Show(-4, 1, 0);
@@ -78,9 +76,7 @@ public class Playerscript : MonoBehaviour
 
     void GoToBattle()
     {
-        if (!Finfor.isFujin)
-        return;
-        Finfor.isFujin = false;
+        Finfor.fujinStarted = true;
         Finfor.vector = transform.position;
         Debug.Log("update pos = " + transform.position);
         SceneManager.LoadScene("FujinBattle");
@@ -97,4 +93,5 @@ public class Playerscript : MonoBehaviour
             _rb.MovePosition(position);
         }
     }
+
 }

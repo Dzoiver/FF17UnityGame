@@ -50,4 +50,10 @@ public class Fujin : MonoBehaviour, IBattle
     {
         return Damage;
     }
+
+    public void Turn(IBattle target)
+    {
+        
+        target.Hp -= Damage;
+    }
 }

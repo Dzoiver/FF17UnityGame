@@ -4,25 +4,16 @@ using UnityEngine;
 
 public class FujinDialogue : MonoBehaviour
 {
-    bool triggered = false;
-    public GameObject dialogueObject;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    public void StopDialogue(Collider2D other)
-    {
-        triggered = true;
-        // collider.GameObject.SetActive(true);
-        dialogueObject.SetActive(true);
+        if (Finfor.fujinStarted)
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!triggered)
-        StopDialogue(other);
+        Debug.Log("Hello i'm a dialogue");
     }
 
 

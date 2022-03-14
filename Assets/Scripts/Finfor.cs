@@ -10,7 +10,7 @@ public class Finfor : MonoBehaviour
 {
     static public float hp = 250f;
     public static Vector3 vector = new Vector3(2, 0 , 0);
-    public static bool isFujin = true;
+    public static bool fujinStarted = false;
     public static int currentPartyMembers = 0; 
     public static int currentBattleID; 
 

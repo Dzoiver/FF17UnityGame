@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8976625158647246070}
   - component: {fileID: 8976625158647246069}
-  - component: {fileID: 8976625158647246068}
+  - component: {fileID: 6027901634114348017}
   m_Layer: 0
   m_Name: DialogueTrigger
   m_TagString: Untagged
@@ -56,9 +56,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6848457, y: 0.79247165}
+  m_Size: {x: 0.6848457, y: 7.791934}
   m_EdgeRadius: 0
---- !u!114 &8976625158647246068
+--- !u!114 &6027901634114348017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

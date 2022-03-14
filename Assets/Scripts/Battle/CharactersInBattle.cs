@@ -36,7 +36,6 @@ namespace CharactersInBattle
         {
             if (allies > 3)
             return;
-            Debug.Log(alliesArray);
             alliesArray[allies] = ally;
             allies++;
             ally.transform.position = Pos.getFreeAllyPos();

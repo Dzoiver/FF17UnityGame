@@ -45,11 +45,18 @@ class ATB
 
 class Character
 {
-    bool isEnemy;
-    float health;
+    float hp;
     float damage;
-    Vector3 position;
+    bool isEnemy;
+    GameObject object1;
+    ATB atb;
+    // Position pos;
 }
+
+// class Fujin : Character
+// {
+
+// }
 
 public class BattleDirector : MonoBehaviour
 {
@@ -130,6 +137,13 @@ public class BattleDirector : MonoBehaviour
             if (atbList[i].IsReady && !atbList[i].IsEnemy)
             {
                 battleMenuAppear(i);
+            }
+            else if (atbList[i].IsReady && atbList[i].IsEnemy)
+            {
+                // Enemy attack
+                // enemy.Turn();
+                // IBattle targetScript = playerObject.GetComponent<IBattle>();
+                // targetScript
             }
         }
 
