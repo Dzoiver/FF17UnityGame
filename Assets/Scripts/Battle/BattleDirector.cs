@@ -173,18 +173,8 @@ public class BattleDirector : MonoBehaviour
             Debug.Log("list: " + Finfor.enemyList[i]);
             Characters.AddEnemy(Instantiate(Finfor.enemyList[i]));
         }
-        
-        // GameObject fujinObject = Instantiate(FujinFighting);
-        // GameObject fujinObject1 = Instantiate(FujinFighting);
-        // GameObject fujinObject2 = Instantiate(FujinFighting);
 
         Characters.AddAlly(playerObject);
-        // Characters.AddAlly(playerObject1);
-        // Characters.AddAlly(playerObject2);
-
-        // Characters.AddEnemy(fujinObject);
-        // Characters.AddEnemy(fujinObject1);
-        // Characters.AddEnemy(fujinObject2);
     }
 
     // void updateATBgraphics()
