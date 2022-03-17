@@ -276,6 +276,7 @@ public class BattleDirector : MonoBehaviour
         {
             Characters.allies++;
             Finfor.allyListObject[i].textHpObject = Hptext[i];
+            Hptext[i].GetComponent<Text>().text = (Finfor.allyListObject[i].instanceObj.GetComponent<IBattle>().Hp).ToString();
             Finfor.allyListObject[i].instanceObj.SetActive(true);
             Finfor.allyListObject[i].instanceObj.transform.position = Pos.getFreeVectAlly();
         }
