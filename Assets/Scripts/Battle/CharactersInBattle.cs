@@ -31,26 +31,6 @@ namespace CharactersInBattle
 
         static public List<GameObject> objectEnemyList = new List<GameObject>();
         static public List<GameObject> objectAllyList = new List<GameObject>();
-
-
-
-        // static public void AddAlly(GameObject ally)
-        // {
-        //     if (allies > 3)
-        //     return;
-        //     objectAllyList.Add(ally);
-        //     allies++;
-        //     ally.transform.position = Pos.getFreeAllyPos();
-        // }
-
-        // static public void AddEnemy(GameObject enemy)
-        // {
-        //     if (enemies > 3)
-        //     return;
-        //     objectEnemyList.Add(enemy);
-        //     enemies++;
-        //     enemy.transform.position = Pos.getFreeEnemyPos();
-        // }
     }
     
 }

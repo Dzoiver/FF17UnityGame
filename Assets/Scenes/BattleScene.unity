@@ -465,14 +465,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce6fd1a1403d05498b2f926db9b423c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hpbar: {fileID: 0}
   text1: {fileID: 5374964285746669118}
   text2: {fileID: 1044238873}
   text3: {fileID: 901830770}
   Hptext: []
   victory: {fileID: 2024795127}
   music: {fileID: 1637055886}
-  lose: {fileID: 0}
+  lose: {fileID: 1368808570}
   damageTextPrefab: {fileID: 7497872206936629665, guid: 961b3bbd1642c1b428ba00ea766a6531,
     type: 3}
   PlayerFighting: {fileID: 4686744603839641010, guid: c34b22820aadaa14493f8c181287f394,

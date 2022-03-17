@@ -36,11 +36,12 @@ public class FujinField : MonoBehaviour
         // GameObject fujinObject1 = Instantiate(FujinFighting);
         // GameObject fujinObject2 = Instantiate(FujinFighting);
         // GameObject fujinObject3 = Instantiate(FujinFighting);
-        Finfor.enemyList.Add(FujinFighting);
-        Finfor.enemyList.Add(FujinFighting);
-        Finfor.enemyList.Add(FujinFighting);
+        Finfor.enemyListPrefab.Add(FujinFighting);
+        Finfor.enemyListPrefab.Add(FujinFighting);
+        Finfor.enemyListPrefab.Add(FujinFighting);
         Finfor.fujinStarted = true;
         Finfor.vector = transform.position;
+        // SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
         SceneManager.LoadScene("BattleScene");
     }
 

@@ -14,12 +14,7 @@ namespace Positions
             get { return vector; }
             set { vector = value; }
         }
-
-        // public bool IsEmpty
-        // {
-        //     set {return isEmpty;}
-        //     get {isEmpty = value;}
-        // }
+        
         public bool IsEmpty
         {
             get { return isEmpty; }
@@ -98,76 +93,5 @@ namespace Positions
             }
             return new Vector3(0, 0, 0);
         }
-
-        // public static Vector3 getFreeEnemyPos()
-        // {
-        //     for (int i = 0; i < enemyArray.Length; i++)
-        //     {
-        //         if (enemyArray[i].isEmpty)
-        //         {
-        //         enemyArray[i].isEmpty = false;
-        //         return enemyArray[i].vector;
-        //         }
-        //     }
-        //     Vector3 vect = new Vector3(0, 0, 0);
-        //     return vect;
-        // }
-
-        // public static Vector3 getFreeAllyPos()
-        // {
-        //     for (int i = 0; i < allyArray.Length; i++)
-        //     {
-        //         if (allyArray[i].isEmpty)
-        //         {
-        //         allyArray[i].isEmpty = false;
-        //         return allyArray[i].vector;
-        //         }
-        //     }
-        //     Vector3 vect = new Vector3(0, 0, 0);
-        //     return vect;
-        // }
-
-
-        // public static Vector3 getFirstEnemyVector()
-        // {
-        //     foreach (EnemyPositions pos in enemyArray)
-        //     {
-        //         if (!pos.isEmpty)
-        //         return pos.vector;
-        //     }
-        //     Vector3 vect = new Vector3(0, 0, 0);
-        //     return vect;
-        // }
-
-        // public static int getFirstEnemyID()
-        // {
-
-        // }
-
-        // public static Vector3 getFirstAllyVector()
-        // {
-        //     foreach (AllyPositions pos in allyArray)
-        //     {
-        //         if (!pos.isEmpty)
-        //         return pos.vector;
-        //     }
-        //     Vector3 vect = new Vector3(0, 0, 0);
-        //     return vect;
-        // }
-
-        // public static Vector3 getPrevEnemy(int current)
-        // {
-        //     for (int i = current; i < enemiesArray.Length; i--)
-        //     {
-        //         if (!enemiesArray[i].isEmpty)
-        //     }
-        //     foreach (EnemyPositions pos in enemyArray)
-        //     {
-        //         if (!pos.isEmpty)
-        //         return pos.vector;
-        //     }
-        //     Vector3 vect = new Vector3(0, 0, 0);
-        //     return vect;
-        // }
     }
 }

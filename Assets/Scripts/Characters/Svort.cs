@@ -13,8 +13,8 @@ public class Svort : MonoBehaviour, IBattle
         Finfor.SvortStarted = true;
         Destroy(gameObject);
         Finfor.vector = transform.position;
-        Finfor.enemyList.Add(SvortPrefab);
-        Finfor.enemyList.Add(SvortPrefab);
+        Finfor.enemyListPrefab.Add(SvortPrefab);
+        Finfor.enemyListPrefab.Add(SvortPrefab);
         SceneManager.LoadScene("BattleScene");
     }
     private int index;

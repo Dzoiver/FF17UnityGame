@@ -12,7 +12,7 @@ public class Director : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Finfor.allyList.Add(playerPrefab);
+        Finfor.allyListPrefab.Add(playerPrefab);
     }
 
     // Update is called once per frame

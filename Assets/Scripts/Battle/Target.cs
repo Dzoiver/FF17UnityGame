@@ -66,37 +66,24 @@ public class Target : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            //foreach (GameObject g in Characters.enemiesArray)
-            
-            // Characters.enemies = 0;
-            // GameObject target = Characters.objectEnemyList[currentPos];
-            // GameObject attacker = Characters.objectAllyList[0];
 
-            IBattle attackerScript = BattleDirector.characterList[atbID].instanceObj.GetComponent<IBattle>();
-            IBattle targetScript = BattleDirector.characterList[currentPos].instanceObj.GetComponent<IBattle>();
+            IBattle attackerScript = Finfor.allyListObject[atbID].instanceObj.GetComponent<IBattle>();
+            IBattle targetScript = BattleDirector.enemyObjectList[currentPos].instanceObj.GetComponent<IBattle>();
             float dmg = attackerScript.Attack(targetScript);
-            // GameObject fujinObject = Instantiate(FujinFighting); 
-            // GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-            // Projectile projectile = projectileObject.GetComponent<Projectile>();
-            // projectile.Launch(lookDirection, 300);
-            // animator.SetTrigger("Launch");
+
             GameObject textObject = Instantiate(damageTextPrefab, transform, false);
-            textObject.transform.position = BattleDirector.characterList[currentPos].instanceObj.transform.position;
+            textObject.transform.position = BattleDirector.enemyObjectList[currentPos].instanceObj.transform.position;
             
             Text text = textObject.GetComponent<Text>();
             text.text = "-" + dmg;
             textObject.SetActive(true);
-            // rez.Attack(fujin);
             
             if (targetScript.Hp <= 0)
             {
-            BattleDirector.characterList[currentPos].Alive = false;
+            BattleDirector.enemyObjectList[currentPos].Alive = false;
             Pos.positionsList[currentPos].IsEmpty = true;
             }
             DeActivate();
-            
-            //Characters.alliesArray[0].Attack(target);
-            // CurrentPlayer.Attack(Target);
         }
 
 
@@ -116,12 +103,12 @@ public class Target : MonoBehaviour
 
     void goToFirstEnemy()
     {
-        for (int i = 0; i < BattleDirector.characterList.Count; i++)
+        for (int i = 0; i < BattleDirector.enemyObjectList.Count; i++)
         {
-            if (BattleDirector.characterList[i].IsEnemy && BattleDirector.characterList[i].Alive)
+            if (BattleDirector.enemyObjectList[i].IsEnemy && BattleDirector.enemyObjectList[i].Alive)
             {
                 currentPos = i;
-                target1.transform.position = BattleDirector.characterList[i].instanceObj.transform.position;
+                target1.transform.position = BattleDirector.enemyObjectList[i].instanceObj.transform.position;
             }
         }
     }
@@ -130,20 +117,20 @@ public class Target : MonoBehaviour
     {
         for (int i = currentPos - 1; i >= 0; i--) // Going from current to beginning
         {
-            if (!Pos.positionsList[i].IsEmpty && Pos.positionsList[i].IsEnemy && BattleDirector.characterList[i].Alive)
+            if (!Pos.positionsList[i].IsEmpty && Pos.positionsList[i].IsEnemy && BattleDirector.enemyObjectList[i].Alive)
             {
             currentPos = i;
-            target1.transform.position = BattleDirector.characterList[i].instanceObj.transform.position;
+            target1.transform.position = BattleDirector.enemyObjectList[i].instanceObj.transform.position;
             return;
             }
         }
 
-        for (int i = BattleDirector.characterList.Count - 1; i >= 0; i--) // Going from last to beginning
+        for (int i = BattleDirector.enemyObjectList.Count - 1; i >= 0; i--) // Going from last to beginning
         {
-            if (!Pos.positionsList[i].IsEmpty && Pos.positionsList[i].IsEnemy && BattleDirector.characterList[i].Alive)
+            if (!Pos.positionsList[i].IsEmpty && Pos.positionsList[i].IsEnemy && BattleDirector.enemyObjectList[i].Alive)
             {
             currentPos = i;
-            target1.transform.position = BattleDirector.characterList[i].instanceObj.transform.position;
+            target1.transform.position = BattleDirector.enemyObjectList[i].instanceObj.transform.position;
             return;
             }
         }
@@ -151,22 +138,22 @@ public class Target : MonoBehaviour
 
     void goToNextEnemy() // s
     {
-        for (int i = currentPos + 1; i < BattleDirector.characterList.Count; i++) // Going from current to last
+        for (int i = currentPos + 1; i < BattleDirector.enemyObjectList.Count; i++) // Going from current to last
         {
-            if (!Pos.positionsList[i].IsEmpty && Pos.positionsList[i].IsEnemy && BattleDirector.characterList[i].Alive)
+            if (!Pos.positionsList[i].IsEmpty && Pos.positionsList[i].IsEnemy && BattleDirector.enemyObjectList[i].Alive)
             {
             currentPos = i;
-            target1.transform.position = BattleDirector.characterList[i].instanceObj.transform.position;
+            target1.transform.position = BattleDirector.enemyObjectList[i].instanceObj.transform.position;
             return;
             }
         }
 
-        for (int i = 0; i < BattleDirector.characterList.Count; i++) // Going from first to last
+        for (int i = 0; i < BattleDirector.enemyObjectList.Count; i++) // Going from first to last
         {
-            if (!Pos.positionsList[i].IsEmpty && Pos.positionsList[i].IsEnemy && BattleDirector.characterList[i].Alive)
+            if (!Pos.positionsList[i].IsEmpty && Pos.positionsList[i].IsEnemy && BattleDirector.enemyObjectList[i].Alive)
             {
             currentPos = i;
-            target1.transform.position = BattleDirector.characterList[i].instanceObj.transform.position;
+            target1.transform.position = BattleDirector.enemyObjectList[i].instanceObj.transform.position;
             return;
             }
         }
