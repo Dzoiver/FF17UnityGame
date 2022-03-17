@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FujinDialogue : MonoBehaviour
+public class DirTown : MonoBehaviour
 {
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        if (Finfor.fujinStarted)
-        Destroy(gameObject);
+        Finfor.allyList.Add(player);
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-    }
-
 
     // Update is called once per frame
     void Update()

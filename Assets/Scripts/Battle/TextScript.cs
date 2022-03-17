@@ -37,7 +37,6 @@ public class TextScript : MonoBehaviour
     void FixedUpdate()
     {
         textComponent.color = new Color(textComponent.color.r, textComponent.color.g, textComponent.color.b, (destroyTime - currentTime)/destroyTime);
-        Debug.Log(destroyTime/currentTime);
         transform.Translate(new Vector3(0f, speed * Time.deltaTime, 0f));
     }
 }

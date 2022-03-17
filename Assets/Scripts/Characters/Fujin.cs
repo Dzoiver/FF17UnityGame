@@ -13,6 +13,12 @@ public class Fujin : MonoBehaviour, IBattle
         set { hp = value; }
     }
 
+    private int index;
+        public int Index {
+        get { return Index; }
+        set { Index = value; }
+    }
+
     void Awake()
     {
         DontDestroyOnLoad(this);
@@ -33,27 +39,17 @@ public class Fujin : MonoBehaviour, IBattle
         if (hp <= 0)
         {   
             Characters.enemies--;
+            // Characters.objectEnemyList.RemoveAt(index);
             Destroy(gameObject);
         }
     }
 
-    public void modifyHP()
-    {
-        Debug.Log("hp rip");
-    }
-
-    public float getHP()
-    {
-        return hp;
-    }
-        public float getDamage()
-    {
-        return damage;
-    }
-
     public float Attack(IBattle target)
     {
-        return Damage;
+        Debug.Log("Fujin attacked");
+        float procDamage = Random.Range(-5, 5) + damage;
+        target.Hp -= procDamage;
+        return procDamage;
     }
 
     public void Turn(IBattle target)

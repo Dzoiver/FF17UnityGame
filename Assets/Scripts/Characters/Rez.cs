@@ -2,15 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CharactersInBattle;
+using UnityEngine.UI;
 
 public class Rez : MonoBehaviour, IBattle
 {
     private float hp = 250f;
-    float damage = 10f;
+    float damage = 60f;
 
     public float Hp {
         get { return hp; }
-        set { hp = value; }
+        set { 
+            hp = value;
+            if (Hp <= 0)
+            Destroy(gameObject);
+            }
+    }
+
+    private int index;
+    public int Index {
+        get { return Index; }
+        set { Index = value; }
     }
 
     public float Damage {
@@ -25,17 +36,6 @@ public class Rez : MonoBehaviour, IBattle
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public float getDamage()
-    {
-        return damage;
-    }
-
-    public float getHP()
-    {
-        return hp;
     }
 
     public float Attack(IBattle target)

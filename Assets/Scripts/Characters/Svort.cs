@@ -10,11 +10,19 @@ public class Svort : MonoBehaviour, IBattle
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Finfor.SvortStarted = true;
         Destroy(gameObject);
+        Finfor.vector = transform.position;
         Finfor.enemyList.Add(SvortPrefab);
         Finfor.enemyList.Add(SvortPrefab);
         SceneManager.LoadScene("BattleScene");
     }
+    private int index;
+        public int Index {
+        get { return Index; }
+        set { Index = value; }
+    }
+
 
     private float hp = 20f;
     private float damage = 10f;
@@ -28,6 +36,8 @@ public class Svort : MonoBehaviour, IBattle
     {
         if (SceneManager.GetActiveScene().name == "BattleScene")
         DontDestroyOnLoad(this);
+        else if (Finfor.SvortStarted)
+        Destroy(gameObject);
     }
 
     public float Damage {

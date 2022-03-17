@@ -8,10 +8,11 @@ public static class StaticClass {
 
 public class Director : MonoBehaviour
 {
+    public GameObject playerPrefab;
     // Start is called before the first frame update
     void Start()
     {
-        Finfor.currentPartyMembers = 1;
+        Finfor.allyList.Add(playerPrefab);
     }
 
     // Update is called once per frame
