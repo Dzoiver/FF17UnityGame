@@ -24,12 +24,16 @@ public class Playerscript : MonoBehaviour
         transform.position = Finfor.vector;
     }
 
+    Vector2 lookDirection = new Vector2(1, 0);
+
     public GameObject menu; 
     // Update is called once per frame
     void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+
+        Vector2 move = new Vector2(horizontal, vertical);
 
         if (Input.GetKeyDown("g") && !menu.activeSelf)
         {
@@ -43,17 +47,32 @@ public class Playerscript : MonoBehaviour
             menu.SetActive(false);
             Debug.Log(allowMovement);
         }
-        // if (horizontal || vertical > 0)
-        // {
-        //     checkForEnc();
-        // }
 
+        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+        {
+            lookDirection.Set(move.x, move.y);
+            lookDirection.Normalize();
+        }
+
+        if (Input.GetKeyDown("space"))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(_rb.position + Vector2.up * 0.2f, lookDirection, 1.0f, LayerMask.GetMask("UsableObjects"));
+            if (hit.collider != null)
+            {
+                ChestOpen character = hit.collider.GetComponent<ChestOpen>();
+                if (character != null)
+                {
+                    character.OpenChest();
+                }
+            }
+        }
     }
 
     public GameObject DialogueBoxPrefab;
 
     public GameObject SoundObject;
     public GameObject Fading;
+    public GameObject backgroundMusic;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -73,11 +92,13 @@ public class Playerscript : MonoBehaviour
         IEnumerator example(AudioSource sound)
         {
             sound.Play(0);
+            backgroundMusic.GetComponent<AudioSource>().Stop();
             Fading.SetActive(true);
             allowMovement = false;
             // CanvasFade script = Fading.GetComponent<CanvasFade>();
             // script.FadeToWhite();
             yield return new WaitWhile (()=> sound.isPlaying);
+            allowMovement = true;
             SceneManager.LoadScene("BattleScene");
         }
     }
