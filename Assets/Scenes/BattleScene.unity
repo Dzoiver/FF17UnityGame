@@ -474,6 +474,7 @@ MonoBehaviour:
   lose: {fileID: 1368808570}
   damageTextPrefab: {fileID: 7497872206936629665, guid: 961b3bbd1642c1b428ba00ea766a6531,
     type: 3}
+  targetHandle: {fileID: 514022023}
   PlayerFighting: {fileID: 4686744603839641010, guid: c34b22820aadaa14493f8c181287f394,
     type: 3}
   FujinFighting: {fileID: 2487697829330743350, guid: ee61c3fd17379224f88c06632b9adb2b,
@@ -504,6 +505,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Status3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374964285459726024, guid: a820e170dc6fa4e4b9f311035bf1a4e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5374964285459726027, guid: a820e170dc6fa4e4b9f311035bf1a4e4,
         type: 3}
@@ -2553,6 +2559,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Status2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374964285459726024, guid: a820e170dc6fa4e4b9f311035bf1a4e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5374964285459726027, guid: a820e170dc6fa4e4b9f311035bf1a4e4,
         type: 3}

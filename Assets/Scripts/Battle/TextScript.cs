@@ -13,23 +13,16 @@ public class TextScript : MonoBehaviour
     void Awake()
     {
         textComponent = GetComponent<Text>();
-        // textComponent.color.a;  //  makes a new color zm
-        Debug.Log(textComponent.color);
     }
     // Start is called before the first frame update
     void Start()
     {
-        // Color32 zm = new Color32(textComponent.color.r, textComponent.color.g, textComponent.color.b, 125); // makes the color zm transparent
-        // textComponent.color = zm;
-        // Debug.Log(zm);
     }
 
     // Update is called once per frame
     void Update()
     {
         currentTime += Time.deltaTime;
-        // textComponent.color = new Color(textComponent.color.r, textComponent.color.g, textComponent.color.b, destroyTime/currentTime);
-        // Debug.Log(destroyTime/currentTime);
         if (currentTime > destroyTime)
         Destroy(gameObject);
     }

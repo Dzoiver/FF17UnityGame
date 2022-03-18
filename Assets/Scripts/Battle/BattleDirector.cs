@@ -131,10 +131,6 @@ public class BattleDirector : MonoBehaviour
         Finfor.enemyListPrefab.Clear();
         Characters.objectEnemyList.Clear();
         Characters.objectAllyList.Clear();
-        for (int i = 0; i < Finfor.allyListObject.Count; i++)
-        {
-            Finfor.allyListObject[i].instanceObj.SetActive(false);
-        }
         if (Characters.enemies == 0)
         {
         StartCoroutine(VictoryEnd());
@@ -153,13 +149,16 @@ public class BattleDirector : MonoBehaviour
     music1.Stop();
     victory1.Play(0);
     yield return new WaitForSeconds(5);
+    for (int i = 0; i < Finfor.allyListObject.Count; i++)
+    {
+        Finfor.allyListObject[i].instanceObj.SetActive(false);
+    }
     SceneManager.LoadScene("Town");
     }
 
     public GameObject lose; 
     IEnumerator DefeatEnd()
     {
-    Debug.Log("playing lose music");
     end = true;
     AudioSource lose1 = lose.GetComponent<AudioSource>();
     AudioSource music1 = music.GetComponent<AudioSource>();
@@ -177,6 +176,7 @@ public class BattleDirector : MonoBehaviour
         }
     }
     public GameObject damageTextPrefab;
+    public GameObject targetHandle;
 
     void fillATBs(float rate)
     {
@@ -199,21 +199,21 @@ public class BattleDirector : MonoBehaviour
                 IBattle targetScript = Finfor.allyListObject[randomAllyIndex].instanceObj.GetComponent<IBattle>();
                 float dmg = attackerScript.Attack(targetScript);
 
-                StartCoroutine(enemyAttackAnim());
-                GameObject textObject = Instantiate(damageTextPrefab, transform, false);
+                GameObject textObject = Instantiate(damageTextPrefab, targetHandle.transform, false);
                 textObject.transform.position = Finfor.allyListObject[randomAllyIndex].instanceObj.transform.position;
+                Debug.Log("Text object: " + textObject);
                 Text hptext = Finfor.allyListObject[randomAllyIndex].textHpObject.GetComponent<Text>();
                 hptext.text = (int.Parse(hptext.text) - dmg).ToString();
                 
                 Text text = textObject.GetComponent<Text>();
                 text.text = "-" + dmg;
                 textObject.SetActive(true);
-                // rez.Attack(fujin);
                 
                 if (targetScript.Hp <= 0)
                 {
                 Finfor.allyListObject[randomAllyIndex].Alive = false;
                 Pos.positionsList[randomAllyIndex].IsEmpty = true;
+                Characters.allies--;
                 }
                 BattleDirector.enemyObjectList[i].atb.IsReady = false;
                 BattleDirector.enemyObjectList[i].atb.Amount = 0f;
@@ -221,11 +221,6 @@ public class BattleDirector : MonoBehaviour
         }
 
         ChangeATB();
-    }
-
-    IEnumerator enemyAttackAnim()
-    {
-    yield return new WaitForSeconds(2);
     }
 
     int getRandomAllyIndex()

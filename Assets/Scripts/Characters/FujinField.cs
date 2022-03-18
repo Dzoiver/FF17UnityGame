@@ -42,7 +42,6 @@ public class FujinField : MonoBehaviour
         Finfor.fujinStarted = true;
         Finfor.vector = transform.position;
         // SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
-        SceneManager.LoadScene("BattleScene");
     }
 
 

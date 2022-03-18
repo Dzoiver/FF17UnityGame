@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Playerscript : MonoBehaviour
 {
@@ -51,6 +52,9 @@ public class Playerscript : MonoBehaviour
 
     public GameObject DialogueBoxPrefab;
 
+    public GameObject SoundObject;
+    public GameObject Fading;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.name == "DialogueTrigger" && !fujinDialogueTriggered)
@@ -59,6 +63,22 @@ public class Playerscript : MonoBehaviour
             DialogueBox boxComponent = dialogueObject.GetComponent<DialogueBox>();
             boxComponent.Show(-4, 1, 0);
             fujinDialogueTriggered = true;
+        }
+        if (other.tag == "EnemyBattle")
+        {
+            AudioSource sound = SoundObject.GetComponent<AudioSource>();
+            StartCoroutine(example(sound));
+        }
+
+        IEnumerator example(AudioSource sound)
+        {
+            sound.Play(0);
+            Fading.SetActive(true);
+            allowMovement = false;
+            // CanvasFade script = Fading.GetComponent<CanvasFade>();
+            // script.FadeToWhite();
+            yield return new WaitWhile (()=> sound.isPlaying);
+            SceneManager.LoadScene("BattleScene");
         }
     }
 

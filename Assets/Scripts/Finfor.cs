@@ -49,6 +49,12 @@ public class Finfor : MonoBehaviour
     void Start()
     {
     }
+    // public GameObject BattleSoundSource; 
+    // public void BattleSound()
+    // {
+    //     AudioSource sound = BattleSoundSource.GetComponent<AudioSource>();
+    //     sound.Play(0);
+    // }
 
     // Update is called once per frame
     void Update()

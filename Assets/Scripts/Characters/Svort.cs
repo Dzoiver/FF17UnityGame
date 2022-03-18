@@ -15,7 +15,6 @@ public class Svort : MonoBehaviour, IBattle
         Finfor.vector = transform.position;
         Finfor.enemyListPrefab.Add(SvortPrefab);
         Finfor.enemyListPrefab.Add(SvortPrefab);
-        SceneManager.LoadScene("BattleScene");
     }
     private int index;
         public int Index {
