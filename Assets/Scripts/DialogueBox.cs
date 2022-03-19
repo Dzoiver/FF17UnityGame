@@ -18,9 +18,14 @@ public class DialogueBox : MonoBehaviour
         // text.text += message.Substring(1, 2);
     }
 
-    public bool Show(float posX, float posY, float posZ)
+    public bool Show()
     {
-        transform.Translate(posX, posY, posZ);
+        // transform.Translate(posX, posY, posZ);
+        // Vector2 temp = transform.position;
+        // temp.x = 200;
+        // temp.y = 120;
+        // Debug.Log(temp.x);
+        // transform.position = temp;
         gameObject.SetActive(true);
         // Playerscript p = player.GetComponent<Playerscript>();
         Playerscript.allowMovement = false;

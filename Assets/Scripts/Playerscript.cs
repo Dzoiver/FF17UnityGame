@@ -74,13 +74,15 @@ public class Playerscript : MonoBehaviour
     public GameObject Fading;
     public GameObject backgroundMusic;
 
+    public GameObject dialogueCanvas;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.name == "DialogueTrigger" && !fujinDialogueTriggered)
         {
-            GameObject dialogueObject = Instantiate(DialogueBoxPrefab);
+            GameObject dialogueObject = Instantiate(DialogueBoxPrefab, dialogueCanvas.transform);
             DialogueBox boxComponent = dialogueObject.GetComponent<DialogueBox>();
-            boxComponent.Show(-4, 1, 0);
+            boxComponent.Show();
             fujinDialogueTriggered = true;
         }
         if (other.tag == "EnemyBattle")
