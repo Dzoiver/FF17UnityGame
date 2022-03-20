@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Finfor : MonoBehaviour
 {
-    // static public float hp = 250f;
-    public static Vector3 vector = new Vector3(2, 0 , 0);
+    // static public float hp = 250f;\
+    public static Vector3 startVector;
     public static bool fujinStarted = false;
     public static int currentPartyMembers = 0; 
     public static int currentBattleID; 
@@ -42,6 +42,7 @@ public class Finfor : MonoBehaviour
 
             allyListObject.Add(charact);
         }
+        // Finfor.startVector = player.transform.position;
         progress = 1;
     }
     public GameObject player;

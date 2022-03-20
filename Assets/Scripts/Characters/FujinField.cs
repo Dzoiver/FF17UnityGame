@@ -40,7 +40,7 @@ public class FujinField : MonoBehaviour
         Finfor.enemyListPrefab.Add(FujinFighting);
         Finfor.enemyListPrefab.Add(FujinFighting);
         Finfor.fujinStarted = true;
-        Finfor.vector = transform.position;
+        Finfor.startVector = transform.position;
         // SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
     }
 

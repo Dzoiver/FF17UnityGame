@@ -8,7 +8,7 @@ public class Playerscript : MonoBehaviour
 {
     Rigidbody2D _rb;
 
-    public float Speed = 25.0f;
+    public float Speed = 7.0f;
     float horizontal;
     float vertical;
     static public bool allowMovement = true;
@@ -21,9 +21,9 @@ public class Playerscript : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        transform.position = Finfor.vector;
+        _renderer = GetComponent<SpriteRenderer>();
     }
-
+    private SpriteRenderer _renderer;
     Vector2 lookDirection = new Vector2(1, 0);
 
     public GameObject menu; 
@@ -32,6 +32,15 @@ public class Playerscript : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+
+        if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            _renderer.flipX = false;
+        }
+        else if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            _renderer.flipX = true;
+        }   
 
         Vector2 move = new Vector2(horizontal, vertical);
 
@@ -97,8 +106,6 @@ public class Playerscript : MonoBehaviour
             backgroundMusic.GetComponent<AudioSource>().Stop();
             Fading.SetActive(true);
             allowMovement = false;
-            // CanvasFade script = Fading.GetComponent<CanvasFade>();
-            // script.FadeToWhite();
             yield return new WaitWhile (()=> sound.isPlaying);
             allowMovement = true;
             SceneManager.LoadScene("BattleScene");
