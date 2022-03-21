@@ -111,17 +111,28 @@ public class Playerscript : MonoBehaviour
             SceneManager.LoadScene("BattleScene");
         }
     }
+    Vector2 lastPosX;
+    float newPosX;
+    public float distance;
 
     void FixedUpdate()
     {
         if (allowMovement)
         {
             Vector2 position = _rb.position;
+            lastPosX = position;
             position.x = position.x + Speed * horizontal * Time.deltaTime;
             position.y = position.y + Speed * vertical * Time.deltaTime;
-
             _rb.MovePosition(position);
         }
+    }
+
+    void LateUpdate()
+    {
+        Vector2 position = _rb.position;
+        newPosX = position.x;
+        distance += Vector2.Distance(lastPosX, position);
+        Debug.Log(distance);
     }
 
 }
