@@ -97,8 +97,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 7
+  menu: {fileID: 0}
   DialogueBoxPrefab: {fileID: 2092409790798892898, guid: 0ed16c9f69a74a94a8db533a1305b24c,
     type: 3}
+  SoundObject: {fileID: 0}
+  Fading: {fileID: 0}
+  backgroundMusic: {fileID: 0}
+  dialogueCanvas: {fileID: 0}
+  distance: 0
 --- !u!50 &2958671673046375712
 Rigidbody2D:
   serializedVersion: 4
