@@ -11,7 +11,7 @@ public class DialogueBox : MonoBehaviour
     float wait = 0f;
     int pos = 0;
     bool completed = false;
-    string message = "Don't come closer or you regret it";
+    string message = "Hey. Have you been catching fish again? You seem tired. You should take a rest at home";
     // Start is called before the first frame update
     void Start()
     {
