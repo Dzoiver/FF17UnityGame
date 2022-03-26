@@ -4,8 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public interface IUsableObjects
+{
+    void Action();
+}
+
 public class Playerscript : MonoBehaviour
 {
+
+    Animator animator;
     Rigidbody2D _rb;
 
     public float Speed = 7.0f;
@@ -22,6 +29,7 @@ public class Playerscript : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
     private SpriteRenderer _renderer;
     Vector2 lookDirection = new Vector2(1, 0);
@@ -32,16 +40,6 @@ public class Playerscript : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-
-        if (Input.GetAxisRaw("Horizontal") < 0)
-        {
-            _renderer.flipX = false;
-        }
-        else if (Input.GetAxisRaw("Horizontal") > 0)
-        {
-            _renderer.flipX = true;
-        }   
-
         Vector2 move = new Vector2(horizontal, vertical);
 
         if (Input.GetKeyDown("g") && !menu.activeSelf)
@@ -63,15 +61,20 @@ public class Playerscript : MonoBehaviour
             lookDirection.Normalize();
         }
 
+        animator.SetFloat("Look X", lookDirection.x);
+        animator.SetFloat("Look Y", lookDirection.y);
+        animator.SetFloat("Speed", move.magnitude);
+
         if (Input.GetKeyDown("space"))
         {
             RaycastHit2D hit = Physics2D.Raycast(_rb.position + Vector2.up * 0.2f, lookDirection, 1.0f, LayerMask.GetMask("UsableObjects"));
+            
             if (hit.collider != null)
             {
-                ChestOpen character = hit.collider.GetComponent<ChestOpen>();
-                if (character != null)
+                IUsableObjects object1 = hit.collider.GetComponent<IUsableObjects>();
+                if (object1 != null)
                 {
-                    character.OpenChest();
+                    object1.Action();
                 }
             }
         }
