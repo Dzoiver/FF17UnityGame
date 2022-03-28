@@ -12,6 +12,7 @@ public class DialogueBox : MonoBehaviour
     int pos = 0;
     bool completed = false;
     string message = "Hey. Have you been catching fish again? You seem tired. You should take a rest at home";
+    int stringAmount = 1;
     // Start is called before the first frame update
     void Start()
     {
