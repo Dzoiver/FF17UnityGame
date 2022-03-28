@@ -135,7 +135,6 @@ public class Playerscript : MonoBehaviour
         Vector2 position = _rb.position;
         newPosX = position.x;
         distance += Vector2.Distance(lastPosX, position);
-        Debug.Log(distance);
     }
 
 }
