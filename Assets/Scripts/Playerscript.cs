@@ -19,6 +19,7 @@ public class Playerscript : MonoBehaviour
     float horizontal;
     float vertical;
     static public bool allowMovement = true;
+    static public bool allowControl = true;
     bool fujinDialogueTriggered = false;
     void Awake()
     {
@@ -38,6 +39,8 @@ public class Playerscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!allowControl)
+        return;
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         Vector2 move = new Vector2(horizontal, vertical);
@@ -46,13 +49,11 @@ public class Playerscript : MonoBehaviour
         {
             menu.SetActive(true);
             allowMovement = false;
-            Debug.Log(allowMovement);
         }
         else if (Input.GetKeyDown("g") && menu.activeSelf)
         {
             allowMovement = true;
             menu.SetActive(false);
-            Debug.Log(allowMovement);
         }
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
@@ -120,13 +121,17 @@ public class Playerscript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (allowMovement)
+        if (allowMovement && allowControl)
         {
             Vector2 position = _rb.position;
             lastPosX = position;
             position.x = position.x + Speed * horizontal * Time.deltaTime;
             position.y = position.y + Speed * vertical * Time.deltaTime;
             _rb.MovePosition(position);
+        }
+        if (!allowControl)
+        {
+            animator.SetFloat("Speed", 0);
         }
     }
 

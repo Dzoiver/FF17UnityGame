@@ -22,6 +22,7 @@ public class FujinDial : MonoBehaviour
         GameObject dial = Instantiate(dialogueBox, canvas.transform);
         Dialogue script = dial.GetComponent<Dialogue>();
         script.fillPlayDial(list, false);
+        Destroy(gameObject);
     }
     void Update()
     {

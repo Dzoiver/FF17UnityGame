@@ -20,6 +20,7 @@ public class Dialogue : MonoBehaviour
     float wait = 0f;
     int pos = 0;
     bool play = false;
+    bool destroyEnd;
 
 
     string path = "DialogueBox";
@@ -29,31 +30,12 @@ public class Dialogue : MonoBehaviour
         textMessage = GetComponentInChildren<Text>();
     }
 
-    // public Dialogue(List<string> giveList, bool movable, GameObject sprtObject)
-    // {
-    //     canMove = movable;
-    //     messagesList = giveList;
-    //     stringAmount = giveList.Count;
-    // }
-    // public void PlayDialogue()
-    // {
-    //     GameObject graphicPrefab = Resources.Load(path) as GameObject;
-    //     canvas = GameObject.FindWithTag("Canvas1");
-    //     dialgs = Instantiate(graphicPrefab, canvas.transform);
-    //     textMessage = graphicPrefab.GetComponent<Text>();
-    //     messageText = messagesList[0];
-    //     if (!canMove)
-    //     Playerscript.allowMovement = false;
-
-    //     play = true;
-    // }
-
     public void fillPlayDial(List<string> list, bool movable)
     {
         messagesList = list;
         messageText = messagesList[0];
         if (!movable)
-        Playerscript.allowMovement = false;
+        Playerscript.allowControl = false;
         play = true;
     }
     void Update()
@@ -73,31 +55,38 @@ public class Dialogue : MonoBehaviour
                 if (messagesList.Count == 0)
                 {
                     Destroy(gameObject);
-                    Playerscript.allowMovement = true;
+                    Playerscript.allowControl = true;
+                    play = false;
+                    return;
                 }
                 else
                 {
                     messageText = messagesList[0];
                     textMessage.text = "";
                     pos = 0;
+                    completed = false;
                 }
             }
-            else
+            else if (!completed)
             {
                 completed = true;
             }
         }
 
         wait += Time.deltaTime;
-        if (wait > interval && pos < messageText.Length)
+        if (wait > interval && pos < messageText.Length && !completed)
         {
             textMessage.text += messageText.Substring(pos, 1);
             pos++;
             wait = 0f;
         }
-        else if (pos >= messageText.Length)
+        else if (pos >= messageText.Length && !completed)
         {
             completed = true;
+        }
+        else if (completed && pos < messageText.Length)
+        {
+            textMessage.text = messagesList[0];
         }
     }
 }

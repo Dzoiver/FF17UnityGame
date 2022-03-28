@@ -3,27 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// class Battle
-// {
-//     GameObject prefab1;
-//     GameObject prefab2;
-//     GameObject prefab3;
-
-//     public GameObject Prefab 
-//     {
-//         get { return prefab; }
-//         set { prefab = value; }
-//     }
-// }
-
-public class FujinField : MonoBehaviour
+public class FujinField : MonoBehaviour, IUsableObjects
 {
     public GameObject FujinFighting;
+    public GameObject dialogueBox;
+    public GameObject canvas;
     // Start is called before the first frame update
     void Start()
     {
         if (Finfor.fujinStarted)
         Destroy(gameObject);
+    }
+
+    public void Action()
+    {
+        string message1 = "I don't want you to get in trouble";
+        List<string> list = new List<string>();
+        list.Add(message1);
+        GameObject dial = Instantiate(dialogueBox, canvas.transform);
+        Dialogue script = dial.GetComponent<Dialogue>();
+        script.fillPlayDial(list, false);
     }
 
     // void Awake()
@@ -33,15 +32,11 @@ public class FujinField : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // GameObject fujinObject1 = Instantiate(FujinFighting);
-        // GameObject fujinObject2 = Instantiate(FujinFighting);
-        // GameObject fujinObject3 = Instantiate(FujinFighting);
         Finfor.enemyListPrefab.Add(FujinFighting);
         Finfor.enemyListPrefab.Add(FujinFighting);
         Finfor.enemyListPrefab.Add(FujinFighting);
         Finfor.fujinStarted = true;
         Finfor.startVector = transform.position;
-        // SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
     }
 
 
