@@ -12,6 +12,7 @@ public class ToTown : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Playerscript.lastMap = "WM";
         SceneManager.LoadScene("Town");
     }
 

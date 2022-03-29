@@ -20,6 +20,7 @@ public class Playerscript : MonoBehaviour
     float vertical;
     static public bool allowMovement = true;
     static public bool allowControl = true;
+    static public string lastMap = "Town";
     bool fujinDialogueTriggered = false;
     void Awake()
     {

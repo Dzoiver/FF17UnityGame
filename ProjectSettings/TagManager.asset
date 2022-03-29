@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EnemyBattle
   - Canvas1
+  - Portrait
   layers:
   - Default
   - TransparentFX

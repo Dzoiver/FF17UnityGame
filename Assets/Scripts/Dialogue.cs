@@ -34,7 +34,8 @@ public class Dialogue : MonoBehaviour
     {
         messagesList = list;
         messageText = messagesList[0];
-        if (!movable)
+        canMove = movable;
+        if (!canMove)
         Playerscript.allowControl = false;
         play = true;
         if (spriteIm != null)
@@ -60,6 +61,7 @@ public class Dialogue : MonoBehaviour
                 if (messagesList.Count == 0)
                 {
                     Destroy(gameObject);
+                    if (!canMove)
                     Playerscript.allowControl = true;
                     play = false;
                     return;
