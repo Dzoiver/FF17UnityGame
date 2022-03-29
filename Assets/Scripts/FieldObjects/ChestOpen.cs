@@ -9,7 +9,7 @@ public class ChestOpen : MonoBehaviour, IUsableObjects
     public Sprite openChestSprite;
     public GameObject infoBoxPrefab;
     public GameObject dialogueCanvas;
-
+    public bool opened = false;
     void Start()
     {
     }
@@ -25,6 +25,8 @@ public class ChestOpen : MonoBehaviour, IUsableObjects
 
     public void Action()
     {
+        if (!opened)
+        {
         gameObject.GetComponent<SpriteRenderer>().sprite = openChestSprite;
         
         GameObject infoBox = Instantiate(infoBoxPrefab, dialogueCanvas.transform);
@@ -33,6 +35,8 @@ public class ChestOpen : MonoBehaviour, IUsableObjects
         Text text1 = textObject.GetComponent<Text>();
         
         text1.text = "You got Potion";
+        opened = true;
+        }
         // 
     }
 
