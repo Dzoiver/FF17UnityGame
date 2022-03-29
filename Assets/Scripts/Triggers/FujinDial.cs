@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FujinDial : MonoBehaviour
 {
-    public GameObject sprtObject;
+    public Sprite sprtObject;
     public GameObject canvas;
     public GameObject dialogueBox;
     List<string> list = new List<string>();
     string message1 = "Hey. Have you been fishing again?";
-    string message2 = "You seem tired. You should take a rest at home";
+    string message2 = "You seem tired. You should take a rest at home.";
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class FujinDial : MonoBehaviour
     {
         GameObject dial = Instantiate(dialogueBox, canvas.transform);
         Dialogue script = dial.GetComponent<Dialogue>();
-        script.fillPlayDial(list, false);
+        script.fillPlayDial(list, false, sprtObject);
         Destroy(gameObject);
     }
     void Update()

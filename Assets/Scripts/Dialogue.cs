@@ -8,12 +8,12 @@ public class Dialogue : MonoBehaviour
     int stringAmount = 0;
     string messageText = "";
     bool canMove = false;
-    Sprite portrait = null;
+    Image portrait = null;
     List<string> messagesList;
     string name = "";
     public GameObject canvas;
     GameObject dialgs;
-    GameObject spriteObject;
+    Sprite spriteObject;
     bool completed;
     Text textMessage;
     float interval = 0.03f;
@@ -30,13 +30,18 @@ public class Dialogue : MonoBehaviour
         textMessage = GetComponentInChildren<Text>();
     }
 
-    public void fillPlayDial(List<string> list, bool movable)
+    public void fillPlayDial(List<string> list, bool movable, Sprite spriteIm)
     {
         messagesList = list;
         messageText = messagesList[0];
         if (!movable)
         Playerscript.allowControl = false;
         play = true;
+        if (spriteIm != null)
+        {
+            portrait = GameObject.FindWithTag("Portrait").GetComponent<Image>();
+            portrait.sprite = spriteIm;
+        }
     }
     void Update()
     {

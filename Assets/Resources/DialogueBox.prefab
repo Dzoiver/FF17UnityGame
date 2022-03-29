@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2871928405358554421}
   m_Layer: 5
   m_Name: Image
-  m_TagString: Untagged
+  m_TagString: Portrait
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 66.001, y: 62.445}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 51.1, y: 62.445}
+  m_SizeDelta: {x: 70.249725, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4417268197790617570
 CanvasRenderer:
@@ -241,5 +241,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26c2439e3b1b1b4abcc5a44b20e2797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphicPrefab: {fileID: 6897138320333658263}
   canvas: {fileID: 0}

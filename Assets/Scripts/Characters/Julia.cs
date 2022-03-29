@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Julia : MonoBehaviour, IUsableObjects
 {
     bool firstTime = true;
     public GameObject dialogueBox;
     public GameObject canvas;
+    public Sprite sprite;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
     
     public void Action()
@@ -18,13 +19,13 @@ public class Julia : MonoBehaviour, IUsableObjects
         if (firstTime)
         {
             string message1 = "Greetings! Do you wanna buy something?";
-            string message2 = "I sell potions, armor and weapons";
+            string message2 = "I sell potions, armor and weapons.";
             List<string> list = new List<string>();
             list.Add(message1);
             list.Add(message2);
             GameObject dial = Instantiate(dialogueBox, canvas.transform);
             Dialogue script = dial.GetComponent<Dialogue>();
-            script.fillPlayDial(list, false);
+            script.fillPlayDial(list, false, sprite);
             firstTime = false;
         }
         else
@@ -34,7 +35,7 @@ public class Julia : MonoBehaviour, IUsableObjects
             list.Add(message1);
             GameObject dial = Instantiate(dialogueBox, canvas.transform);
             Dialogue script = dial.GetComponent<Dialogue>();
-            script.fillPlayDial(list, false);
+            script.fillPlayDial(list, false, sprite);
             firstTime = false;
         }
     }
