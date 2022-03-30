@@ -21,6 +21,7 @@ public class FadeBlack : MonoBehaviour
     {
         if (fade)
         {
+            Debug.Log("check");
             currentTime += Time.deltaTime;
             if (currentTime < fadeTime)
             {

@@ -10,9 +10,21 @@ public class start : MonoBehaviour
     {
         
     }
-
+    public AudioSource music;
+    public GameObject fadeBlack;
     public void LoadStartScene()
     {
+        StartCoroutine(startSeq());
+        // SceneManager.LoadScene("Town");
+    }
+
+    IEnumerator startSeq()
+    {
+        AudioSource startSFX = gameObject.GetComponent<AudioSource>();
+        // music.Stop();
+        startSFX.Play(0);
+        fadeBlack.GetComponent<FadeBlack>().fade = true;
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene("Town");
     }
 
