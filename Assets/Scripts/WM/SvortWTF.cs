@@ -18,6 +18,11 @@ public class SvortWTF : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Finfor.svortInWMSeen)
+        {
+            Destroy(gameObject);
+            Destroy(svort);
+        }
         list.Add(message1);
         svortSprite = svort.GetComponent<SpriteRenderer>();
     }
@@ -28,6 +33,7 @@ public class SvortWTF : MonoBehaviour
         Dialogue script = dial.GetComponent<Dialogue>();
         script.fillPlayDial(list, false, sprtObject);
         fadeSprite = true;
+        Finfor.svortInWMSeen = true;
     }
     // Update is called once per frame
     void Update()

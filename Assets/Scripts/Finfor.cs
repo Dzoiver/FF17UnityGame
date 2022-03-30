@@ -16,6 +16,7 @@ public class Finfor : MonoBehaviour
     public static List<CharBat> allyListObject = new List<CharBat>();
     public static bool SvortStarted = false;
     public static int progress = 0;
+    public static bool svortInWMSeen = false;
 
 
     // List<GameObject> charactersInParty = new List<GameObject>();
@@ -31,7 +32,6 @@ public class Finfor : MonoBehaviour
         allyListPrefab.Add(player);
         for (int i = 0; i < allyListPrefab.Count; i++)
         {
-            Debug.Log("creating player objects");
             // atbList.Add(new ATB(){ Amount = 0f, IsEnemy=true});
             CharBat charact = new CharBat();
             charact.atb = new ATB(){ Amount = 0f};

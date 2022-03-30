@@ -8,6 +8,7 @@ public class CryptDir : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Playerscript.lastMap = "Crypt";
         // allyListPrefab.Add(player);
         // for (int i = 0; i < allyListPrefab.Count; i++)
         // {

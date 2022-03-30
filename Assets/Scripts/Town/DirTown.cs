@@ -7,7 +7,6 @@ using Positions;
 public class DirTown : MonoBehaviour
 {
     public GameObject destinationPoint;
-    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +14,7 @@ public class DirTown : MonoBehaviour
         {
             GameObject.FindWithTag("Player").transform.position = destinationPoint.transform.position;
         }
+        Playerscript.lastMap = "Town";
     }
 
     // Update is called once per frame

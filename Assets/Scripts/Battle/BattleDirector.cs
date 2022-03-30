@@ -153,7 +153,7 @@ public class BattleDirector : MonoBehaviour
     {
         Finfor.allyListObject[i].instanceObj.SetActive(false);
     }
-    SceneManager.LoadScene("Town");
+    SceneManager.LoadScene(Playerscript.lastMap);
     }
 
     public GameObject lose; 
@@ -165,6 +165,7 @@ public class BattleDirector : MonoBehaviour
     music1.Stop();
     lose1.Play(0);
     yield return new WaitForSeconds(5);
+    SceneManager.LoadScene("StartScreen");
     }
 
     public void ChangeATB()
@@ -201,7 +202,6 @@ public class BattleDirector : MonoBehaviour
 
                 GameObject textObject = Instantiate(damageTextPrefab, targetHandle.transform, false);
                 textObject.transform.position = Finfor.allyListObject[randomAllyIndex].instanceObj.transform.position;
-                Debug.Log("Text object: " + textObject);
                 Text hptext = Finfor.allyListObject[randomAllyIndex].textHpObject.GetComponent<Text>();
                 hptext.text = (int.Parse(hptext.text) - dmg).ToString();
                 
