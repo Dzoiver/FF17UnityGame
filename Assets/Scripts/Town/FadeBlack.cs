@@ -15,13 +15,38 @@ public class FadeBlack : MonoBehaviour
     {
         imageComponent = GetComponent<Image>();
     }
+    public void setImageAlpha(float value)
+    {
+        Color tempColor = imageComponent.color;
+        tempColor.a = value;
+        imageComponent.color = tempColor;
+    }
+
+    public void FadeOut(float time)
+    {
+        Color tempColor = imageComponent.color;
+        tempColor.a = 1;
+        imageComponent.color = tempColor;
+
+        fadeTime = time;
+        reverseFade = true;
+    }
+
+    public void FadeIn(float time)
+    {
+        Color tempColor = imageComponent.color;
+        tempColor.a = 0;
+        imageComponent.color = tempColor;
+
+        fadeTime = time;
+        fade = true;
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (fade)
         {
-            Debug.Log("check");
             currentTime += Time.deltaTime;
             if (currentTime < fadeTime)
             {

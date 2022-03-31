@@ -92,13 +92,6 @@ public class Playerscript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // if (other.name == "DialogueTrigger" && !fujinDialogueTriggered)
-        // {
-        //     GameObject dialogueObject = Instantiate(DialogueBoxPrefab, dialogueCanvas.transform);
-        //     DialogueBox boxComponent = dialogueObject.GetComponent<DialogueBox>();
-        //     boxComponent.Show();
-        //     fujinDialogueTriggered = true;
-        // }
         if (other.tag == "EnemyBattle")
         {
             AudioSource sound = SoundObject.GetComponent<AudioSource>();

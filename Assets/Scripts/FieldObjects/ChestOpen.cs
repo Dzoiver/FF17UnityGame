@@ -36,6 +36,9 @@ public class ChestOpen : MonoBehaviour, IUsableObjects
         
         text1.text = "You got Potion";
         opened = true;
+
+        AudioSource audio = gameObject.GetComponent<AudioSource>();
+        audio.Play();
         }
         // 
     }

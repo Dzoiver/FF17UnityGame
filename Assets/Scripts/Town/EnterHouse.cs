@@ -13,11 +13,11 @@ public class EnterHouse : MonoBehaviour
     IEnumerator Teleporting(Collider2D other)
     {
         FadeBlack script = fadeImage.GetComponent<FadeBlack>();
-        script.fade = true;
+        script.FadeIn(1f);
         Playerscript.allowControl = false;
         yield return new WaitForSeconds(script.fadeTime);
         other.transform.position = destinationPoint.transform.position;
-        script.reverseFade = true;
+        script.FadeOut(1f);
         yield return new WaitForSeconds(script.fadeTime);
         Playerscript.allowControl = true;
     }
