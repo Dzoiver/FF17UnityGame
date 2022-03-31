@@ -17,6 +17,7 @@ public class RandomEnc : MonoBehaviour
         pScript = playerObject.GetComponent<Playerscript>();
         dangerValue = Random.Range(0, 500);
         formation = Random.Range(1, 3);
+        Debug.Log("pScript.distance = " + pScript.distance);
     }
 
     // Update is called once per frame
@@ -24,14 +25,15 @@ public class RandomEnc : MonoBehaviour
     {
         if (pScript.distance > dangerValue)
         {
-            dangerValue = Random.Range(0, 500);
-            pScript.distance = 0;
-            for (int i = 0; i < formation; i++)
-            {
-                Finfor.enemyListPrefab.Add(SvortPrefab);
-            }
-            formation = Random.Range(1, 3);
-            SceneManager.LoadScene("BattleScene");
+            Debug.Log("pScript.distance = " + pScript.distance);
+            // dangerValue = Random.Range(0, 500);
+            // pScript.distance = 0;
+            // for (int i = 0; i < formation; i++)
+            // {
+            //     Finfor.enemyListPrefab.Add(SvortPrefab);
+            // }
+            // formation = Random.Range(1, 3);
+            // SceneManager.LoadScene("BattleScene");
         }
     }
 }

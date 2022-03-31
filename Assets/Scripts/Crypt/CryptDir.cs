@@ -5,10 +5,13 @@ using UnityEngine;
 public class CryptDir : MonoBehaviour
 {
     public GameObject playerPrefab;
+    public GameObject image;
     // Start is called before the first frame update
     void Start()
     {
         Playerscript.lastMap = "Crypt";
+        Playerscript.allowControl = false;
+        StartCoroutine(waitTime());
         // allyListPrefab.Add(player);
         // for (int i = 0; i < allyListPrefab.Count; i++)
         // {
@@ -23,6 +26,14 @@ public class CryptDir : MonoBehaviour
 
         //     allyListObject.Add(charact);
         // }
+    }
+
+    IEnumerator waitTime()
+    {
+        FadeBlack script = image.GetComponent<FadeBlack>();
+        script.FadeOut(1f);
+        yield return new WaitForSeconds(1f);
+        Playerscript.allowControl = true;
     }
 
     // Update is called once per frame

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ToTown : MonoBehaviour
 {
+    public GameObject image;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +13,15 @@ public class ToTown : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Playerscript.allowControl = false;
+        StartCoroutine(waitTime());
+    }
+    IEnumerator waitTime()
+    {
+        FadeBlack script = image.GetComponent<FadeBlack>();
+        script.FadeIn(1f);
+        yield return new WaitForSeconds(1f);
+        Playerscript.allowControl = true;
         Playerscript.lastMap = "WM";
         SceneManager.LoadScene("Town");
     }

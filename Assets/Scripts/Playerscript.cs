@@ -131,9 +131,12 @@ public class Playerscript : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector2 position = _rb.position;
-        newPosX = position.x;
-        distance += Vector2.Distance(lastPosX, position);
+        if (allowControl)
+        {
+            Vector2 position = _rb.position;
+            newPosX = position.x;
+            distance += Vector2.Distance(lastPosX, position);
+        }
     }
 
 }
