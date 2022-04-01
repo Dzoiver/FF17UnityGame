@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3265454581407134968}
   - component: {fileID: 5477172447660926703}
   m_Layer: 0
-  m_Name: decorative_15
+  m_Name: GraveDH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!61 &5477172447660926703
 BoxCollider2D:
   m_ObjectHideFlags: 0
