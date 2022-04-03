@@ -10,6 +10,8 @@ public class RandomEnc : MonoBehaviour
     Playerscript pScript;
     int formation;
     public GameObject SvortPrefab;
+    public GameObject fadeImage;
+    public AudioSource transitionSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,25 @@ public class RandomEnc : MonoBehaviour
         pScript = playerObject.GetComponent<Playerscript>();
         dangerValue = Random.Range(0, 500);
         formation = Random.Range(1, 3);
-        Debug.Log("pScript.distance = " + pScript.distance);
+    }
+
+    IEnumerator Battle()
+    {
+        dangerValue = Random.Range(0, 500);
+        pScript.distance = 0;
+        for (int i = 0; i < formation; i++)
+        {
+            Finfor.enemyListPrefab.Add(SvortPrefab); // Enemy from current location enemies object
+        }
+        formation = Random.Range(1, 3);
+        FadeBlack script = fadeImage.GetComponent<FadeBlack>();
+        Color color = new Color(255, 255, 255, 255);
+        script.FadeIn(1f, color);
+        Playerscript.allowControl = false;
+        transitionSFX.Play();
+        yield return new WaitForSeconds(script.fadeTime);
+        Playerscript.allowControl = true;
+        SceneManager.LoadScene("BattleScene");
     }
 
     // Update is called once per frame
@@ -25,15 +45,7 @@ public class RandomEnc : MonoBehaviour
     {
         if (pScript.distance > dangerValue)
         {
-            Debug.Log("pScript.distance = " + pScript.distance);
-            // dangerValue = Random.Range(0, 500);
-            // pScript.distance = 0;
-            // for (int i = 0; i < formation; i++)
-            // {
-            //     Finfor.enemyListPrefab.Add(SvortPrefab);
-            // }
-            // formation = Random.Range(1, 3);
-            // SceneManager.LoadScene("BattleScene");
+            StartCoroutine(Battle());
         }
     }
 }

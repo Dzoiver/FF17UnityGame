@@ -32,6 +32,17 @@ public class FadeBlack : MonoBehaviour
         reverseFade = true;
     }
 
+    public void FadeIn(float time, Color color)
+    {
+        Color tempColor = imageComponent.color;
+        tempColor = color;
+        tempColor.a = 0;
+        imageComponent.color = tempColor;
+
+        fadeTime = time;
+        fade = true;
+    }
+
     public void FadeIn(float time)
     {
         Color tempColor = imageComponent.color;
