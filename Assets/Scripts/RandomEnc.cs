@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,11 +31,17 @@ public class RandomEnc : MonoBehaviour
         }
         formation = Random.Range(1, 3);
         FadeBlack script = fadeImage.GetComponent<FadeBlack>();
-        Color color = new Color(255, 255, 255, 255);
+        Color color = new Color(255, 255, 255, 1);
         script.FadeIn(1f, color);
         Playerscript.allowControl = false;
         transitionSFX.Play();
+        // Make black fade
+        script.FadeIn(1f, color);
         yield return new WaitForSeconds(script.fadeTime);
+        Color color1 = new Color(1, 1, 1, 1);
+        Color color2 = new Color(0, 0, 0, 1);
+        script.FadeColor(0.5f, color1, color2);
+        yield return new WaitForSeconds(1f);
         Playerscript.allowControl = true;
         SceneManager.LoadScene("BattleScene");
     }

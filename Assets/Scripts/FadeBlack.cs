@@ -10,6 +10,16 @@ public class FadeBlack : MonoBehaviour
     public bool fade = false;
     Image imageComponent;
     public bool reverseFade = false;
+    bool fadeColor = false;
+    float red = 0;
+    float green = 0;
+    float blue = 0;
+    float redTo = 0;
+    float greenTo = 0;
+    float blueTo = 0;
+    float redDiff = 0;
+    float greenDiff = 0;
+    float blueDiff = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +63,24 @@ public class FadeBlack : MonoBehaviour
         fade = true;
     }
 
+    public void FadeColor(float time, Color colorFrom, Color colorIn)
+    {
+        imageComponent.color = colorFrom;
+        fadeTime = time;
+        fadeColor = true;
+        red = colorFrom.r;
+        green = colorFrom.g;
+        blue = colorFrom.b;
+
+        redTo = colorIn.r;
+        greenTo = colorIn.g;
+        colorIn.b = blueTo;
+
+        redDiff = redTo - red;
+        greenDiff = greenTo - green;
+        blueDiff = blueTo - blue;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -68,6 +96,25 @@ public class FadeBlack : MonoBehaviour
             else
             {
                 fade = false;
+                currentTime = 0f;
+            }
+        }
+
+        if (fadeColor)
+        {
+            currentTime += Time.deltaTime;
+            if (currentTime < fadeTime)
+            {
+                Color tempColor = imageComponent.color;
+                tempColor.r += (redDiff * Time.deltaTime) / fadeTime;
+                tempColor.g += (greenDiff * Time.deltaTime) / fadeTime;
+                tempColor.b += (blueDiff * Time.deltaTime) / fadeTime;
+                Debug.Log(tempColor);
+                imageComponent.color = tempColor;
+            }
+            else
+            {
+                fadeColor = false;
                 currentTime = 0f;
             }
         }

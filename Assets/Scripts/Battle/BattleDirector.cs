@@ -95,9 +95,12 @@ public class BattleDirector : MonoBehaviour
     public GameObject text2;
     public GameObject text3;
     public List<GameObject> Hptext = new List<GameObject>();
+    public GameObject fadeImage;
     // Start is called before the first frame update
     void Start()
     {
+        FadeBlack script = fadeImage.GetComponent<FadeBlack>();
+        script.FadeOut(1f);
         Hptext.Add(text3);
         Hptext.Add(text2);
         Hptext.Add(text1);
