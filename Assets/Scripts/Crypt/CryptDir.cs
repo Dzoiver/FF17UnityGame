@@ -11,6 +11,7 @@ public class CryptDir : MonoBehaviour
     {
         Playerscript.lastMap = "Crypt";
         Playerscript.allowControl = false;
+        playerPrefab.transform.position = Finfor.startVector;
         StartCoroutine(waitTime());
         // allyListPrefab.Add(player);
         // for (int i = 0; i < allyListPrefab.Count; i++)

@@ -7,7 +7,7 @@ using UnityEngine;
 public class Finfor : MonoBehaviour
 {
     // static public float hp = 250f;\
-    public static Vector3 startVector;
+    public static Vector3 startVector = new Vector3(1f, 5f, 0f);
     public static bool fujinStarted = false;
     public static int currentPartyMembers = 0; 
     public static int currentBattleID; 

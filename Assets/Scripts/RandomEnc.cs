@@ -5,19 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class RandomEnc : MonoBehaviour
 {
-    Transform playerTransform;
+    public GameObject player;
     float dangerValue;
     Playerscript pScript;
     int formation;
     public GameObject SvortPrefab;
     public GameObject fadeImage;
     public AudioSource transitionSFX;
+    public GameObject DP;
     // Start is called before the first frame update
     void Start()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         pScript = playerObject.GetComponent<Playerscript>();
-        dangerValue = Random.Range(0, 500);
+        dangerValue = Random.Range(100, 500);
         formation = Random.Range(1, 3);
     }
 
@@ -43,6 +44,7 @@ public class RandomEnc : MonoBehaviour
         script.FadeColor(0.5f, color1, color2);
         yield return new WaitForSeconds(1f);
         Playerscript.allowControl = true;
+        Finfor.startVector = player.transform.position;
         SceneManager.LoadScene("BattleScene");
     }
 
