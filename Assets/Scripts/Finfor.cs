@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Finfor : MonoBehaviour
 {
-    // static public float hp = 250f;\
     public static Vector3 startVector = new Vector3(1f, 5f, 0f);
     public static bool fujinStarted = false;
     public static int currentPartyMembers = 0; 
@@ -17,9 +16,6 @@ public class Finfor : MonoBehaviour
     public static bool SvortStarted = false;
     public static int progress = 0;
     public static bool svortInWMSeen = false;
-
-
-    // List<GameObject> charactersInParty = new List<GameObject>();
 
     void Awake()
     {
@@ -32,30 +28,19 @@ public class Finfor : MonoBehaviour
         allyListPrefab.Add(player);
         for (int i = 0; i < allyListPrefab.Count; i++)
         {
-            // atbList.Add(new ATB(){ Amount = 0f, IsEnemy=true});
             CharBat charact = new CharBat();
             charact.atb = new ATB(){ Amount = 0f};
             charact.IsEnemy = false;
             charact.prefabObj = allyListPrefab[i];
             charact.instanceObj = Instantiate(charact.prefabObj);
-            // charact.atb = new ATB(){ Amount = 0f, IsEnemy=false};
-
             allyListObject.Add(charact);
         }
-        // Finfor.startVector = player.transform.position;
         progress = 1;
     }
     public GameObject player;
-    // Start is called before the first frame update
     void Start()
     {
     }
-    // public GameObject BattleSoundSource; 
-    // public void BattleSound()
-    // {
-    //     AudioSource sound = BattleSoundSource.GetComponent<AudioSource>();
-    //     sound.Play(0);
-    // }
 
     // Update is called once per frame
     void Update()

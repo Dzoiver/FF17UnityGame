@@ -87,7 +87,7 @@ public class BattleDirector : MonoBehaviour
 
     float maxATB = 30f; // Max value of ATB
     float atbSpeed = 10f; // Speed of the ATB bar
-    bool menuAppeared = false; // Prevents several menu from stacking on the screen
+    public bool menuAppeared = false; // Prevents several menu from stacking on the screen
     bool end = false; // Set to true when all enemies slain
     CharBat charact;
 
@@ -182,14 +182,14 @@ public class BattleDirector : MonoBehaviour
     public GameObject damageTextPrefab;
     public GameObject targetHandle;
 
-    void fillATBs(float rate)
+    void fillATBs(float rate) // Fill ALL charcaters ATB
     {
-        for (int i = 0; i < Finfor.allyListObject.Count; i++)
+        for (int i = 0; i < Finfor.allyListObject.Count; i++) // Allies first
         {
             Finfor.allyListObject[i].atb.Amount += rate;
-            if (Finfor.allyListObject[i].atb.IsReady)
+            if (Finfor.allyListObject[i].atb.IsReady && !menuAppeared)
             {
-                battleMenuAppear(i);
+                battleMenuAppear(i); // If ready, menu appears
             }
         }
         for (int i = 0; i < enemyObjectList.Count; i++)
@@ -284,6 +284,8 @@ public class BattleDirector : MonoBehaviour
 
     void battleMenuAppear(int index)
     {
+        gameObject.GetComponent<AudioSource>().Play(); // menuReadySFX
+        Debug.Log("sound played");
         menuAppeared = true;
         BattleMenu script = battleMenu.GetComponent<BattleMenu>();
         script.Activate(index);

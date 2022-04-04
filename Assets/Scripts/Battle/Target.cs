@@ -33,11 +33,14 @@ public class Target : MonoBehaviour
         script.DeActivate();
         BattleDirector dirScript = director.GetComponent<BattleDirector>(); 
         dirScript.resetATB(atbID);
+        dirScript.menuAppeared = false;
 
         target1.SetActive(false);
     }
 
     public GameObject damageTextPrefab;
+    public GameObject DeathSFX;
+    public GameObject HitSFX;
     // Update is called once per frame
     void Update()
     {
@@ -46,11 +49,13 @@ public class Target : MonoBehaviour
 
         if (Input.GetKeyDown("w"))
         {
+            gameObject.GetComponent<AudioSource>().Play();
             goToPrevEnemy();
         }
 
         if (Input.GetKeyDown("s"))
         {
+            gameObject.GetComponent<AudioSource>().Play();
             goToNextEnemy();
         }
 
@@ -66,7 +71,8 @@ public class Target : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-
+            gameObject.GetComponent<AudioSource>().Play();
+            HitSFX.GetComponent<AudioSource>().Play();
             IBattle attackerScript = Finfor.allyListObject[atbID].instanceObj.GetComponent<IBattle>();
             IBattle targetScript = BattleDirector.enemyObjectList[currentPos].instanceObj.GetComponent<IBattle>();
             float dmg = attackerScript.Attack(targetScript);
@@ -80,6 +86,7 @@ public class Target : MonoBehaviour
             
             if (targetScript.Hp <= 0)
             {
+            DeathSFX.GetComponent<AudioSource>().Play(); // Enemy Death sound
             BattleDirector.enemyObjectList[currentPos].Alive = false;
             Pos.positionsList[currentPos].IsEmpty = true;
             }

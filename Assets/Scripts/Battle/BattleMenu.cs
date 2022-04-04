@@ -57,6 +57,7 @@ public class BattleMenu : MonoBehaviour
         if (locked)
         return;
 
+        gameObject.GetComponent<AudioSource>().Play();
         if (currentOption + 1 < maxOptions)
         {
         currentOption++;
@@ -79,7 +80,7 @@ public class BattleMenu : MonoBehaviour
     {
         if (locked)
         return;
-
+        gameObject.GetComponent<AudioSource>().Play();
         if (currentOption - 1 >= 0)
         {
         currentOption--;
@@ -102,6 +103,7 @@ public class BattleMenu : MonoBehaviour
     public void Select()
     {
         locked = true;
+        gameObject.GetComponent<AudioSource>().Play();
             switch (currentOption)
         {
             case 0:
