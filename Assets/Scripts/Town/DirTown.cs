@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CharactersInBattle;
 using Positions;
+using UnityEngine.SceneManagement;
 
 public class DirTown : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class DirTown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SceneManager.LoadScene("Crypt");
+
         if (Playerscript.lastMap == "WM")
         {
             Playerscript.allowControl = false;

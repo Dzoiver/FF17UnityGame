@@ -135,6 +135,8 @@ public class Playerscript : MonoBehaviour
         {
             Vector2 position = _rb.position;
             newPosX = position.x;
+            if (Vector2.Distance(lastPosX, position) > 25f)
+            return;
             distance += Vector2.Distance(lastPosX, position);
         }
     }

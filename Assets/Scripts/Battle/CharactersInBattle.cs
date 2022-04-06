@@ -8,6 +8,18 @@ namespace CharactersInBattle
     public interface IBattle
     {
         float Attack(IBattle target);
+
+        bool StepUp
+        {
+            get;
+            set;
+        }
+
+        bool Backup
+        {
+            get;
+            set;
+        }
         int Index
         {
             get;

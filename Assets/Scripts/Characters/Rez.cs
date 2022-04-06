@@ -8,6 +8,16 @@ public class Rez : MonoBehaviour, IBattle
 {
     private float hp = 250f;
     float damage = 60f;
+    private bool stepUp;
+    public bool StepUp {
+        get { return StepUp; }
+        set { StepUp = value; }
+    }
+    private bool backup;
+    public bool Backup {
+        get { return Backup; }
+        set { Backup = value; }
+    }
 
     public float Hp {
         get { return hp; }

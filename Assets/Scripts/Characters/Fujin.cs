@@ -7,6 +7,17 @@ public class Fujin : MonoBehaviour, IBattle
 {
     private float hp = 40f;
     private float damage = 10f;
+    
+    private bool stepUp;
+    public bool StepUp {
+        get { return stepUp; }
+        set { stepUp = value; }
+    }
+    private bool backup;
+    public bool Backup {
+        get { return backup; }
+        set { backup = value; }
+    }
 
     public float Hp {
         get { return hp; }

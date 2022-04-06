@@ -109,7 +109,6 @@ public class FadeBlack : MonoBehaviour
                 tempColor.r += (redDiff * Time.deltaTime) / fadeTime;
                 tempColor.g += (greenDiff * Time.deltaTime) / fadeTime;
                 tempColor.b += (blueDiff * Time.deltaTime) / fadeTime;
-                Debug.Log(tempColor);
                 imageComponent.color = tempColor;
             }
             else

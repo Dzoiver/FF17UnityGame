@@ -90,6 +90,7 @@ public class BattleDirector : MonoBehaviour
     public bool menuAppeared = false; // Prevents several menu from stacking on the screen
     bool end = false; // Set to true when all enemies slain
     CharBat charact;
+    bool activeTurn = false;
 
     public GameObject text1;
     public GameObject text2;
@@ -184,6 +185,9 @@ public class BattleDirector : MonoBehaviour
 
     void fillATBs(float rate) // Fill ALL charcaters ATB
     {
+        if (activeTurn)
+        return;
+
         for (int i = 0; i < Finfor.allyListObject.Count; i++) // Allies first
         {
             Finfor.allyListObject[i].atb.Amount += rate;
@@ -197,33 +201,45 @@ public class BattleDirector : MonoBehaviour
             enemyObjectList[i].atb.Amount += rate;
             if (enemyObjectList[i].atb.IsReady && enemyObjectList[i].Alive)
             {
-                IBattle attackerScript = enemyObjectList[i].instanceObj.GetComponent<IBattle>();
-
-                int randomAllyIndex = getRandomAllyIndex();
-                IBattle targetScript = Finfor.allyListObject[randomAllyIndex].instanceObj.GetComponent<IBattle>();
-                float dmg = attackerScript.Attack(targetScript);
-
-                GameObject textObject = Instantiate(damageTextPrefab, targetHandle.transform, false);
-                textObject.transform.position = Finfor.allyListObject[randomAllyIndex].instanceObj.transform.position;
-                Text hptext = Finfor.allyListObject[randomAllyIndex].textHpObject.GetComponent<Text>();
-                hptext.text = (int.Parse(hptext.text) - dmg).ToString();
-                
-                Text text = textObject.GetComponent<Text>();
-                text.text = "-" + dmg;
-                textObject.SetActive(true);
-                
-                if (targetScript.Hp <= 0)
-                {
-                Finfor.allyListObject[randomAllyIndex].Alive = false;
-                Pos.positionsList[randomAllyIndex].IsEmpty = true;
-                Characters.allies--;
-                }
-                BattleDirector.enemyObjectList[i].atb.IsReady = false;
-                BattleDirector.enemyObjectList[i].atb.Amount = 0f;
+                StartCoroutine(TurnAnimation(i));
             }
         }
 
         ChangeATB();
+    }
+
+    IEnumerator TurnAnimation(int i)
+    {
+        activeTurn = true; // Block other turns while current happens
+
+        IBattle attackerScript = enemyObjectList[i].instanceObj.GetComponent<IBattle>();
+
+        int randomAllyIndex = getRandomAllyIndex();
+        IBattle targetScript = Finfor.allyListObject[randomAllyIndex].instanceObj.GetComponent<IBattle>();
+        attackerScript.StepUp = true;
+        yield return new WaitForSeconds(0.4f);
+        float dmg = attackerScript.Attack(targetScript); // Actual attack to player
+
+        GameObject textObject = Instantiate(damageTextPrefab, targetHandle.transform, false);
+        textObject.transform.position = Finfor.allyListObject[randomAllyIndex].instanceObj.transform.position;
+        Text hptext = Finfor.allyListObject[randomAllyIndex].textHpObject.GetComponent<Text>();
+        hptext.text = (int.Parse(hptext.text) - dmg).ToString(); // Text update
+        
+        Text text = textObject.GetComponent<Text>();
+        text.text = "-" + dmg;
+        textObject.SetActive(true); // DMG number appear
+        
+        if (targetScript.Hp <= 0) // Check whether the player is dead after hit
+        {
+        Finfor.allyListObject[randomAllyIndex].Alive = false;
+        Pos.positionsList[randomAllyIndex].IsEmpty = true;
+        Characters.allies--;
+        }
+        yield return new WaitForSeconds(0.4f);
+        attackerScript.Backup = true;
+        BattleDirector.enemyObjectList[i].atb.IsReady = false;
+        BattleDirector.enemyObjectList[i].atb.Amount = 0f;
+        activeTurn = false;
     }
 
     int getRandomAllyIndex()
