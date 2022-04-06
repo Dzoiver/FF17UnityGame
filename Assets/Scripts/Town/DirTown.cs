@@ -12,7 +12,7 @@ public class DirTown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadScene("Crypt");
+        // SceneManager.LoadScene("Crypt");
 
         if (Playerscript.lastMap == "WM")
         {

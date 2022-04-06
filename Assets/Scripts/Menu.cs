@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
     //float shift = 100f;
     // Start is called before the first frame update
     public GameObject selection;
+    public GameObject Panel;
     float pos = 0f;
     
     void Start()
@@ -16,6 +17,15 @@ public class Menu : MonoBehaviour
         RectTransform rt = selection.GetComponent<RectTransform>();
         pos = selection.transform.position.y;
     }
+
+    public void panelActivate()
+    {
+        if (!gameObject.activeSelf)
+        gameObject.SetActive(true);
+        else
+        gameObject.SetActive(false);
+    }
+    
     // Update is called once per frame
     void Update()
     {

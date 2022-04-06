@@ -228,6 +228,7 @@ public class BattleDirector : MonoBehaviour
         Text text = textObject.GetComponent<Text>();
         text.text = "-" + dmg;
         textObject.SetActive(true); // DMG number appear
+        targetScript.Hp -= dmg;
         
         if (targetScript.Hp <= 0) // Check whether the player is dead after hit
         {
