@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbac8062229dacd44915d285552e0c6c, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
-  name: New Item
+  name: Potion
   icon: {fileID: 0}

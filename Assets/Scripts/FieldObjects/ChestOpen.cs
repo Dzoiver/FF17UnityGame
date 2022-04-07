@@ -10,6 +10,8 @@ public class ChestOpen : MonoBehaviour, IUsableObjects
     public GameObject infoBoxPrefab;
     public GameObject dialogueCanvas;
     public bool opened = false;
+
+    public Item item;
     void Start()
     {
     }
@@ -34,11 +36,14 @@ public class ChestOpen : MonoBehaviour, IUsableObjects
         GameObject textObject = GameObject.Find("TextInfo");
         Text text1 = textObject.GetComponent<Text>();
         
-        text1.text = "You got Potion";
+        text1.text = "You got " + item.name;
         opened = true;
 
         AudioSource audio = gameObject.GetComponent<AudioSource>();
         audio.Play();
+
+        
+        Inventory.instance.Add(item);
         }
         // 
     }
