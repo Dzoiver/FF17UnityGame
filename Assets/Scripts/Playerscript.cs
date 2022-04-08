@@ -22,6 +22,7 @@ public class Playerscript : MonoBehaviour
     static public bool allowControl = true;
     static public string lastMap = "Town";
     bool fujinDialogueTriggered = false;
+    Canvas canvas;
     void Awake()
     {
         // DontDestroyOnLoad(this);
@@ -32,6 +33,7 @@ public class Playerscript : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        canvas = menu.GetComponent<Canvas>();
     }
     private SpriteRenderer _renderer;
     Vector2 lookDirection = new Vector2(1, 0);
@@ -46,15 +48,15 @@ public class Playerscript : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         Vector2 move = new Vector2(horizontal, vertical);
 
-        if (Input.GetKeyDown("g") && !menu.activeSelf)
+        if (Input.GetKeyDown("g") && !canvas.enabled)
         {
-            menu.SetActive(true);
+            canvas.enabled = true;
             allowMovement = false;
         }
-        else if (Input.GetKeyDown("g") && menu.activeSelf)
+        else if (Input.GetKeyDown("g") && canvas.enabled)
         {
             allowMovement = true;
-            menu.SetActive(false);
+            canvas.enabled = false;
         }
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
