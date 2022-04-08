@@ -14,8 +14,8 @@ public class Menu : MonoBehaviour
     
     void Start()
     {
-        RectTransform rt = selection.GetComponent<RectTransform>();
-        pos = selection.transform.position.y;
+        // RectTransform rt = selection.GetComponent<RectTransform>();
+        // pos = selection.transform.position.y;
     }
 
     public void panelActivate()
@@ -34,17 +34,17 @@ public class Menu : MonoBehaviour
         //     gameObject.SetActive(false);
         // }
 
-        if (Input.GetKeyDown("s") && gameObject.activeSelf)
-        {
-            RectTransform rt = selection.GetComponent<RectTransform>();
-            selection.transform.position = new Vector3(selection.transform.position.x, pos - rt.rect.height * incIndex(), 0);
-        }
+        // if (Input.GetKeyDown("s") && gameObject.activeSelf)
+        // {
+        //     RectTransform rt = selection.GetComponent<RectTransform>();
+        //     selection.transform.position = new Vector3(selection.transform.position.x, pos - rt.rect.height * incIndex(), 0);
+        // }
 
-        if (Input.GetKeyDown("w") && gameObject.activeSelf)
-        {
-            RectTransform rt = selection.GetComponent<RectTransform>();
-            selection.transform.position = new Vector3(selection.transform.position.x, pos - rt.rect.height * decIndex(), 0);
-        }
+        // if (Input.GetKeyDown("w") && gameObject.activeSelf)
+        // {
+        //     RectTransform rt = selection.GetComponent<RectTransform>();
+        //     selection.transform.position = new Vector3(selection.transform.position.x, pos - rt.rect.height * decIndex(), 0);
+        // }
     }
 
     int incIndex()
