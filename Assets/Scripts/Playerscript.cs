@@ -25,7 +25,7 @@ public class Playerscript : MonoBehaviour
     Canvas canvas;
     void Awake()
     {
-        // DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);
     }
     // Start is called before the first frame update
     void Start()
@@ -33,7 +33,7 @@ public class Playerscript : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        canvas = menu.GetComponent<Canvas>();
+        // canvas = menu.GetComponent<Canvas>();
     }
     private SpriteRenderer _renderer;
     Vector2 lookDirection = new Vector2(1, 0);
@@ -48,16 +48,16 @@ public class Playerscript : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         Vector2 move = new Vector2(horizontal, vertical);
 
-        if (Input.GetKeyDown("g") && !canvas.enabled)
-        {
-            canvas.enabled = true;
-            allowMovement = false;
-        }
-        else if (Input.GetKeyDown("g") && canvas.enabled)
-        {
-            allowMovement = true;
-            canvas.enabled = false;
-        }
+        // if (Input.GetKeyDown("g") && !canvas.enabled)
+        // {
+        //     canvas.enabled = true;
+        //     allowMovement = false;
+        // }
+        // else if (Input.GetKeyDown("g") && canvas.enabled)
+        // {
+        //     allowMovement = true;
+        //     canvas.enabled = false;
+        // }
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {

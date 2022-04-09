@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
     
     public void Add(Item item)
     {
+        
         items.Add(item);
 
         if (onItemChangedCallback != null)

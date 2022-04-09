@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CharactersInBattle;
 using Positions;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +8,9 @@ public class DirTown : MonoBehaviour
 {
     public GameObject destinationPoint;
     public GameObject image;
+    public CharacterScriptable player;
+    public GameObject startPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,11 @@ public class DirTown : MonoBehaviour
         }
         else
         {
+            CharactersScript.instance.Add(player);
+            GameObject playerObject = Instantiate(player.prefab);
+            playerObject.transform.position = startPoint.transform.position;
+            CameraScript.instance.FindPlayer(playerObject);
+            
             Playerscript.allowControl = false;
             StartCoroutine(waitTime());
         }

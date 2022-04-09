@@ -4,11 +4,32 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    #region Singleton
+    public static CameraScript instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of CameraScript found!");
+            return;
+        }
+        instance = this;
+    }
+    #endregion
+
     Transform playerTransform;
+    bool attached = false;
     // Start is called before the first frame update
     void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        // playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    public void FindPlayer(GameObject player)
+    {
+        playerTransform = player.transform;
+        attached = true;
     }
 
     // Update is called once per frame
@@ -18,6 +39,9 @@ public class CameraScript : MonoBehaviour
     }
 
     void LateUpdate() {
+        if (!attached)
+        return;
+
         Vector3 temp = transform.position;
 
         temp.x = playerTransform.position.x;

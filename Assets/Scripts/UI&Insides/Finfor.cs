@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class Finfor : MonoBehaviour
 {
     public static Vector3 startVector = new Vector3(1f, 5f, 0f);
@@ -14,7 +12,7 @@ public class Finfor : MonoBehaviour
     public static List<GameObject> allyListPrefab = new List<GameObject>();
     public static List<CharBat> allyListObject = new List<CharBat>();
     public static bool SvortStarted = false;
-    public static int progress = 0;
+    public static int progress = 0; // Story progress
     public static bool svortInWMSeen = false;
 
     void Awake()
@@ -40,6 +38,7 @@ public class Finfor : MonoBehaviour
     public GameObject player;
     void Start()
     {
+        
     }
 
     // Update is called once per frame

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Positions;
-using CharactersInBattle;
 using UnityEngine.UI;
 
 public class Target : MonoBehaviour

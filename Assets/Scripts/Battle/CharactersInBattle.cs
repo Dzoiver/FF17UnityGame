@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Positions;
 
-namespace CharactersInBattle
-{
-    public interface IBattle
+
+public interface IBattle
     {
         float Attack(IBattle target);
 
@@ -44,5 +43,4 @@ namespace CharactersInBattle
         static public List<GameObject> objectEnemyList = new List<GameObject>();
         static public List<GameObject> objectAllyList = new List<GameObject>();
     }
-    
-}
+

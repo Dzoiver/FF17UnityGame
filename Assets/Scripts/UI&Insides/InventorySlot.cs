@@ -14,9 +14,9 @@ public class InventorySlot : MonoBehaviour
 
     void Start()
     {
-        icon = gameObject.transform.FindChild("Image").gameObject.GetComponent<Image>();
+        icon = gameObject.transform.Find("Image").gameObject.GetComponent<Image>();
         // button = gameObject.transform.FindChild("Button");
-        slotText = gameObject.transform.FindChild("Button").gameObject.transform.FindChild("Text").gameObject.GetComponent<TextMeshProUGUI>();
+        slotText = gameObject.transform.Find("Button").gameObject.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
         // slotText = button.FindChild("Text").gameObject.GetComponent<Text>();
     }
 
@@ -24,7 +24,6 @@ public class InventorySlot : MonoBehaviour
     {
         item = newItem;
         slotText.text = item.name;
-        Debug.Log(slotText);
         icon.sprite = item.icon;
         icon.enabled = true;
     }

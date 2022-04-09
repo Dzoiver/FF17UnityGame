@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using CharactersInBattle;
 
 public class Svort : MonoBehaviour, IBattle
 {
@@ -79,7 +78,6 @@ public class Svort : MonoBehaviour, IBattle
     {
         if (stepUp && currentTimeMoving < timeMoving)
         {
-            Debug.Log("moved forward");
             currentTimeMoving += Time.deltaTime;
             Vector2 position = _rb.position;
             // lastPosX = position;
@@ -93,7 +91,6 @@ public class Svort : MonoBehaviour, IBattle
         }
         else if (stepUp)
         {
-            Debug.Log("stop moving forward");
             stepUp = false;
             currentTimeMoving = 0f;
         }
@@ -101,7 +98,6 @@ public class Svort : MonoBehaviour, IBattle
         if (backup && currentTimeMoving < timeMoving)
         {
             currentTimeMoving += Time.deltaTime;
-            Debug.Log("moved back");
             Vector2 position = _rb.position;
             lastPosX = position;
             position.x = position.x + Speed * Time.deltaTime * -1;
@@ -118,16 +114,6 @@ public class Svort : MonoBehaviour, IBattle
             backup = false;
             currentTimeMoving = 0f;
         }
-    }
-
-    public void modifyHP()
-    {
-        Debug.Log("hp rip");
-    }
-
-    public float getHP()
-    {
-        return hp;
     }
         public float getDamage()
     {

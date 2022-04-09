@@ -12,12 +12,16 @@ public class CharacterSlot : MonoBehaviour
 
     void Start()
     {
-        
+        charName = gameObject.transform.Find("Name").GetComponent<Text>();
+
     }
 
-    public void AddCharacter(GameObject character)
+    public void AddCharacter(CharacterScriptable character)
     {
-       
+        // IBattle charScript = character.GetComponent<IBattle>();
+        // charName.text = charScript.name;
+        charName.text = character.name;
+        Debug.Log(charName.text);
     }
 
     public void ClearSlot()
