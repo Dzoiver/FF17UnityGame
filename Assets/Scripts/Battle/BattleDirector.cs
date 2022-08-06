@@ -301,7 +301,6 @@ public class BattleDirector : MonoBehaviour
     void battleMenuAppear(int index)
     {
         gameObject.GetComponent<AudioSource>().Play(); // menuReadySFX
-        Debug.Log("sound played");
         menuAppeared = true;
         BattleMenu script = battleMenu.GetComponent<BattleMenu>();
         script.Activate(index);

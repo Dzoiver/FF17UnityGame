@@ -6,6 +6,7 @@ public class CryptDir : MonoBehaviour
 {
     public GameObject playerPrefab;
     public GameObject image;
+    public GameObject playerObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,7 @@ public class CryptDir : MonoBehaviour
         Playerscript.allowControl = false;
         playerPrefab.transform.position = Finfor.startVector;
         StartCoroutine(waitTime());
+        CameraScript.instance.FindPlayer(playerObject);
         // allyListPrefab.Add(player);
         // for (int i = 0; i < allyListPrefab.Count; i++)
         // {
