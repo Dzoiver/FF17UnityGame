@@ -6,54 +6,66 @@ using UnityEngine.SceneManagement;
 
 public class DirTown : MonoBehaviour
 {
+    #region Singleton
+    public static DirTown instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of CameraScript found!");
+            return;
+        }
+        instance = this;
+    }
+    #endregion
+
     public GameObject destinationPoint;
-    public GameObject image;
+    public GameObject fadeImage;
     public CharacterScriptable player;
-    public GameObject startPoint;
+    [SerializeField] GameObject newGamePoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        // SceneManager.LoadScene("Crypt");
+        SetPlayerLocation();
+    }
 
-        if (Playerscript.lastMap == "WM")
-        {
-            Playerscript.allowControl = false;
-            StartCoroutine(waitTimeAfterWM());
-            GameObject.FindWithTag("Player").transform.position = destinationPoint.transform.position;
-        }
-        else
+    private void SetPlayerLocation()
+    {
+        if (Playerscript.instance == null) // Init player if there's none
         {
             CharactersScript.instance.Add(player);
             GameObject playerObject = Instantiate(player.prefab);
-            playerObject.transform.position = startPoint.transform.position;
+            playerObject.transform.position = newGamePoint.transform.position;
             CameraScript.instance.FindPlayer(playerObject);
-            
-            Playerscript.allowControl = false;
-            StartCoroutine(waitTime());
+
+            Playerscript.instance.allowControl = false;
+            StartCoroutine(fadeAndWait());
         }
-        Playerscript.lastMap = "Town";
+        else if (Playerscript.instance.lastMap == "WM")
+        {
+            Playerscript.instance.allowControl = false;
+            StartCoroutine(fadeWaitTimeAfterWM());
+            GameObject.FindWithTag("Player").transform.position = destinationPoint.transform.position;
+        }
+
+        Playerscript.instance.lastMap = "Town";
     }
 
-    IEnumerator waitTimeAfterWM()
+    IEnumerator fadeWaitTimeAfterWM()
     {
-        FadeBlack script = image.GetComponent<FadeBlack>();
-        script.FadeOut(1f);
+        FadeBlack fadeScript = fadeImage.GetComponent<FadeBlack>();
+        fadeScript.FadeOut(1f);
         yield return new WaitForSeconds(1f);
-        Playerscript.allowControl = true;
+        Playerscript.instance.allowControl = true;
     }
 
-    IEnumerator waitTime()
+    IEnumerator fadeAndWait()
     {
-        FadeBlack script = image.GetComponent<FadeBlack>();
+        FadeBlack script = fadeImage.GetComponent<FadeBlack>();
         script.FadeOut(3f);
         yield return new WaitForSeconds(4f);
-        Playerscript.allowControl = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Playerscript.instance.allowControl = true;
     }
 }

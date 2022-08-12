@@ -9,9 +9,9 @@ public class WMDir : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Playerscript.allowControl = false;
+        Playerscript.instance.allowControl = false;
         StartCoroutine(waitTime());
-        if (Playerscript.lastMap == "Crypt")
+        if (Playerscript.instance.lastMap == "Crypt")
         {
             GameObject.FindWithTag("Player").transform.position = destinationPoint.transform.position;
         }
@@ -22,7 +22,7 @@ public class WMDir : MonoBehaviour
         FadeBlack script = image.GetComponent<FadeBlack>();
         script.FadeOut(1f);
         yield return new WaitForSeconds(1f);
-        Playerscript.allowControl = true;
+        Playerscript.instance.allowControl = true;
     }
     // Update is called once per frame
     void Update()

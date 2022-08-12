@@ -13,7 +13,7 @@ public class ToTown : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Playerscript.allowControl = false;
+        Playerscript.instance.allowControl = false;
         StartCoroutine(waitTime());
     }
     IEnumerator waitTime()
@@ -21,8 +21,8 @@ public class ToTown : MonoBehaviour
         FadeBlack script = image.GetComponent<FadeBlack>();
         script.FadeIn(1f);
         yield return new WaitForSeconds(1f);
-        Playerscript.allowControl = true;
-        Playerscript.lastMap = "WM";
+        Playerscript.instance.allowControl = true;
+        Playerscript.instance.lastMap = "WM";
         SceneManager.LoadScene("Town");
     }
 

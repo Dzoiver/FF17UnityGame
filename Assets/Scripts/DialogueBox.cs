@@ -5,31 +5,21 @@ using UnityEngine.UI;
 
 public class DialogueBox : MonoBehaviour
 {
-    float enter;
     public Text text;
     float interval = 0.03f;
     float wait = 0f;
     int pos = 0;
     bool completed = false;
     string message = "Hey. Have you been catching fish again? You seem tired. You should take a rest at home";
-    int stringAmount = 1;
     // Start is called before the first frame update
     void Start()
     {
-        // text.text += message.Substring(1, 2);
     }
 
     public bool Show()
     {
-        // transform.Translate(posX, posY, posZ);
-        // Vector2 temp = transform.position;
-        // temp.x = 200;
-        // temp.y = 120;
-        // Debug.Log(temp.x);
-        // transform.position = temp;
         gameObject.SetActive(true);
-        // Playerscript p = player.GetComponent<Playerscript>();
-        Playerscript.allowMovement = false;
+        Playerscript.instance.allowMovement = false;
         return false;
     }
 
@@ -41,7 +31,7 @@ public class DialogueBox : MonoBehaviour
             if (completed)
             {
                 Destroy(gameObject);
-                Playerscript.allowMovement = true;
+                Playerscript.instance.allowMovement = true;
             }
             else
             {

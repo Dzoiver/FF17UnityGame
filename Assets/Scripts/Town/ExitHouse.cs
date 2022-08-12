@@ -14,12 +14,12 @@ public class ExitHouse : MonoBehaviour
     {
         FadeBlack script = fadeImage.GetComponent<FadeBlack>();
         script.fade = true;
-        Playerscript.allowControl = false;
+        Playerscript.instance.allowControl = false;
         yield return new WaitForSeconds(script.fadeTime);
         other.transform.position = destinationPoint.transform.position;
         script.reverseFade = true;
         yield return new WaitForSeconds(script.fadeTime);
-        Playerscript.allowControl = true;
+        Playerscript.instance.allowControl = true;
     }
     // Start is called before the first frame update
     void Start()

@@ -156,7 +156,7 @@ public class BattleDirector : MonoBehaviour
     {
         Finfor.allyListObject[i].instanceObj.SetActive(false);
     }
-    SceneManager.LoadScene(Playerscript.lastMap);
+    SceneManager.LoadScene(Playerscript.instance.lastMap);
     }
 
     public GameObject lose; 

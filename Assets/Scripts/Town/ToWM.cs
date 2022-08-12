@@ -18,11 +18,11 @@ public class ToWM : MonoBehaviour
     }
     IEnumerator waitTime()
     {
-        Playerscript.allowControl = false;
+        Playerscript.instance.allowControl = false;
         FadeBlack fading = image.GetComponent<FadeBlack>();
         fading.FadeIn(1f);
         yield return new WaitForSeconds(1f);
-        Playerscript.allowControl = true;
+        Playerscript.instance.allowControl = true;
         SceneManager.LoadScene("WM");
     }
     // Update is called once per frame

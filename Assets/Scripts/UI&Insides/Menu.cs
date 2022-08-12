@@ -17,14 +17,14 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("g") && !canvas.enabled)
+        if (Input.GetKeyDown("g") && !canvas.enabled && Playerscript.instance.allowControl)
         {
             canvas.enabled = true;
-            // allowMovement = false;
+            Playerscript.instance.allowControl = false;
         }
         else if (Input.GetKeyDown("g") && canvas.enabled)
         {
-            // allowMovement = true;
+            Playerscript.instance.allowControl = true;
             canvas.enabled = false;
         }
     }

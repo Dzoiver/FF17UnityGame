@@ -11,34 +11,47 @@ public interface IUsableObjects
 
 public class Playerscript : MonoBehaviour
 {
+    #region Singleton
+    public static Playerscript instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            DontDestroyOnLoad(this);
+            Debug.LogWarning("More than one instance of CharactersScript found!");
+            return;
+        }
+        instance = this;
+    }
+
+    #endregion
 
     Animator animator;
     Rigidbody2D _rb;
 
-    public float Speed = 7.0f;
+    float Speed = 7.0f;
     float horizontal;
     float vertical;
-    static public bool allowMovement = true;
-    static public bool allowControl = true;
-    static public string lastMap = "Town";
-    bool fujinDialogueTriggered = false;
-    Canvas canvas;
-    void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-    // Start is called before the first frame update
+
+    public bool allowMovement = true;
+    public bool allowControl = true;
+    public string lastMap = "";
+    public GameObject menu;
+
+    public GameObject DialogueBoxPrefab;
+    public GameObject BattleSound;
+    public GameObject Fading;
+    public GameObject backgroundMusic;
+    public GameObject dialogueCanvas;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        // canvas = menu.GetComponent<Canvas>();
+        CameraScript.instance.FindPlayer(gameObject);
     }
-    private SpriteRenderer _renderer;
     Vector2 lookDirection = new Vector2(1, 0);
 
-    public GameObject menu; 
     // Update is called once per frame
     void Update()
     {
@@ -47,17 +60,6 @@ public class Playerscript : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         Vector2 move = new Vector2(horizontal, vertical);
-
-        // if (Input.GetKeyDown("g") && !canvas.enabled)
-        // {
-        //     canvas.enabled = true;
-        //     allowMovement = false;
-        // }
-        // else if (Input.GetKeyDown("g") && canvas.enabled)
-        // {
-        //     allowMovement = true;
-        //     canvas.enabled = false;
-        // }
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
@@ -84,23 +86,15 @@ public class Playerscript : MonoBehaviour
         }
     }
 
-    public GameObject DialogueBoxPrefab;
-
-    public GameObject SoundObject;
-    public GameObject Fading;
-    public GameObject backgroundMusic;
-
-    public GameObject dialogueCanvas;
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "EnemyBattle")
         {
-            AudioSource sound = SoundObject.GetComponent<AudioSource>();
-            StartCoroutine(example(sound));
+            AudioSource sound = BattleSound.GetComponent<AudioSource>();
+            StartCoroutine(StartBattle(sound));
         }
 
-        IEnumerator example(AudioSource sound)
+        IEnumerator StartBattle(AudioSource sound)
         {
             sound.Play(0);
             backgroundMusic.GetComponent<AudioSource>().Stop();
@@ -111,13 +105,12 @@ public class Playerscript : MonoBehaviour
             SceneManager.LoadScene("BattleScene");
         }
     }
-    Vector2 lastPosX;
-    float newPosX;
-    public float distance;
+    Vector2 lastPosX; // Last frame position
+    public float distance; // Distance travelled since last encounter
 
     void FixedUpdate()
     {
-        if (allowMovement && allowControl)
+        if (allowControl)
         {
             Vector2 position = _rb.position;
             lastPosX = position;
@@ -133,14 +126,16 @@ public class Playerscript : MonoBehaviour
 
     void LateUpdate()
     {
+        CalcDistance();
+    }
+    void CalcDistance()
+    {
         if (allowControl)
         {
             Vector2 position = _rb.position;
-            newPosX = position.x;
             if (Vector2.Distance(lastPosX, position) > 25f)
-            return;
+                return;
             distance += Vector2.Distance(lastPosX, position);
         }
     }
-
 }

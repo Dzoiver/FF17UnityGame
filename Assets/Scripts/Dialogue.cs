@@ -36,7 +36,7 @@ public class Dialogue : MonoBehaviour
         messageText = messagesList[0];
         canMove = movable;
         if (!canMove)
-        Playerscript.allowControl = false;
+        Playerscript.instance.allowControl = false;
         play = true;
         if (spriteIm != null)
         {
@@ -62,7 +62,7 @@ public class Dialogue : MonoBehaviour
                 {
                     Destroy(gameObject);
                     if (!canMove)
-                    Playerscript.allowControl = true;
+                    Playerscript.instance.allowControl = true;
                     play = false;
                     return;
                 }

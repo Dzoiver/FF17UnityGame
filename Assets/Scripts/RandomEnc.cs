@@ -34,7 +34,7 @@ public class RandomEnc : MonoBehaviour
         FadeBlack script = fadeImage.GetComponent<FadeBlack>();
         Color color = new Color(255, 255, 255, 1);
         script.FadeIn(1f, color);
-        Playerscript.allowControl = false;
+        Playerscript.instance.allowControl = false;
         transitionSFX.Play();
         // Make black fade
         script.FadeIn(1f, color);
@@ -43,7 +43,7 @@ public class RandomEnc : MonoBehaviour
         Color color2 = new Color(0, 0, 0, 1);
         script.FadeColor(0.5f, color1, color2);
         yield return new WaitForSeconds(1f);
-        Playerscript.allowControl = true;
+        Playerscript.instance.allowControl = true;
         Finfor.startVector = player.transform.position;
         SceneManager.LoadScene("BattleScene");
     }

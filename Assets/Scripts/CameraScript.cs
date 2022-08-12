@@ -20,12 +20,8 @@ public class CameraScript : MonoBehaviour
 
     Transform playerTransform;
     bool attached = false;
-    // Start is called before the first frame update
     void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerTransform = player.transform;
-        FindPlayer(player);
     }
 
     public void FindPlayer(GameObject player)

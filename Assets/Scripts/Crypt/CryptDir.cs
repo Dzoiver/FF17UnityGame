@@ -10,8 +10,8 @@ public class CryptDir : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Playerscript.lastMap = "Crypt";
-        Playerscript.allowControl = false;
+        Playerscript.instance.lastMap = "Crypt";
+        Playerscript.instance.allowControl = false;
         playerPrefab.transform.position = Finfor.startVector;
         StartCoroutine(waitTime());
         CameraScript.instance.FindPlayer(playerObject);
@@ -36,7 +36,7 @@ public class CryptDir : MonoBehaviour
         FadeBlack script = image.GetComponent<FadeBlack>();
         script.FadeOut(1f);
         yield return new WaitForSeconds(1f);
-        Playerscript.allowControl = true;
+        Playerscript.instance.allowControl = true;
     }
 
     // Update is called once per frame
