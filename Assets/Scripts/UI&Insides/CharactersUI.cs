@@ -14,8 +14,6 @@ public class CharactersUI : MonoBehaviour
     {
         characters = CharactersScript.instance;
         characters.onCharactersChangedCallback += UpdateUI;
-        Debug.Log(characters.onCharactersChangedCallback);
-
         slots = charParent.GetComponentsInChildren<CharacterSlot>();
     }
 

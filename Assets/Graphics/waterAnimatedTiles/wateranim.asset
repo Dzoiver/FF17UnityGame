@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
   m_Name: wateranim
   m_EditorClassIdentifier: 
-  m_AnimatedSprites: []
+  m_AnimatedSprites:
+  - {fileID: -2088230615872753560, guid: e75ce95c683167a4598d14e41203cf15, type: 3}
+  - {fileID: -1382283602885172466, guid: e75ce95c683167a4598d14e41203cf15, type: 3}
+  - {fileID: -4227778483770592903, guid: e75ce95c683167a4598d14e41203cf15, type: 3}
+  - {fileID: 8590896711290998597, guid: e75ce95c683167a4598d14e41203cf15, type: 3}
+  - {fileID: 7589216813700886492, guid: e75ce95c683167a4598d14e41203cf15, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0

@@ -30,7 +30,7 @@ public class SvortWTF : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         dial = Instantiate(dialogueBox, canvas.transform);
-        Dialogue script = dial.GetComponent<Dialogue>();
+        DialogueManager script = dial.GetComponent<DialogueManager>();
         script.fillPlayDial(list, false, sprtObject);
         fadeSprite = true;
         Finfor.svortInWMSeen = true;

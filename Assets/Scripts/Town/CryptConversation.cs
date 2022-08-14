@@ -4,37 +4,23 @@ using UnityEngine;
 
 public class CryptConversation : MonoBehaviour
 {
-    public Sprite sprtObject;
-    public Sprite villagerSprite;
-    public GameObject canvas;
-    public GameObject dialogueBox;
+    [SerializeField] Sprite sprtObject;
+    [SerializeField] Sprite villagerSprite;
+    [SerializeField] GameObject canvas;
+    [SerializeField] DialogueScriptable dialogue1;
+    [SerializeField] DialogueScriptable dialogue2;
     bool checkForFinish = false;
-    List<string> list = new List<string>();
-    GameObject dial;
-    string message1 = "What? I'll go there by myself if no one comes with me.";
-    // Start is called before the first frame update
-    void Start()
-    {
-        list.Add(message1);
-    }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        dial = Instantiate(dialogueBox, canvas.transform);
-        Dialogue script = dial.GetComponent<Dialogue>();
-        script.fillPlayDial(list, false, sprtObject);
+        DialogueManager.instance.fillPlayDial(dialogue1.messages, false, sprtObject);
         checkForFinish = true;
     }
     void Update()
     {
-        if (dial == null && checkForFinish)
+        if (checkForFinish && !DialogueManager.instance.Play)
         {
-            string message1 = "It's reckless, Pete. You're get killed alone.";
-            List<string> list = new List<string>();
-            list.Add(message1);
-            GameObject dial = Instantiate(dialogueBox, canvas.transform);
-            Dialogue script = dial.GetComponent<Dialogue>();
-            script.fillPlayDial(list, false, villagerSprite);
+            DialogueManager.instance.fillPlayDial(dialogue2.messages, false, villagerSprite);
             Destroy(gameObject);
             checkForFinish = false;
         }

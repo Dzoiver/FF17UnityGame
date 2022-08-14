@@ -71,7 +71,7 @@ public class Playerscript : MonoBehaviour
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && !DialogueManager.instance.Play)
         {
             RaycastHit2D hit = Physics2D.Raycast(_rb.position + Vector2.up * 0.2f, lookDirection, 1.0f, LayerMask.GetMask("UsableObjects"));
             

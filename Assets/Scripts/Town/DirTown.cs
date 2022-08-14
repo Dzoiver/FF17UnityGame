@@ -20,12 +20,11 @@ public class DirTown : MonoBehaviour
     }
     #endregion
 
-    public GameObject destinationPoint;
-    public GameObject fadeImage;
-    public CharacterScriptable player;
+    [SerializeField] GameObject destinationPoint;
+    [SerializeField] GameObject fadeImage;
+    [SerializeField] CharacterScriptable player;
     [SerializeField] GameObject newGamePoint;
 
-    // Start is called before the first frame update
     void Start()
     {
         SetPlayerLocation();

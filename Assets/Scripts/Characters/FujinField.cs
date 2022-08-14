@@ -24,7 +24,7 @@ public class FujinField : MonoBehaviour, IUsableObjects
         List<string> list = new List<string>();
         list.Add(message1);
         GameObject dial = Instantiate(dialogueBox, canvas.transform);
-        Dialogue script = dial.GetComponent<Dialogue>();
+        DialogueManager script = dial.GetComponent<DialogueManager>();
         script.fillPlayDial(list, false, portrait.sprite);
     }
 
