@@ -28,6 +28,7 @@ public class DirTown : MonoBehaviour
     void Start()
     {
         SetPlayerLocation();
+        // InfoBox infoBox = new InfoBox();
     }
 
     private void SetPlayerLocation()

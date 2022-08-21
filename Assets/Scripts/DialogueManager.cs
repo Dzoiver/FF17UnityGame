@@ -68,8 +68,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (currMessCompleted)
             {
-                // messagesList.RemoveAt(0); // Go to next message
-                if (listIndex >= messagesList.Count - 1) // If no messages left, destroy
+                if (listIndex >= messagesList.Count - 1) // If no messages left, hide
                 {
                     play = false;
                     textCursor = 0;
