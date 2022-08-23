@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("More than one instance of CameraScript found!");
+            Debug.LogWarning("More than one instance of DialogueManager found!");
             return;
         }
         instance = this;

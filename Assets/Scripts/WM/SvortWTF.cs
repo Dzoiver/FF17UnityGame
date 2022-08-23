@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class SvortWTF : MonoBehaviour
 {
-    public Sprite sprtObject;
-    public GameObject canvas;
-    public GameObject dialogueBox;
-    public GameObject svort;
-    List<string> list = new List<string>();
-    GameObject dial;
-    string message1 = "Huh?";
+    [SerializeField] Sprite sprtObject;
+    [SerializeField] GameObject svort;
+    [SerializeField] DialogueScriptable dialogue;
     bool fadeSprite = false;
     float fadeTime = 1.5f;
     SpriteRenderer svortSprite;
@@ -23,15 +19,17 @@ public class SvortWTF : MonoBehaviour
             Destroy(gameObject);
             Destroy(svort);
         }
-        list.Add(message1);
         svortSprite = svort.GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        dial = Instantiate(dialogueBox, canvas.transform);
-        DialogueManager script = dial.GetComponent<DialogueManager>();
-        script.fillPlayDial(list, false, sprtObject);
+        if (DialogueManager.instance == null)
+        {
+            Debug.Log("this is null");
+            return;
+        }
+        DialogueManager.instance.fillPlayDial(dialogue.messages, false, sprtObject);
         fadeSprite = true;
         Finfor.svortInWMSeen = true;
     }
