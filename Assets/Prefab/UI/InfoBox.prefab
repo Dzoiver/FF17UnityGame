@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6597834332208810698}
   - component: {fileID: 7760902609577491605}
   - component: {fileID: 3905830908979099666}
-  - component: {fileID: 5534725079023589022}
   m_Layer: 5
   m_Name: InfoBox
   m_TagString: Untagged
@@ -76,18 +75,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5534725079023589022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190404601594170683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13274b9bbfa1b924ba2e8c94a6efc408, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4869280401630856265
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +232,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041D\u0435\u0442"
+  m_Text: Yes
 --- !u!1 &5209676671902375660
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,12 +246,12 @@ GameObject:
   - component: {fileID: 1516930401123171463}
   - component: {fileID: 6189042517769859326}
   m_Layer: 5
-  m_Name: YesButton
+  m_Name: NoButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6279257536961458837
 RectTransform:
   m_ObjectHideFlags: 0
@@ -364,7 +351,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1516930401123171463}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2100503427, guid: 7ccf891ea2ee35643b03a2ed2123ec9f, type: 3}
+        m_MethodName: Cancel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9207201285992434802
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +440,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0414\u0430"
+  m_Text: No
 --- !u!1 &9215777018761462514
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,12 +454,12 @@ GameObject:
   - component: {fileID: 7402669993092104950}
   - component: {fileID: 3502289441753415248}
   m_Layer: 5
-  m_Name: NoButton
+  m_Name: YesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2677392081838438301
 RectTransform:
   m_ObjectHideFlags: 0
@@ -562,14 +560,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 2100503427, guid: 7ccf891ea2ee35643b03a2ed2123ec9f, type: 3}
+        m_MethodName: Sleep
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2

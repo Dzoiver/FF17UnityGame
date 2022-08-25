@@ -23,15 +23,27 @@ public class InfoBox : MonoBehaviour
 
     float deathTime = 2.0f;
     float currentTime = 0f;
+    bool timerDeath = false;
 
     public void Display(string text)
     {
         textField.text = text;
         canvasObject.SetActive(true);
+        timerDeath = true;
+    }
+    public void Ask(string text)
+    {
+        Playerscript.instance.allowControl = false;
+        textField.text = text;
+        canvasObject.SetActive(true);
+    }
+    public void Clear()
+    {
+        canvasObject.SetActive(false);
     }
     void Update()
     {
-        if (!canvasObject.activeSelf)
+        if (!timerDeath)
             return;
         currentTime += Time.deltaTime;
 
