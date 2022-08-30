@@ -20,6 +20,8 @@ public class InfoBox : MonoBehaviour
     #endregion
     [SerializeField] Text textField;
     [SerializeField] GameObject canvasObject;
+    [SerializeField] GameObject buttonYes;
+    [SerializeField] GameObject buttonNo;
 
     float deathTime = 2.0f;
     float currentTime = 0f;
@@ -33,12 +35,16 @@ public class InfoBox : MonoBehaviour
     }
     public void Ask(string text)
     {
+        buttonYes.SetActive(true);
+        buttonNo.SetActive(true);
         Playerscript.instance.allowControl = false;
         textField.text = text;
         canvasObject.SetActive(true);
     }
     public void Clear()
     {
+        buttonYes.SetActive(false);
+        buttonNo.SetActive(false);
         canvasObject.SetActive(false);
     }
     void Update()
@@ -49,6 +55,7 @@ public class InfoBox : MonoBehaviour
 
         if (currentTime > deathTime)
         {
+            timerDeath = false;
             canvasObject.SetActive(false);
             currentTime = 0f;
         }

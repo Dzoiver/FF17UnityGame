@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbac8062229dacd44915d285552e0c6c, type: 3}
-  m_Name: Potion
+  m_Name: Heart Armor
   m_EditorClassIdentifier: 
-  name: Potion
-  icon: {fileID: 21300000, guid: 34d3b2408b04f68448addfb4dca114ca, type: 3}
-  description: Recovers 100 health
+  name: Heart Armor
+  icon: {fileID: 0}
+  description: Increases wearer's health by 30
