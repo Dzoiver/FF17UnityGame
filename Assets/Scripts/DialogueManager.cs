@@ -23,6 +23,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Image portrait;
     [SerializeField] Text textMessage;
 
+    public delegate void DialogueHandler();
+    public event DialogueHandler ExecFunc;
+
     List<string> messagesList;
 
     float letterAppearTime = 0.03f;
@@ -77,6 +80,8 @@ public class DialogueManager : MonoBehaviour
                     dialogue.SetActive(false);
                     listIndex = 0;
                     Playerscript.instance.allowControl = true;
+                    ExecFunc?.Invoke();
+                    ExecFunc = null;
                     return;
                 }
                 else

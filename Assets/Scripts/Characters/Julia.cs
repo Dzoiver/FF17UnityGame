@@ -9,6 +9,9 @@ public class Julia : MonoBehaviour, IUsableObjects
     [SerializeField] DialogueScriptable dialogue1;
     [SerializeField] DialogueScriptable dialogue2;
 
+    [SerializeField] FadeBlack fadeImageScript;
+    [SerializeField] Shop shop;
+
     bool firstTime = true;
 
     public void Action()
@@ -18,10 +21,14 @@ public class Julia : MonoBehaviour, IUsableObjects
             DialogueManager.instance.fillPlayDial(dialogue1.messages, false, sprite);
             firstTime = false;
         }
-        else
+        else // Buying
         {
             DialogueManager.instance.fillPlayDial(dialogue2.messages, false, sprite);
-            firstTime = false;
+            DialogueManager.instance.ExecFunc += shop.Open;
+            DialogueManager.instance.ExecFunc += delegate()
+            {
+                Playerscript.instance.allowControl = false;
+            };
         }
     }
 }

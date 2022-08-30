@@ -24,8 +24,10 @@ public class BedScript : MonoBehaviour, IUsableObjects
 
     IEnumerator FadeAndWait()
     {
-        fadeImageScript.FadeOut(3f);
-        yield return new WaitForSeconds(3f);
+        fadeImageScript.FadeIn(2f);
+        yield return new WaitForSeconds(2f);
+        fadeImageScript.FadeOut(2f);
+        yield return new WaitForSeconds(2f);
         Playerscript.instance.allowControl = true;
     }
 }

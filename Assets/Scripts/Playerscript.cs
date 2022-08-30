@@ -34,6 +34,8 @@ public class Playerscript : MonoBehaviour
     float horizontal;
     float vertical;
 
+    int money = 300;
+
     public bool allowMovement = true;
     public bool allowControl = true;
     public string lastMap = "";
