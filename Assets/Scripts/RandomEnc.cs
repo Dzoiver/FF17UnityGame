@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class RandomEnc : MonoBehaviour
 {
-    public GameObject player;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject SvortPrefab;
+    [SerializeField] GameObject fadeImage;
+    [SerializeField] AudioSource transitionSFX;
+    [SerializeField] GameObject DP;
+    public bool EnableEncounters = true;
     float dangerValue;
     Playerscript pScript;
     int formation;
-    public GameObject SvortPrefab;
-    public GameObject fadeImage;
-    public AudioSource transitionSFX;
-    public GameObject DP;
+    Color color = new Color(255, 255, 255, 1);
+    Color color1 = new Color(1, 1, 1, 1);
+    Color color2 = new Color(0, 0, 0, 1);
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +26,7 @@ public class RandomEnc : MonoBehaviour
         formation = Random.Range(1, 3);
     }
 
-    IEnumerator Battle()
+    IEnumerator StepCountBattle()
     {
         dangerValue = Random.Range(0, 500);
         pScript.distance = 0;
@@ -32,15 +36,12 @@ public class RandomEnc : MonoBehaviour
         }
         formation = Random.Range(1, 3);
         FadeBlack script = fadeImage.GetComponent<FadeBlack>();
-        Color color = new Color(255, 255, 255, 1);
         script.FadeIn(1f, color);
         Playerscript.instance.allowControl = false;
         transitionSFX.Play();
         // Make black fade
         script.FadeIn(1f, color);
         yield return new WaitForSeconds(script.fadeTime);
-        Color color1 = new Color(1, 1, 1, 1);
-        Color color2 = new Color(0, 0, 0, 1);
         script.FadeColor(0.5f, color1, color2);
         yield return new WaitForSeconds(1f);
         Playerscript.instance.allowControl = true;
@@ -51,9 +52,11 @@ public class RandomEnc : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!EnableEncounters)
+            return;
         if (pScript.distance > dangerValue)
         {
-            StartCoroutine(Battle());
+            StartCoroutine(StepCountBattle());
         }
     }
 }

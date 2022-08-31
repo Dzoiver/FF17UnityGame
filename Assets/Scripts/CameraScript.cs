@@ -20,9 +20,6 @@ public class CameraScript : MonoBehaviour
 
     Transform playerTransform;
     bool attached = false;
-    void Start()
-    {
-    }
 
     public void FindPlayer(GameObject player)
     {
@@ -30,10 +27,9 @@ public class CameraScript : MonoBehaviour
         attached = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Deattach()
     {
-        
+        attached = false;
     }
 
     void LateUpdate() {

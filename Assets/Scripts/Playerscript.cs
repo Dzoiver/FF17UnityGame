@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 public interface IUsableObjects
 {
     void Action();
@@ -36,7 +35,6 @@ public class Playerscript : MonoBehaviour
 
     int money = 300;
 
-    public bool allowMovement = true;
     public bool allowControl = true;
     public string lastMap = "";
     public GameObject menu;
@@ -101,9 +99,9 @@ public class Playerscript : MonoBehaviour
             sound.Play(0);
             backgroundMusic.GetComponent<AudioSource>().Stop();
             Fading.SetActive(true);
-            allowMovement = false;
+            allowControl = false;
             yield return new WaitWhile (()=> sound.isPlaying);
-            allowMovement = true;
+            allowControl = true;
             SceneManager.LoadScene("BattleScene");
         }
     }

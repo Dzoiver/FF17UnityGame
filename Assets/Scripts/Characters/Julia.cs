@@ -16,6 +16,8 @@ public class Julia : MonoBehaviour, IUsableObjects
 
     public void Action()
     {
+        AppMetrica.Instance.ReportEvent("haha dima pepapupa");
+
         if (firstTime)
         {
             DialogueManager.instance.fillPlayDial(dialogue1.messages, false, sprite);
