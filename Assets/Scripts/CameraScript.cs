@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,8 +19,17 @@ public class CameraScript : MonoBehaviour
     }
     #endregion
 
+    private void Start()
+    {
+    }
     Transform playerTransform;
     bool attached = false;
+    float offset = 0f;
+
+    public void ChangeOffset(float value)
+    {
+        offset = value;
+    }
 
     public void FindPlayer(GameObject player)
     {
@@ -38,8 +48,8 @@ public class CameraScript : MonoBehaviour
 
         Vector3 temp = transform.position;
 
-        temp.x = playerTransform.position.x;
-        temp.y = playerTransform.position.y;
+        temp.x = playerTransform.position.x + offset;
+        temp.y = playerTransform.position.y + offset;
 
         transform.position = temp;
     }

@@ -12,7 +12,7 @@ public class SkeletonFight1 : MonoBehaviour
     [SerializeField] FadeBlack fadeblackScript;
     [SerializeField] AudioSource transitionSFX;
 
-    float cameraSpeed = 3f;
+    float cameraSpeed = 4f;
     bool cameraReached = false;
     bool startCamera = false;
     Color color = new Color(255, 255, 255, 1);

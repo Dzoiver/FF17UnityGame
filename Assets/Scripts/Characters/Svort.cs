@@ -5,13 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Svort : MonoBehaviour, IBattle
 {
-    public GameObject SvortPrefab;
+    [SerializeField] GameObject SvortPrefab;
     float Speed = 4f;
     float timeMoving = 0.3f;
     float currentTimeMoving = 0f;
-    Vector2 lastPosX;
-    float newPosX;
-    float distance = 0f;
     Rigidbody2D _rb;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -80,14 +77,8 @@ public class Svort : MonoBehaviour, IBattle
         {
             currentTimeMoving += Time.deltaTime;
             Vector2 position = _rb.position;
-            // lastPosX = position;
             position.x = position.x + Speed * Time.deltaTime;
             _rb.MovePosition(position);
-            // Vector2 position1 = _rb.position;
-            // newPosX = position1.x;
-            // if (currentTimeMoving > timeMoving)
-            // stepUp = false;
-            // distance += Vector2.Distance(lastPosX, position1);
         }
         else if (stepUp)
         {
@@ -99,23 +90,16 @@ public class Svort : MonoBehaviour, IBattle
         {
             currentTimeMoving += Time.deltaTime;
             Vector2 position = _rb.position;
-            lastPosX = position;
             position.x = position.x + Speed * Time.deltaTime * -1;
             _rb.MovePosition(position);
-            // Vector2 position1 = _rb.position;
-            // newPosX = position1.x;
-            // if (currentTimeMoving > timeMoving)
-            // stepUp = false;
-            // distance += Vector2.Distance(lastPosX, position1);
         }
         else if (backup)
         {
-            Debug.Log("stop moving back");
             backup = false;
             currentTimeMoving = 0f;
         }
     }
-        public float getDamage()
+    public float GetDamage()
     {
         return damage;
     }
@@ -127,7 +111,6 @@ public class Svort : MonoBehaviour, IBattle
 
     public void Turn(IBattle target)
     {
-        
         target.Hp -= Damage;
     }
 }

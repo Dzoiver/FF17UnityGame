@@ -13,7 +13,7 @@ public class CryptDir : MonoBehaviour
         Playerscript.instance.allowControl = false;
         playerPrefab.transform.position = Finfor.startVector;
         StartCoroutine(waitTime());
-        CameraScript.instance.FindPlayer(playerObject);
+        // CameraScript.instance.FindPlayer(playerObject);
     }
 
     IEnumerator waitTime()
