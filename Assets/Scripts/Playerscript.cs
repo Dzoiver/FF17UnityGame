@@ -18,7 +18,7 @@ public class Playerscript : MonoBehaviour
         if (instance != null)
         {
             DontDestroyOnLoad(this);
-            Debug.LogWarning("More than one instance of CharactersScript found!");
+            Debug.LogWarning("More than one instance of Playerscript found!");
             return;
         }
         instance = this;
@@ -35,15 +35,21 @@ public class Playerscript : MonoBehaviour
 
     int money = 300;
 
-    public bool allowControl = true;
-    public string lastMap = "";
-    public GameObject menu;
+    public void TakeMoney(int amount)
+    {
+        if (amount < money)
+            money -= amount;
+        else
+            money = 0;
+    }
 
-    public GameObject DialogueBoxPrefab;
-    public GameObject BattleSound;
-    public GameObject Fading;
-    public GameObject backgroundMusic;
-    public GameObject dialogueCanvas;
+    public void GiveMoney(int amount)
+    {
+        money += amount;
+    }
+
+    public bool allowControl = true;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -85,28 +91,8 @@ public class Playerscript : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "EnemyBattle")
-        {
-            AudioSource sound = BattleSound.GetComponent<AudioSource>();
-            StartCoroutine(StartBattle(sound));
-        }
-
-        IEnumerator StartBattle(AudioSource sound)
-        {
-            sound.Play(0);
-            backgroundMusic.GetComponent<AudioSource>().Stop();
-            Fading.SetActive(true);
-            allowControl = false;
-            yield return new WaitWhile (()=> sound.isPlaying);
-            allowControl = true;
-            SceneManager.LoadScene("BattleScene");
-        }
-    }
     Vector2 lastPosX; // Last frame position
-    public float distance; // Distance travelled since last encounter
+    public float dangerDistance; // Distance travelled since last encounter
 
     void FixedUpdate()
     {
@@ -133,9 +119,7 @@ public class Playerscript : MonoBehaviour
         if (allowControl)
         {
             Vector2 position = _rb.position;
-            if (Vector2.Distance(lastPosX, position) > 25f)
-                return;
-            distance += Vector2.Distance(lastPosX, position);
+            dangerDistance += Vector2.Distance(lastPosX, position);
         }
     }
 }

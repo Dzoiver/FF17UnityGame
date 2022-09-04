@@ -29,7 +29,7 @@ public class RandomEnc : MonoBehaviour
     IEnumerator StepCountBattle()
     {
         dangerValue = Random.Range(0, 500);
-        pScript.distance = 0;
+        pScript.dangerDistance = 0;
         for (int i = 0; i < formation; i++)
         {
             Finfor.enemyListPrefab.Add(SvortPrefab); // Enemy from current location enemies object
@@ -45,7 +45,7 @@ public class RandomEnc : MonoBehaviour
         script.FadeColor(0.5f, color1, color2);
         yield return new WaitForSeconds(1f);
         Playerscript.instance.allowControl = true;
-        Finfor.startVector = player.transform.position;
+        Finfor.instance.startVector = player.transform.position;
         SceneManager.LoadScene("BattleScene");
     }
 
@@ -54,7 +54,7 @@ public class RandomEnc : MonoBehaviour
     {
         if (!EnableEncounters)
             return;
-        if (pScript.distance > dangerValue)
+        if (pScript.dangerDistance > dangerValue)
         {
             StartCoroutine(StepCountBattle());
         }

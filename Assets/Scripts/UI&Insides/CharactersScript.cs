@@ -14,6 +14,7 @@ public class CharactersScript : MonoBehaviour
             Debug.LogWarning("More than one instance of CharactersScript found!");
             return;
         }
+        DontDestroyOnLoad(this);
         instance = this;
     }
 
@@ -23,22 +24,31 @@ public class CharactersScript : MonoBehaviour
     public onCharactersChanged onCharactersChangedCallback;
     public List<CharacterScriptable> allyCharacters = new List<CharacterScriptable>();
     int space = 3;
-    public bool allowMovement;
+    int membersNumber = 0;
+
+    public int MembersNumber
+    {
+        get { return membersNumber; }
+    }
 
     public void Add(CharacterScriptable ally)
     {
-        allyCharacters.Add(ally);
-        if (onCharactersChangedCallback != null)
-        onCharactersChangedCallback.Invoke();
+        if (membersNumber < space)
+        {
+            membersNumber++;
+            allyCharacters.Add(ally);
+            if (onCharactersChangedCallback != null)
+                onCharactersChangedCallback.Invoke();
+        }
     }
     public void Remove()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlaceCharacter(Transform trans)
     {
-        
+        GameObject playerObject = Instantiate(allyCharacters[0].prefab);
+        playerObject.transform.position = trans.position;
     }
 }

@@ -7,6 +7,7 @@ public class Lever : MonoBehaviour, IUsableObjects
 {
     [SerializeField] GameObject shaker;
     [SerializeField] GameObject gate;
+    [SerializeField] GameObject gateTrigger;
     public void Action()
     {
         shaker.SetActive(true);

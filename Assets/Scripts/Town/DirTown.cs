@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Positions;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class DirTown : MonoBehaviour
 {
@@ -21,51 +22,46 @@ public class DirTown : MonoBehaviour
     #endregion
 
     [SerializeField] GameObject destinationPoint;
-    [SerializeField] GameObject fadeImage;
+    [SerializeField] GameObject startPoint;
+    [SerializeField] FadeBlack fadeImageScript;
     [SerializeField] CharacterScriptable player;
-    [SerializeField] GameObject newGamePoint;
 
     void Start()
     {
+        if (CharactersScript.instance.MembersNumber == 0)
+        CharactersScript.instance.Add(player);
+        Instantiate(player.prefab);
+        Playerscript.instance.allowControl = false;
         SetPlayerLocation();
-        // InfoBox infoBox = new InfoBox();
     }
 
     private void SetPlayerLocation()
     {
-        if (Playerscript.instance == null) // Init player if there's none
+        if (Finfor.instance.lastField == "") // Init player if there's none
         {
-            CharactersScript.instance.Add(player);
-            GameObject playerObject = Instantiate(player.prefab);
-            playerObject.transform.position = newGamePoint.transform.position;
-            CameraScript.instance.FindPlayer(playerObject);
-
-            Playerscript.instance.allowControl = false;
+            Playerscript.instance.gameObject.transform.position = startPoint.transform.position;
             StartCoroutine(fadeAndWait());
         }
-        else if (Playerscript.instance.lastMap == "WM")
+        else if (Finfor.instance.lastField == "WM")
         {
-            Playerscript.instance.allowControl = false;
             StartCoroutine(fadeWaitTimeAfterWM());
-            GameObject.FindWithTag("Player").transform.position = destinationPoint.transform.position;
+            Playerscript.instance.gameObject.transform.position = destinationPoint.transform.position;
         }
 
-        Playerscript.instance.lastMap = "Town";
+        Finfor.instance.lastField = "Town";
     }
 
     IEnumerator fadeWaitTimeAfterWM()
     {
-        FadeBlack fadeScript = fadeImage.GetComponent<FadeBlack>();
-        fadeScript.FadeOut(1f);
+        fadeImageScript.FadeOut(1f);
         yield return new WaitForSeconds(1f);
         Playerscript.instance.allowControl = true;
     }
 
     IEnumerator fadeAndWait()
     {
-        FadeBlack script = fadeImage.GetComponent<FadeBlack>();
-        script.FadeOut(3f);
-        yield return new WaitForSeconds(4f);
+        fadeImageScript.FadeOut(1f);
+        yield return new WaitForSeconds(1f);
         Playerscript.instance.allowControl = true;
     }
 }

@@ -13,8 +13,6 @@ public class FujinField : MonoBehaviour, IUsableObjects
     // Start is called before the first frame update
     void Start()
     {
-        if (Finfor.fujinStarted)
-        Destroy(gameObject);
         portrait = gameObject.GetComponent<SpriteRenderer>();
     }
 
@@ -28,24 +26,11 @@ public class FujinField : MonoBehaviour, IUsableObjects
         script.fillPlayDial(list, false, portrait.sprite);
     }
 
-    // void Awake()
-    // {
-    //     DontDestroyOnLoad(this);
-    // }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         Finfor.enemyListPrefab.Add(FujinFighting);
         Finfor.enemyListPrefab.Add(FujinFighting);
         Finfor.enemyListPrefab.Add(FujinFighting);
-        Finfor.fujinStarted = true;
-        Finfor.startVector = transform.position;
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Finfor.instance.startVector = transform.position;
     }
 }

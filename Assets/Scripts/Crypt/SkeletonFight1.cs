@@ -39,7 +39,7 @@ public class SkeletonFight1 : MonoBehaviour
         fadeblackScript.FadeColor(0.5f, color1, color2);
         yield return new WaitForSeconds(1f);
         Playerscript.instance.allowControl = true;
-        Finfor.startVector = Playerscript.instance.transform.position;
+        Finfor.instance.startVector = Playerscript.instance.transform.position;
         SceneManager.LoadScene("BattleScene");
     }
 

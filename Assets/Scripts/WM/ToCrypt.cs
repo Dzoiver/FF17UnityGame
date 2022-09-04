@@ -24,7 +24,7 @@ public class ToCrypt : MonoBehaviour
         script.FadeIn(1f);
         yield return new WaitForSeconds(1f);
         Playerscript.instance.allowControl = true;
-        Playerscript.instance.lastMap = "WM";
+        Finfor.instance.lastField = "WM";
         SceneManager.LoadScene("Crypt");
     }
 

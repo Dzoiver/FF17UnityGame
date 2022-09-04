@@ -10,11 +10,17 @@ public class CryptConversation : MonoBehaviour
     [SerializeField] DialogueScriptable dialogue1;
     [SerializeField] DialogueScriptable dialogue2;
     bool checkForFinish = false;
-    
+
+    private void Start()
+    {
+        if (Finfor.instance.cryptConversationFinished)
+            gameObject.SetActive(false);
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         DialogueManager.instance.fillPlayDial(dialogue1.messages, false, sprtObject);
         checkForFinish = true;
+        Finfor.instance.cryptConversationFinished = true;
     }
     void Update()
     {
@@ -23,6 +29,7 @@ public class CryptConversation : MonoBehaviour
             DialogueManager.instance.fillPlayDial(dialogue2.messages, false, villagerSprite);
             Destroy(gameObject);
             checkForFinish = false;
+            gameObject.SetActive(false);
         }
     }
 }

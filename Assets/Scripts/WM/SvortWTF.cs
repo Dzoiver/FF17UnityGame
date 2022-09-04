@@ -14,24 +14,22 @@ public class SvortWTF : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Finfor.svortInWMSeen)
+        svortSprite = svort.GetComponent<SpriteRenderer>();
+        if (Finfor.instance == null)
+            return;
+        if (Finfor.instance.svortInWMSeen)
         {
             Destroy(gameObject);
             Destroy(svort);
         }
-        svortSprite = svort.GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (DialogueManager.instance == null)
-        {
-            Debug.Log("this is null");
-            return;
-        }
         DialogueManager.instance.fillPlayDial(dialogue.messages, false, sprtObject);
         fadeSprite = true;
-        Finfor.svortInWMSeen = true;
+        if (Finfor.instance != null)
+        Finfor.instance.svortInWMSeen = true;
     }
     // Update is called once per frame
     void Update()
@@ -44,7 +42,6 @@ public class SvortWTF : MonoBehaviour
                 Color tempColor = svortSprite.color;
                 tempColor.a -= Time.deltaTime / fadeTime; // 1 => 0
                 svortSprite.color = tempColor;
-                Debug.Log(tempColor.a);
             }
             else
             {

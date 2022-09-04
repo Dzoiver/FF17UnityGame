@@ -9,9 +9,9 @@ public class CryptDir : MonoBehaviour
     [SerializeField] GameObject playerObject;
     void Start()
     {
-        Playerscript.instance.lastMap = "Crypt";
+        Finfor.instance.lastField = "Crypt";
         Playerscript.instance.allowControl = false;
-        playerPrefab.transform.position = Finfor.startVector;
+        playerPrefab.transform.position = Finfor.instance.startVector;
         StartCoroutine(waitTime());
         // CameraScript.instance.FindPlayer(playerObject);
     }

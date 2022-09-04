@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class Finfor : MonoBehaviour
 {
-    public static Vector3 startVector = new Vector3(1f, 5f, 0f);
-    public static bool fujinStarted = false;
+    public Vector3 startVector = new Vector3(1f, 5f, 0f);
     public static int currentPartyMembers = 0; 
-    public static int currentBattleID; 
+    public static int currentBattleID;
     public static List<GameObject> enemyListPrefab = new List<GameObject>();
     public static List<GameObject> allyListPrefab = new List<GameObject>();
     public static List<CharBat> allyListObject = new List<CharBat>();
-    public static bool SvortStarted = false;
-    public static int progress = 0; // Story progress
-    public static bool svortInWMSeen = false;
+    public int progress = 0; // Story progress
+    public bool svortInWMSeen = false;
+    public string lastField = "";
+    public bool cryptConversationFinished = false;
+    public bool chestOpened = false;
 
+    public static Finfor instance;
     void Awake()
     {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of Finfor found!");
+            return;
+        }
+        instance = this;
+
         DontDestroyOnLoad(this);
         if (progress > 0)
         {
@@ -36,14 +45,4 @@ public class Finfor : MonoBehaviour
         progress = 1;
     }
     public GameObject player;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

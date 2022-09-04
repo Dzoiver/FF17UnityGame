@@ -5,8 +5,15 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     Canvas canvas;
+    public static Menu instance;
     void Awake()
     {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of Finfor found!");
+            return;
+        }
+        instance = this;
         DontDestroyOnLoad(this);
     }
 

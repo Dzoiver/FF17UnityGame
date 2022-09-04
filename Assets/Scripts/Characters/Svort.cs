@@ -13,9 +13,8 @@ public class Svort : MonoBehaviour, IBattle
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Finfor.SvortStarted = true;
         Destroy(gameObject);
-        Finfor.startVector = transform.position;
+        Finfor.instance.startVector = transform.position;
         Finfor.enemyListPrefab.Add(SvortPrefab);
         Finfor.enemyListPrefab.Add(SvortPrefab);
     }
@@ -49,8 +48,6 @@ public class Svort : MonoBehaviour, IBattle
     {
         if (SceneManager.GetActiveScene().name == "BattleScene")
         DontDestroyOnLoad(this);
-        else if (Finfor.SvortStarted)
-        Destroy(gameObject);
     }
 
     public float Damage {

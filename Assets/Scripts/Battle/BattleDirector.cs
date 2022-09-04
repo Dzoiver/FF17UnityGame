@@ -10,7 +10,6 @@ public class ATB
     float amount;
     bool isReady;
     float maxATB = 30f;
-
     public float Amount 
     {
         get { return amount; }
@@ -37,7 +36,6 @@ public class ATB
 
 public class CharBat
 {
-
     bool alive = true;
     public bool Alive
     {
@@ -88,7 +86,6 @@ public class BattleDirector : MonoBehaviour
     float atbSpeed = 10f; // Speed of the ATB bar
     public bool menuAppeared = false; // Prevents several menu from stacking on the screen
     bool end = false; // Set to true when all enemies slain
-    CharBat charact;
     bool activeTurn = false;
 
     public GameObject text1;
@@ -156,7 +153,7 @@ public class BattleDirector : MonoBehaviour
     {
         Finfor.allyListObject[i].instanceObj.SetActive(false);
     }
-    SceneManager.LoadScene(Playerscript.instance.lastMap);
+    SceneManager.LoadScene(Finfor.instance.lastField);
     }
 
     public GameObject lose; 
@@ -192,7 +189,7 @@ public class BattleDirector : MonoBehaviour
             Finfor.allyListObject[i].atb.Amount += rate;
             if (Finfor.allyListObject[i].atb.IsReady && !menuAppeared)
             {
-                battleMenuAppear(i); // If ready, menu appears
+                BattleMenuAppear(i); // If ready, menu appears
             }
         }
         for (int i = 0; i < enemyObjectList.Count; i++)
@@ -298,7 +295,7 @@ public class BattleDirector : MonoBehaviour
 
     public GameObject battleMenu;
 
-    void battleMenuAppear(int index)
+    void BattleMenuAppear(int index)
     {
         gameObject.GetComponent<AudioSource>().Play(); // menuReadySFX
         menuAppeared = true;
