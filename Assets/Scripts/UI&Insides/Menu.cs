@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("More than one instance of Finfor found!");
+            Debug.LogWarning("More than one instance of Menu found!");
             return;
         }
         instance = this;

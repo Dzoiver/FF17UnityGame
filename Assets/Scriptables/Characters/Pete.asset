@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a8af1c9b9cdf9443b52e076f93baab7, type: 3}
-  m_Name: Rez
+  m_Name: Pete
   m_EditorClassIdentifier: 
-  name: Rez
-  icon: {fileID: -2582850678860025792, guid: 13eadfad2edcfce438a7079b339ba607, type: 3}
-  maxHealth: 900
-  damage: 100
-  worldPrefab: {fileID: 2326514749177199300, guid: 0792ad2e19bc2364d903f17b93e5c3ae,
-    type: 3}
-  prefab: {fileID: -4379170658977853923, guid: c34b22820aadaa14493f8c181287f394, type: 3}
+  name: Pete
+  icon: {fileID: -8203752343562326852, guid: 13eadfad2edcfce438a7079b339ba607, type: 3}
+  maxHealth: 500
+  damage: 10
+  prefab: {fileID: 7920226770055772381, guid: f646e70875f8aa54bb574410c58be275, type: 3}
   MaxAtb: 12000
-  atb: 1661.2974
+  atb: 0
   atbSpeed: 1

@@ -8,11 +8,6 @@ public class BattleMenu : MonoBehaviour
     float blinkTime = 0.05f;
     float blinkTimeCurrent = 0f;
     int currentATBID;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -33,10 +28,10 @@ public class BattleMenu : MonoBehaviour
             CancelTarget();
         }
 
-        blinkingCursor();
+        BlinkingCursor();
     }
 
-    void blinkingCursor()
+    void BlinkingCursor()
     {
         blinkTimeCurrent -= Time.deltaTime;
         if (blinkTimeCurrent < 0)
@@ -161,8 +156,6 @@ public class BattleMenu : MonoBehaviour
 
     public void DeActivate()
     {
-        // reset current id atb
-        // currentATBID = atbID;
         locked = false;
         blinkCursor = false;
         gameObject.SetActive(false);

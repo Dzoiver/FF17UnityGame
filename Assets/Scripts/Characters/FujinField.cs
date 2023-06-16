@@ -25,12 +25,4 @@ public class FujinField : MonoBehaviour, IUsableObjects
         DialogueManager script = dial.GetComponent<DialogueManager>();
         script.fillPlayDial(list, false, portrait.sprite);
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Finfor.enemyListPrefab.Add(FujinFighting);
-        Finfor.enemyListPrefab.Add(FujinFighting);
-        Finfor.enemyListPrefab.Add(FujinFighting);
-        Finfor.instance.startVector = transform.position;
-    }
 }

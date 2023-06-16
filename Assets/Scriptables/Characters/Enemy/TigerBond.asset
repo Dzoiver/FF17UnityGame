@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a8af1c9b9cdf9443b52e076f93baab7, type: 3}
-  m_Name: Rez
+  m_Name: TigerBond
   m_EditorClassIdentifier: 
-  name: Rez
-  icon: {fileID: -2582850678860025792, guid: 13eadfad2edcfce438a7079b339ba607, type: 3}
-  maxHealth: 900
-  damage: 100
-  worldPrefab: {fileID: 2326514749177199300, guid: 0792ad2e19bc2364d903f17b93e5c3ae,
-    type: 3}
-  prefab: {fileID: -4379170658977853923, guid: c34b22820aadaa14493f8c181287f394, type: 3}
+  name: Tiger Bond
+  icon: {fileID: 4644523113532460279, guid: ae6ab2fef6dcfb3458f71c55eb59039a, type: 3}
+  maxHealth: 50
+  damage: 5
+  prefab: {fileID: 7549755552678063478, guid: 340bac5d0aa79b94e95d6e5c44cf19c2, type: 3}
   MaxAtb: 12000
-  atb: 1661.2974
+  atb: 3091.9783
   atbSpeed: 1

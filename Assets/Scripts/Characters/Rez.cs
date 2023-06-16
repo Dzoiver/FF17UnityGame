@@ -54,7 +54,6 @@ public class Rez : MonoBehaviour, IBattle
     public float Attack(IBattle target)
     {
         float procDamage = Random.Range(-5, 5) + damage;
-        target.Hp -= procDamage;
         return procDamage;
     }
 }

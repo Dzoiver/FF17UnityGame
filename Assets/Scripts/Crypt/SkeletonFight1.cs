@@ -8,7 +8,7 @@ public class SkeletonFight1 : MonoBehaviour
     [SerializeField] GameObject cameraFocusPoint;
     [SerializeField] DialogueScriptable dialogue1;
     [SerializeField] Sprite sprite;
-    [SerializeField] EnemyScriptable skeleton;
+    [SerializeField] CharacterScriptable skeleton;
     [SerializeField] FadeBlack fadeblackScript;
     [SerializeField] AudioSource transitionSFX;
 
@@ -27,9 +27,9 @@ public class SkeletonFight1 : MonoBehaviour
 
     IEnumerator ScriptedBattle()
     {
-        Finfor.enemyListPrefab.Add(skeleton.enemy);
-        Finfor.enemyListPrefab.Add(skeleton.enemy);
-        Finfor.enemyListPrefab.Add(skeleton.enemy);
+        Finfor.enemyListScriptable.Add(skeleton);
+        Finfor.enemyListScriptable.Add(skeleton);
+        Finfor.enemyListScriptable.Add(skeleton);
         fadeblackScript.FadeIn(1f, color);
         Playerscript.instance.allowControl = false;
         transitionSFX.Play();

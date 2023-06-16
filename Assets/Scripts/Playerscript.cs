@@ -18,6 +18,7 @@ public class Playerscript : MonoBehaviour
         if (instance != null)
         {
             DontDestroyOnLoad(this);
+            Debug.Log("huh?");
             Debug.LogWarning("More than one instance of Playerscript found!");
             return;
         }
@@ -29,11 +30,11 @@ public class Playerscript : MonoBehaviour
     Animator animator;
     Rigidbody2D _rb;
 
-    float Speed = 7.0f;
-    float horizontal;
-    float vertical;
+    private float Speed = 7.0f;
+    private float horizontal;
+    private float vertical;
 
-    int money = 300;
+    private int money = 300;
 
     public void TakeMoney(int amount)
     {
@@ -54,6 +55,7 @@ public class Playerscript : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        if (CameraScript.instance != null)
         CameraScript.instance.FindPlayer(gameObject);
     }
     Vector2 lookDirection = new Vector2(1, 0);

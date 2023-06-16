@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3104,7 +3104,7 @@ MonoBehaviour:
   cameraFocusPoint: {fileID: 1686501446}
   dialogue1: {fileID: 11400000, guid: 520315f061445f0448c32f55a8fe70f2, type: 2}
   sprite: {fileID: 5085595615374694967, guid: 13eadfad2edcfce438a7079b339ba607, type: 3}
-  skeleton: {fileID: 11400000, guid: eb1e43505a0501541b429107b475c149, type: 2}
+  skeleton: {fileID: 11400000, guid: c4e7183e037923d4b9d3a1230aa0cd29, type: 2}
   fadeblackScript: {fileID: 589170163}
   transitionSFX: {fileID: 12478347}
 --- !u!61 &510595694
@@ -11954,12 +11954,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5645840648315526730, guid: 59e4de39678557a43911e1b3f34c8a6a,
     type: 3}
   m_PrefabInstance: {fileID: 1191622529}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1194418819 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2958671673046375715, guid: 46ae28f57832b844cbcc1738686f9230,
-    type: 3}
-  m_PrefabInstance: {fileID: 1587757256}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1195754511
 GameObject:
@@ -83281,6 +83275,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ae28f57832b844cbcc1738686f9230, type: 3}
+--- !u!4 &1587757257 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1587757256}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1600292389
 GameObject:
   m_ObjectHideFlags: 0
@@ -87339,13 +87338,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11996791ee85e194d81c516902ea32c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 54290607}
-  SvortPrefab: {fileID: 8358792720529961438, guid: b986c69297cd4f94492f94bb9611f765,
-    type: 3}
+  player: {fileID: 2326514749177199300, guid: 0792ad2e19bc2364d903f17b93e5c3ae, type: 3}
+  svort: {fileID: 11400000, guid: 33a128fa15dca904d9d2c61f6722a028, type: 2}
   fadeImage: {fileID: 589170161}
   transitionSFX: {fileID: 12478347}
   DP: {fileID: 1839660589}
-  EnableEncounters: 0
+  EnableEncounters: 1
 --- !u!4 &1608783844
 Transform:
   m_ObjectHideFlags: 0
@@ -98821,7 +98819,6 @@ Transform:
   m_LocalPosition: {x: -3.0738175, y: 1.9197056, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1194418819}
   - {fileID: 1487713087}
   - {fileID: 1149952343}
   - {fileID: 860289054}
@@ -98830,6 +98827,7 @@ Transform:
   - {fileID: 305140311}
   - {fileID: 7345233}
   - {fileID: 136166690}
+  - {fileID: 1587757257}
   - {fileID: 1344087922}
   - {fileID: 1204410486}
   - {fileID: 645966531}
@@ -100236,7 +100234,7 @@ MonoBehaviour:
   cameraFocusPoint: {fileID: 1699197266}
   dialogue1: {fileID: 11400000, guid: 3b812cf424d8fd84db5c9dd0f19243ff, type: 2}
   sprite: {fileID: 5085595615374694967, guid: 13eadfad2edcfce438a7079b339ba607, type: 3}
-  skeleton: {fileID: 11400000, guid: eb1e43505a0501541b429107b475c149, type: 2}
+  skeleton: {fileID: 11400000, guid: c4e7183e037923d4b9d3a1230aa0cd29, type: 2}
   fadeblackScript: {fileID: 589170163}
   transitionSFX: {fileID: 12478347}
 --- !u!61 &1951549271
@@ -100914,7 +100912,7 @@ MonoBehaviour:
   cameraFocusPoint: {fileID: 1119849970}
   dialogue1: {fileID: 11400000, guid: f3f0deaff413eb744be69d167af6e263, type: 2}
   sprite: {fileID: -8356013338245289519, guid: 13eadfad2edcfce438a7079b339ba607, type: 3}
-  skeleton: {fileID: 11400000, guid: 5ce1a652052d7334ab5161aa28e1235c, type: 2}
+  skeleton: {fileID: 11400000, guid: 646886bd934d88048bba6fdf5a08025c, type: 2}
   fadeblackScript: {fileID: 589170163}
   transitionSFX: {fileID: 12478347}
 --- !u!61 &2082677043

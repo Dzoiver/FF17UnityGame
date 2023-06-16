@@ -5,19 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Svort : MonoBehaviour, IBattle
 {
-    [SerializeField] GameObject SvortPrefab;
     float Speed = 4f;
     float timeMoving = 0.3f;
     float currentTimeMoving = 0f;
     Rigidbody2D _rb;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Destroy(gameObject);
-        Finfor.instance.startVector = transform.position;
-        Finfor.enemyListPrefab.Add(SvortPrefab);
-        Finfor.enemyListPrefab.Add(SvortPrefab);
-    }
     private int index;
         public int Index {
         get { return Index; }
@@ -64,7 +56,6 @@ public class Svort : MonoBehaviour, IBattle
     {
         if (hp <= 0)
         {   
-            Characters.enemies--;
             Destroy(gameObject);
         }
     }
@@ -104,10 +95,5 @@ public class Svort : MonoBehaviour, IBattle
     public float Attack(IBattle target)
     {
         return Damage;
-    }
-
-    public void Turn(IBattle target)
-    {
-        target.Hp -= Damage;
     }
 }

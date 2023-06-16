@@ -48,7 +48,7 @@ public class CharactersScript : MonoBehaviour
 
     public void PlaceCharacter(Transform trans)
     {
-        GameObject playerObject = Instantiate(allyCharacters[0].prefab);
+        GameObject playerObject = Instantiate(allyCharacters[0].worldPrefab);
         playerObject.transform.position = trans.position;
     }
 }

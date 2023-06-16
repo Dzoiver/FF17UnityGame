@@ -56,15 +56,6 @@ public class Fujin : MonoBehaviour, IBattle
 
     public float Attack(IBattle target)
     {
-        Debug.Log("Fujin attacked");
-        float procDamage = Random.Range(-5, 5) + damage;
-        target.Hp -= procDamage;
-        return procDamage;
-    }
-
-    public void Turn(IBattle target)
-    {
-        
-        target.Hp -= Damage;
+        return damage;
     }
 }

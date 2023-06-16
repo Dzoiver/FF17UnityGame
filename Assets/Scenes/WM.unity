@@ -695,7 +695,7 @@ PrefabInstance:
     - target: {fileID: 2328930048809637978, guid: 4a182386b45c22e4cb6bb2f531daae90,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2328930048809637978, guid: 4a182386b45c22e4cb6bb2f531daae90,
         type: 3}
@@ -1051,7 +1051,7 @@ GameObject:
   - component: {fileID: 345706054}
   - component: {fileID: 345706055}
   - component: {fileID: 345706056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SvortCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15925,7 +15925,7 @@ PrefabInstance:
     - target: {fileID: 8585059103194150153, guid: 81247c94afd3c554b93726d168a73921,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8585059103194150153, guid: 81247c94afd3c554b93726d168a73921,
         type: 3}
@@ -16014,7 +16014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9990bd7a7c0833140ad592c7b0a7a485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationPoint: {fileID: 934767417}
+  cryptPos: {fileID: 934767417}
   townPos: {fileID: 2092806634}
   image: {fileID: 1192298733}
   player: {fileID: 2326514749177199300, guid: 0792ad2e19bc2364d903f17b93e5c3ae, type: 3}
@@ -16451,7 +16451,7 @@ PrefabInstance:
     - target: {fileID: 8585059103194150153, guid: 81247c94afd3c554b93726d168a73921,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8585059103194150153, guid: 81247c94afd3c554b93726d168a73921,
         type: 3}
@@ -16530,7 +16530,7 @@ PrefabInstance:
     - target: {fileID: 6120274136652548023, guid: 4704ad7e85a46a24fbb16825155b8e56,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6120274136652548023, guid: 4704ad7e85a46a24fbb16825155b8e56,
         type: 3}
@@ -16618,7 +16618,7 @@ PrefabInstance:
     - target: {fileID: 8104440953111360036, guid: c5ef8e746dbee2049b9deaee8b75444e,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8104440953111360036, guid: c5ef8e746dbee2049b9deaee8b75444e,
         type: 3}

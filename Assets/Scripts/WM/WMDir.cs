@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WMDir : MonoBehaviour
 {
-    public GameObject destinationPoint;
+    [SerializeField] GameObject cryptPos;
     [SerializeField] GameObject townPos;
     public GameObject image;
     [SerializeField] GameObject player;
@@ -21,7 +21,7 @@ public class WMDir : MonoBehaviour
         StartCoroutine(waitTime());
         if (Finfor.instance.lastField == "Crypt")
         {
-            GameObject.FindWithTag("Player").transform.position = destinationPoint.transform.position;
+            CharactersScript.instance.PlaceCharacter(cryptPos.transform);
         }
         if (Finfor.instance.lastField == "Town")
         {

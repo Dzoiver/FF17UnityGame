@@ -13,16 +13,10 @@ public class Target : MonoBehaviour
     int currentPos = 0;
     int atbID;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void Activate(int index) // Shows the cursor on targets
     {
         atbID = index;
-        goToFirstEnemy();
+        GoToFirstEnemy();
         target1.SetActive(true);
     }
 
@@ -31,7 +25,7 @@ public class Target : MonoBehaviour
         BattleMenu script = battleMenu.GetComponent<BattleMenu>(); 
         script.DeActivate();
         BattleDirector dirScript = director.GetComponent<BattleDirector>(); 
-        dirScript.resetATB(atbID);
+        dirScript.ResetATB(atbID);
         dirScript.menuAppeared = false;
 
         target1.SetActive(false);
@@ -49,13 +43,13 @@ public class Target : MonoBehaviour
         if (Input.GetKeyDown("w"))
         {
             gameObject.GetComponent<AudioSource>().Play();
-            goToPrevEnemy();
+            GoToPrevEnemy();
         }
 
         if (Input.GetKeyDown("s"))
         {
             gameObject.GetComponent<AudioSource>().Play();
-            goToNextEnemy();
+            GoToNextEnemy();
         }
 
         if (Input.GetKeyDown("a"))
@@ -72,9 +66,7 @@ public class Target : MonoBehaviour
         {
             gameObject.GetComponent<AudioSource>().Play();
             HitSFX.GetComponent<AudioSource>().Play();
-            IBattle attackerScript = Finfor.allyListObject[atbID].instanceObj.GetComponent<IBattle>();
-            IBattle targetScript = BattleDirector.enemyObjectList[currentPos].instanceObj.GetComponent<IBattle>();
-            float dmg = attackerScript.Attack(targetScript);
+            float dmg = Finfor.allyListScriptable[atbID].damage;
 
             GameObject textObject = Instantiate(damageTextPrefab, transform, false);
             textObject.transform.position = BattleDirector.enemyObjectList[currentPos].instanceObj.transform.position;
@@ -83,11 +75,12 @@ public class Target : MonoBehaviour
             text.text = "-" + dmg;
             textObject.SetActive(true);
             
-            if (targetScript.Hp <= 0)
+            if (Finfor.allyListObject[atbID].hp <= 0)
             {
-            DeathSFX.GetComponent<AudioSource>().Play(); // Enemy Death sound
-            BattleDirector.enemyObjectList[currentPos].Alive = false;
-            Pos.positionsList[currentPos].IsEmpty = true;
+                Characters.enemies--;
+                DeathSFX.GetComponent<AudioSource>().Play(); // Enemy Death sound
+                BattleDirector.enemyObjectList[currentPos].Alive = false;
+                Pos.positionsList[currentPos].IsEmpty = true;
             }
             DeActivate();
         }
@@ -107,7 +100,7 @@ public class Target : MonoBehaviour
         
     }
 
-    void goToFirstEnemy()
+    void GoToFirstEnemy()
     {
         for (int i = 0; i < BattleDirector.enemyObjectList.Count; i++)
         {
@@ -119,7 +112,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    void goToPrevEnemy() // w
+    void GoToPrevEnemy() // w
     {
         for (int i = currentPos - 1; i >= 0; i--) // Going from current to beginning
         {
@@ -142,7 +135,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    void goToNextEnemy() // s
+    void GoToNextEnemy() // s
     {
         for (int i = currentPos + 1; i < BattleDirector.enemyObjectList.Count; i++) // Going from current to last
         {

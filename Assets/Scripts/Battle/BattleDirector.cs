@@ -37,6 +37,10 @@ public class ATB
 public class CharBat
 {
     bool alive = true;
+    public bool stepUp = false;
+    public bool backUp = false;
+    public float hp = 0;
+
     public bool Alive
     {
         get{ return alive; }
@@ -73,40 +77,37 @@ public class CharBat
     public GameObject textHpObject;
 }
 
-// class Fujin : Character
-// {
-
-// }
-
 public class BattleDirector : MonoBehaviour
 {
-    static public List<CharBat> enemyObjectList = new List<CharBat>(); // List of all characters in a battle including enemies
-
-    float maxATB = 30f; // Max value of ATB
-    float atbSpeed = 10f; // Speed of the ATB bar
+    static public List<CharBat> enemyObjectList = new List<CharBat>(); // List of all characters in a battle including enemies ???
     public bool menuAppeared = false; // Prevents several menu from stacking on the screen
-    bool end = false; // Set to true when all enemies slain
-    bool activeTurn = false;
 
-    public GameObject text1;
-    public GameObject text2;
-    public GameObject text3;
+    private float maxATB = 30f; // Max value of ATB
+    private float atbSpeed = 10f; // Speed of the ATB bar
+    private bool end = false; // Set to true when all enemies slain
+    private bool activeTurn = false;
+
+    private int alliesCount = 0;
+
+    [SerializeField] GameObject text1;
+    [SerializeField] GameObject text2;
+    [SerializeField] GameObject text3;
+    [SerializeField] FadeBlack fadeScript;
     public List<GameObject> Hptext = new List<GameObject>();
-    public GameObject fadeImage;
+
+    [SerializeField] GameObject victory;
+    [SerializeField] GameObject music;
     // Start is called before the first frame update
     void Start()
     {
-        FadeBlack script = fadeImage.GetComponent<FadeBlack>();
-        script.FadeOut(1f);
+        fadeScript.FadeOut(1f);
         Hptext.Add(text3);
         Hptext.Add(text2);
         Hptext.Add(text1);
 
-        Pos.createAllpos();
-        placeCharacters();
-        // fillATBlist();
-        randomInitialATB();
-        // Hpbar.GetComponent<Healthbar>().setHp();
+        Pos.createAllpos(); // Creates positions for characters
+        PlaceCharacters();
+        RandomInitialATB();
         ChangeATB();
     }
 
@@ -114,63 +115,58 @@ public class BattleDirector : MonoBehaviour
     void Update()
     {
         if (end)
-        return;
-
-        if (Characters.enemies == 0 || Characters.allies == 0)
+            return;
+        if (Characters.enemies == 0)
         EndBattle();
 
         fillATBs(atbSpeed * Time.deltaTime);
     }
 
-    public GameObject victory; 
-    public GameObject music; 
-
     void EndBattle()
     {
         enemyObjectList.Clear();
-        Finfor.enemyListPrefab.Clear();
+        Finfor.enemyListScriptable.Clear();
         Characters.objectEnemyList.Clear();
         Characters.objectAllyList.Clear();
         if (Characters.enemies == 0)
         {
-        StartCoroutine(VictoryEnd());
+            StartCoroutine(VictoryEnd());
         }
-        else if (Characters.allies == 0)
+        else if (alliesCount == 0)
         {
-        StartCoroutine(DefeatEnd());
+            StartCoroutine(DefeatEnd());
         }
     }
 
     IEnumerator VictoryEnd()
     {
-    end = true;
-    AudioSource victory1 = victory.GetComponent<AudioSource>();
-    AudioSource music1 = music.GetComponent<AudioSource>();
-    music1.Stop();
-    victory1.Play(0);
-    yield return new WaitForSeconds(5);
-    for (int i = 0; i < Finfor.allyListObject.Count; i++)
-    {
-        Finfor.allyListObject[i].instanceObj.SetActive(false);
-    }
-    SceneManager.LoadScene(Finfor.instance.lastField);
+        end = true;
+        AudioSource victory1 = victory.GetComponent<AudioSource>();
+        AudioSource music1 = music.GetComponent<AudioSource>();
+        music1.Stop();
+        victory1.Play(0);
+        yield return new WaitForSeconds(5);
+        for (int i = 0; i < Finfor.allyListObject.Count; i++)
+        {
+            Finfor.allyListObject[i].instanceObj.SetActive(false);
+        }
+        SceneManager.LoadScene(Finfor.instance.lastField);
     }
 
     public GameObject lose; 
     IEnumerator DefeatEnd()
     {
-    end = true;
-    AudioSource lose1 = lose.GetComponent<AudioSource>();
-    AudioSource music1 = music.GetComponent<AudioSource>();
-    music1.Stop();
-    lose1.Play(0);
-    yield return new WaitForSeconds(5);
-    SceneManager.LoadScene("StartScreen");
+        end = true;
+        AudioSource lose1 = lose.GetComponent<AudioSource>();
+        AudioSource music1 = music.GetComponent<AudioSource>();
+        music1.Stop();
+        lose1.Play(0);
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("StartScreen");
     }
 
     public void ChangeATB()
     {
-        // float currentHealth = Mathf.Clamp(allyATB_1 + value, 0, maxATB);
         for (int i = 0; i < Finfor.allyListObject.Count; i++)
         {
             UIATB.instance.SetValue(Finfor.allyListObject[i].atb.Amount / (float)maxATB);
@@ -204,17 +200,14 @@ public class BattleDirector : MonoBehaviour
         ChangeATB();
     }
 
-    IEnumerator TurnAnimation(int i)
+    IEnumerator TurnAnimation(int i) // Enemy attack
     {
         activeTurn = true; // Block other turns while current happens
 
-        IBattle attackerScript = enemyObjectList[i].instanceObj.GetComponent<IBattle>();
-
-        int randomAllyIndex = getRandomAllyIndex();
-        IBattle targetScript = Finfor.allyListObject[randomAllyIndex].instanceObj.GetComponent<IBattle>();
-        attackerScript.StepUp = true;
+        int randomAllyIndex = GetRandomAllyIndex();
+        enemyObjectList[i].stepUp = true;
         yield return new WaitForSeconds(0.4f);
-        float dmg = attackerScript.Attack(targetScript); // Actual attack to player
+        float dmg = Finfor.enemyListScriptable[i].damage;
 
         GameObject textObject = Instantiate(damageTextPrefab, targetHandle.transform, false);
         textObject.transform.position = Finfor.allyListObject[randomAllyIndex].instanceObj.transform.position;
@@ -224,22 +217,26 @@ public class BattleDirector : MonoBehaviour
         Text text = textObject.GetComponent<Text>();
         text.text = "-" + dmg;
         textObject.SetActive(true); // DMG number appear
-        targetScript.Hp -= dmg;
+        Finfor.allyListObject[randomAllyIndex].hp -= dmg;
         
-        if (targetScript.Hp <= 0) // Check whether the player is dead after hit
+        if (Finfor.allyListObject[randomAllyIndex].hp <= 0) // Check whether the player is dead after hit
         {
-        Finfor.allyListObject[randomAllyIndex].Alive = false;
-        Pos.positionsList[randomAllyIndex].IsEmpty = true;
-        Characters.allies--;
+            Finfor.allyListObject[randomAllyIndex].Alive = false;
+            Pos.positionsList[randomAllyIndex].IsEmpty = true;
+            alliesCount--;
+            if (Characters.allies <= 0)
+            {
+                EndBattle();
+            }
         }
         yield return new WaitForSeconds(0.4f);
-        attackerScript.Backup = true;
-        BattleDirector.enemyObjectList[i].atb.IsReady = false;
-        BattleDirector.enemyObjectList[i].atb.Amount = 0f;
+        enemyObjectList[i].backUp = true;
+        enemyObjectList[i].atb.IsReady = false;
+        enemyObjectList[i].atb.Amount = 0f;
         activeTurn = false;
     }
 
-    int getRandomAllyIndex()
+    int GetRandomAllyIndex()
     {
         List<int> list = new List<int>();
         for (int i = 0; i < Finfor.allyListObject.Count; i++)
@@ -252,7 +249,7 @@ public class BattleDirector : MonoBehaviour
         return Random.Range(list[0], list[list.Count - 1]);
     }
 
-    void randomInitialATB()
+    void RandomInitialATB()
     {
         for (int i = 0; i < Finfor.allyListObject.Count; i++)
         {
@@ -267,16 +264,15 @@ public class BattleDirector : MonoBehaviour
     public GameObject PlayerFighting;
     public GameObject FujinFighting;
     
-    void placeCharacters() // Better to rework this part so characters automatically being counted
+    void PlaceCharacters() // Better to rework this part so characters automatically being counted
     {
-        for (int i = 0; i < Finfor.enemyListPrefab.Count; i++)
+        for (int i = 0; i < Finfor.enemyListScriptable.Count; i++)
         {
             CharBat charact = new CharBat();
             charact.atb = new ATB(){ Amount = 0f};
             charact.IsEnemy = true;
-            charact.prefabObj = Finfor.enemyListPrefab[i];
+            charact.prefabObj = Finfor.enemyListScriptable[i].prefab;
             charact.instanceObj = Instantiate(charact.prefabObj);
-            // charact.atb = new ATB(){ Amount = 0f, IsEnemy=false};
             charact.instanceObj.transform.position = Pos.getFreeVectEnemy();
             Characters.enemies++;
             enemyObjectList.Add(charact);
@@ -285,11 +281,11 @@ public class BattleDirector : MonoBehaviour
 
         for (int i = 0; i < Finfor.allyListObject.Count; i++)
         {
-            Characters.allies++;
+            alliesCount++;
             Finfor.allyListObject[i].textHpObject = Hptext[i];
-            Hptext[i].GetComponent<Text>().text = (Finfor.allyListObject[i].instanceObj.GetComponent<IBattle>().Hp).ToString();
-            Finfor.allyListObject[i].instanceObj.SetActive(true);
-            Finfor.allyListObject[i].instanceObj.transform.position = Pos.getFreeVectAlly();
+            Hptext[i].GetComponent<Text>().text = (Finfor.allyListObject[i].hp).ToString();
+            var allyIntance = Instantiate(Finfor.allyListScriptable[i].prefab);
+            allyIntance.transform.position = Pos.getFreeVectAlly();
         }
     }
 
@@ -303,7 +299,7 @@ public class BattleDirector : MonoBehaviour
         script.Activate(index);
     }
 
-    public void resetATB(int atbID)
+    public void ResetATB(int atbID)
     {
         Finfor.allyListObject[atbID].atb.Amount = 0f;
     }

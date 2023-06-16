@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SvortWTF : MonoBehaviour
+public class SvortWTF : MonoBehaviour, IUsableObjects
 {
     [SerializeField] Sprite sprtObject;
     [SerializeField] GameObject svort;
@@ -24,12 +24,12 @@ public class SvortWTF : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void Action()
     {
         DialogueManager.instance.fillPlayDial(dialogue.messages, false, sprtObject);
         fadeSprite = true;
         if (Finfor.instance != null)
-        Finfor.instance.svortInWMSeen = true;
+            Finfor.instance.svortInWMSeen = true;
     }
     // Update is called once per frame
     void Update()
