@@ -3,5 +3,5 @@
 
  RPG SinglePlayer 2D Final Fantasy-like game
 
-Download demo Download [current release](https://github.com/Dzoiver/FF17UnityGame/releases/tag/v0.0.1-alpha)
+Download demo: [current release](https://github.com/Dzoiver/FF17UnityGame/releases/tag/v0.0.1-alpha)
 
