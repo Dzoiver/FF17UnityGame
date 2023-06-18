@@ -31,6 +31,11 @@ public class SvortWTF : MonoBehaviour, IUsableObjects
         if (Finfor.instance != null)
             Finfor.instance.svortInWMSeen = true;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {

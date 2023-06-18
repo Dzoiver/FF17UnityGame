@@ -124,9 +124,7 @@ public class BattleDirector : MonoBehaviour
 
     void EndBattle()
     {
-        enemyObjectList.Clear();
         Finfor.enemyListScriptable.Clear();
-        Characters.objectEnemyList.Clear();
         Characters.objectAllyList.Clear();
         if (Characters.enemies == 0)
         {
@@ -150,6 +148,8 @@ public class BattleDirector : MonoBehaviour
         {
             Finfor.allyListObject[i].instanceObj.SetActive(false);
         }
+        enemyObjectList.Clear();
+        Characters.objectEnemyList.Clear();
         SceneManager.LoadScene(Finfor.instance.lastField);
     }
 
@@ -162,7 +162,14 @@ public class BattleDirector : MonoBehaviour
         music1.Stop();
         lose1.Play(0);
         yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("StartScreen");
+        Characters.objectEnemyList.Clear();
+        Finfor.instance.progress = 0;
+        Destroy(Finfor.instance.gameObject);
+        Destroy(CharactersScript.instance.gameObject);
+        Destroy(Menu.instance.gameObject);
+        Finfor.allyListScriptable.Clear();
+        enemyObjectList.Clear();
+        // SceneManager.LoadScene("StartScreen");
     }
 
     public void ChangeATB()
@@ -230,9 +237,12 @@ public class BattleDirector : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(0.4f);
-        enemyObjectList[i].backUp = true;
-        enemyObjectList[i].atb.IsReady = false;
-        enemyObjectList[i].atb.Amount = 0f;
+        if (i >= 0)
+        {
+            enemyObjectList[i].backUp = true;
+            enemyObjectList[i].atb.IsReady = false;
+            enemyObjectList[i].atb.Amount = 0f;
+        }
         activeTurn = false;
     }
 
@@ -285,6 +295,7 @@ public class BattleDirector : MonoBehaviour
             Finfor.allyListObject[i].textHpObject = Hptext[i];
             Hptext[i].GetComponent<Text>().text = (Finfor.allyListObject[i].hp).ToString();
             var allyIntance = Instantiate(Finfor.allyListScriptable[i].prefab);
+            Finfor.allyListObject[i].instanceObj = allyIntance;
             allyIntance.transform.position = Pos.getFreeVectAlly();
         }
     }

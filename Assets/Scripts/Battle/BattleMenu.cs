@@ -106,7 +106,8 @@ public class BattleMenu : MonoBehaviour
                 break;
 
             case 1:
-                MagicListOpen();
+                ChooseTarget();
+                // MagicListOpen(); // Doesn't work
                 break;
         }
     }

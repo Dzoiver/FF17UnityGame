@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8538787589223476823}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,16 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea993fc56dcfae848a0f32ec71ae0c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowMovement: 1
   allowControl: 1
-  lastMap: 
-  menu: {fileID: 0}
-  DialogueBoxPrefab: {fileID: 0}
-  BattleSound: {fileID: 0}
-  Fading: {fileID: 0}
-  backgroundMusic: {fileID: 0}
-  dialogueCanvas: {fileID: 0}
-  distance: 0
+  dangerDistance: 0
 --- !u!50 &565517309072701488
 Rigidbody2D:
   serializedVersion: 4

@@ -22,6 +22,7 @@ public class Finfor : MonoBehaviour
         if (instance != null)
         {
             Debug.LogWarning("More than one instance of Finfor found!");
+            Destroy(gameObject);
             return;
         }
         instance = this;
@@ -39,8 +40,7 @@ public class Finfor : MonoBehaviour
             charact.atb = new ATB(){ Amount = 0f};
             charact.IsEnemy = false;
             charact.prefabObj = allyListScriptable[i].prefab;
-            charact.instanceObj = Instantiate(charact.prefabObj);
-            charact.instanceObj.SetActive(false);
+            charact.hp = allyListScriptable[i].currenHealth;
             allyListObject.Add(charact);
         }
         progress = 1;

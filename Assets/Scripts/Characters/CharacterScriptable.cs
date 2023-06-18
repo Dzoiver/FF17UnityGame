@@ -8,7 +8,7 @@ public class CharacterScriptable : ScriptableObject
     new public string name = "New Char";
     public Sprite icon = null;
     public int maxHealth = 0;
-    private int currenHealth = 0;
+    public int currenHealth = 0;
     public int damage = 0;
     public GameObject worldPrefab;
     public GameObject prefab;

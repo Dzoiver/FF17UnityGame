@@ -12,17 +12,30 @@ public class SkeletonFight1 : MonoBehaviour
     [SerializeField] FadeBlack fadeblackScript;
     [SerializeField] AudioSource transitionSFX;
 
+    [SerializeField] GameObject[] skeletons;
+
     float cameraSpeed = 4f;
     bool cameraReached = false;
     bool startCamera = false;
     Color color = new Color(255, 255, 255, 1);
     Color color1 = new Color(1, 1, 1, 1);
     Color color2 = new Color(0, 0, 0, 1);
+
+    private void Start()
+    {
+        if (Finfor.instance.progress >= 2)
+        {
+            foreach (GameObject skel in skeletons)
+                Destroy(skel);
+            Destroy(gameObject);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         startCamera = true;
         Playerscript.instance.allowControl = false;
         CameraScript.instance.Deattach();
+        Finfor.instance.progress = 2;
     }
 
     IEnumerator ScriptedBattle()

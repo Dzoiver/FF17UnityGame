@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rez
   icon: {fileID: -2582850678860025792, guid: 13eadfad2edcfce438a7079b339ba607, type: 3}
-  maxHealth: 900
-  damage: 100
+  maxHealth: 126
+  currenHealth: 126
+  damage: 25
   worldPrefab: {fileID: 2326514749177199300, guid: 0792ad2e19bc2364d903f17b93e5c3ae,
     type: 3}
-  prefab: {fileID: -4379170658977853923, guid: c34b22820aadaa14493f8c181287f394, type: 3}
+  prefab: {fileID: 9193649592605781195, guid: a02a0f55c7464064bac44eb924235c38, type: 3}
   MaxAtb: 12000
   atb: 1661.2974
   atbSpeed: 1

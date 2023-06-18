@@ -18,7 +18,6 @@ public class Playerscript : MonoBehaviour
         if (instance != null)
         {
             DontDestroyOnLoad(this);
-            Debug.Log("huh?");
             Debug.LogWarning("More than one instance of Playerscript found!");
             return;
         }
@@ -53,10 +52,11 @@ public class Playerscript : MonoBehaviour
 
     void Start()
     {
+        lastPosX = transform.position;
         _rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         if (CameraScript.instance != null)
-        CameraScript.instance.FindPlayer(gameObject);
+            CameraScript.instance.FindPlayer(gameObject);
     }
     Vector2 lookDirection = new Vector2(1, 0);
 
@@ -93,15 +93,15 @@ public class Playerscript : MonoBehaviour
             }
         }
     }
-    Vector2 lastPosX; // Last frame position
+    private Vector2 lastPosX; // Last frame position
     public float dangerDistance; // Distance travelled since last encounter
 
     void FixedUpdate()
     {
+        lastPosX = _rb.position;
         if (allowControl)
         {
             Vector2 position = _rb.position;
-            lastPosX = position;
             position.x = position.x + Speed * horizontal * Time.deltaTime;
             position.y = position.y + Speed * vertical * Time.deltaTime;
             _rb.MovePosition(position);
@@ -120,8 +120,7 @@ public class Playerscript : MonoBehaviour
     {
         if (allowControl)
         {
-            Vector2 position = _rb.position;
-            dangerDistance += Vector2.Distance(lastPosX, position);
+            dangerDistance += Vector2.Distance(lastPosX, _rb.position);
         }
     }
 }

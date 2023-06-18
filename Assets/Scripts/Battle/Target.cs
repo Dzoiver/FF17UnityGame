@@ -75,12 +75,13 @@ public class Target : MonoBehaviour
             text.text = "-" + dmg;
             textObject.SetActive(true);
             
-            if (Finfor.allyListObject[atbID].hp <= 0)
+            if (BattleDirector.enemyObjectList[atbID].hp <= 0)
             {
                 Characters.enemies--;
                 DeathSFX.GetComponent<AudioSource>().Play(); // Enemy Death sound
                 BattleDirector.enemyObjectList[currentPos].Alive = false;
                 Pos.positionsList[currentPos].IsEmpty = true;
+                Destroy(BattleDirector.enemyObjectList[currentPos].instanceObj);
             }
             DeActivate();
         }

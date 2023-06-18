@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class RandomEnc : MonoBehaviour
 {
-    [SerializeField] GameObject player;
     [SerializeField] CharacterScriptable svort;
     [SerializeField] GameObject fadeImage;
     [SerializeField] AudioSource transitionSFX;
@@ -45,7 +44,7 @@ public class RandomEnc : MonoBehaviour
         script.FadeColor(0.5f, color1, color2);
         yield return new WaitForSeconds(1f);
         Playerscript.instance.allowControl = true;
-        Finfor.instance.startVector = player.transform.position;
+        Finfor.instance.startVector = pScript.gameObject.transform.position;
         SceneManager.LoadScene("BattleScene");
     }
 

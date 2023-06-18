@@ -21,14 +21,4 @@ public class EnterHouse : MonoBehaviour
         yield return new WaitForSeconds(script.fadeTime);
         Playerscript.instance.allowControl = true;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }
