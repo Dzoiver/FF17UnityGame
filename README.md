@@ -3,7 +3,7 @@ My first Unity game
 
 RPG SinglePlayer 2D Final Fantasy-like game
 
-Download demo (Windows): [current release](https://github.com/Dzoiver/FF17UnityGame/releases/tag/v0.0.1-alpha)
+Download demo (Windows): [current release](https://github.com/Dzoiver/FF17UnityGame/releases/tag/v0.0.2-alpha)
 
 Screenshots:
 ![1](https://github.com/Dzoiver/FF17UnityGame/assets/40641790/90a81205-9177-4f0c-bf9f-49546eedc76a)
