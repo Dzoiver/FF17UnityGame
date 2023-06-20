@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class RandomEnc : MonoBehaviour
 {
@@ -13,39 +15,39 @@ public class RandomEnc : MonoBehaviour
 
     private float dangerValue;
     private int formation;
-    Playerscript pScript;
-    Color color = new Color(255, 255, 255, 1);
-    Color color1 = new Color(1, 1, 1, 1);
-    Color color2 = new Color(0, 0, 0, 1);
+    Color whiteColorTransparent = new Color(1f, 1f, 1f, 0f);
+    Color blackColorTransparent = new Color(0f, 0f, 0f, 1f);
     // Start is called before the first frame update
     void Start()
     {
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        pScript = playerObject.GetComponent<Playerscript>();
         dangerValue = Random.Range(100, 500);
+        Playerscript.instance.dangerDistance = 0;
     }
 
-    IEnumerator StepCountBattle()
+    private void StepCountBattle()
     {
-        formation = Random.Range(1, 3);
+        Playerscript.instance.dangerDistance = 0;
+        formation = Random.Range(1, 4);
         dangerValue = Random.Range(0, 500);
-        pScript.dangerDistance = 0;
+        Debug.Log("formation: " + formation);
         for (int i = 0; i < formation; i++)
         {
             Finfor.enemyListScriptable.Add(svort); // Enemy from current location enemies object
+            Debug.Log("spawned");
         }
-        FadeBlack script = fadeImage.GetComponent<FadeBlack>();
-        script.FadeIn(1f, color);
         Playerscript.instance.allowControl = false;
+        Image image = fadeImage.GetComponent<Image>();
+        image.DOColor(whiteColorTransparent, 0);
         transitionSFX.Play();
-        // Make black fade
-        script.FadeIn(1f, color);
-        yield return new WaitForSeconds(script.fadeTime);
-        script.FadeColor(0.5f, color1, color2);
-        yield return new WaitForSeconds(1f);
-        Playerscript.instance.allowControl = true;
-        Finfor.instance.startVector = pScript.gameObject.transform.position;
-        SceneManager.LoadScene("BattleScene");
+        image.DOFade(1f, 1f).onComplete = () =>
+        {
+            image.DOColor(blackColorTransparent, 0.5f).onComplete = () =>
+            {
+                Playerscript.instance.allowControl = true;
+                Finfor.instance.startVector = Playerscript.instance.gameObject.transform.position;
+                SceneManager.LoadScene("BattleScene");
+            };
+        };
     }
 
     // Update is called once per frame
@@ -53,9 +55,9 @@ public class RandomEnc : MonoBehaviour
     {
         if (!EnableEncounters)
             return;
-        if (pScript.dangerDistance > dangerValue)
+        if (Playerscript.instance.dangerDistance > dangerValue)
         {
-            StartCoroutine(StepCountBattle());
+            StepCountBattle();
         }
     }
 }

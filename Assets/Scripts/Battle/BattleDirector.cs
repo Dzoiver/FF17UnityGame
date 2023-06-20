@@ -81,6 +81,7 @@ public class BattleDirector : MonoBehaviour
 {
     static public List<CharBat> enemyObjectList = new List<CharBat>(); // List of all characters in a battle including enemies ???
     public bool menuAppeared = false; // Prevents several menu from stacking on the screen
+    public bool isPlayerActing = false;
 
     private float maxATB = 30f; // Max value of ATB
     private float atbSpeed = 10f; // Speed of the ATB bar
@@ -100,6 +101,7 @@ public class BattleDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Playerscript.instance.gameObject.SetActive(false);
         fadeScript.FadeOut(1f);
         Hptext.Add(text3);
         Hptext.Add(text2);
@@ -150,6 +152,7 @@ public class BattleDirector : MonoBehaviour
         }
         enemyObjectList.Clear();
         Characters.objectEnemyList.Clear();
+        Playerscript.instance.gameObject.SetActive(true);
         SceneManager.LoadScene(Finfor.instance.lastField);
     }
 
@@ -184,7 +187,7 @@ public class BattleDirector : MonoBehaviour
 
     void fillATBs(float rate) // Fill ALL charcaters ATB
     {
-        if (activeTurn)
+        if (activeTurn || isPlayerActing)
         return;
 
         for (int i = 0; i < Finfor.allyListObject.Count; i++) // Allies first
@@ -214,6 +217,7 @@ public class BattleDirector : MonoBehaviour
         int randomAllyIndex = GetRandomAllyIndex();
         enemyObjectList[i].stepUp = true;
         yield return new WaitForSeconds(0.4f);
+
         float dmg = Finfor.enemyListScriptable[i].damage;
 
         GameObject textObject = Instantiate(damageTextPrefab, targetHandle.transform, false);

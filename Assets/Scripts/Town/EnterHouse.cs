@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class EnterHouse : MonoBehaviour
 {
@@ -8,17 +10,16 @@ public class EnterHouse : MonoBehaviour
     public GameObject fadeImage;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        StartCoroutine(Teleporting(other));
-    }
-    IEnumerator Teleporting(Collider2D other)
-    {
-        FadeBlack script = fadeImage.GetComponent<FadeBlack>();
-        script.FadeIn(1f);
         Playerscript.instance.allowControl = false;
-        yield return new WaitForSeconds(script.fadeTime);
-        other.transform.position = destinationPoint.transform.position;
-        script.FadeOut(1f);
-        yield return new WaitForSeconds(script.fadeTime);
-        Playerscript.instance.allowControl = true;
+        Image image = fadeImage.GetComponent<Image>();
+
+        image.DOFade(1, 1f).onComplete = () =>
+        {
+            other.transform.position = destinationPoint.transform.position;
+            image.DOFade(0, 1f).onComplete = () =>
+            {
+                Playerscript.instance.allowControl = true;
+            };
+        };
     }
 }

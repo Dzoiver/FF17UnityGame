@@ -17,10 +17,11 @@ public class Playerscript : MonoBehaviour
     {
         if (instance != null)
         {
-            DontDestroyOnLoad(this);
+            Destroy(gameObject);
             Debug.LogWarning("More than one instance of Playerscript found!");
             return;
         }
+        DontDestroyOnLoad(this);
         instance = this;
     }
 
@@ -50,13 +51,12 @@ public class Playerscript : MonoBehaviour
 
     public bool allowControl = true;
 
-    void Start()
+    private void Start()
     {
         lastPosX = transform.position;
         _rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        if (CameraScript.instance != null)
-            CameraScript.instance.FindPlayer(gameObject);
+        CameraScript.instance.FindPlayer();
     }
     Vector2 lookDirection = new Vector2(1, 0);
 
@@ -120,7 +120,7 @@ public class Playerscript : MonoBehaviour
     {
         if (allowControl)
         {
-            dangerDistance += Vector2.Distance(lastPosX, _rb.position);
+            dangerDistance += Vector2.Distance(lastPosX, _rb.position) * Time.deltaTime * 200;
         }
     }
 }

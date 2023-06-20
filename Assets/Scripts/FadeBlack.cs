@@ -6,26 +6,28 @@ using UnityEngine.UI;
 public class FadeBlack : MonoBehaviour
 {
     public float fadeTime = 1f;
-    float currentTime = 0.0f;
     public bool fade = false;
-    Image imageComponent;
     public bool reverseFade = false;
-    bool fadeColor = false;
-    float red = 0;
-    float green = 0;
-    float blue = 0;
-    float redTo = 0;
-    float greenTo = 0;
-    float blueTo = 0;
-    float redDiff = 0;
-    float greenDiff = 0;
-    float blueDiff = 0;
+    private Image imageComponent;
+
+    private bool fadeColor = false;
+    private float currentTime = 0.0f;
+    private float red = 0;
+    private float green = 0;
+    private float blue = 0;
+    private float redTo = 0;
+    private float greenTo = 0;
+    private float blueTo = 0;
+    private float redDiff = 0;
+    private float greenDiff = 0;
+    private float blueDiff = 0;
     // Start is called before the first frame update
     void Start()
     {
         imageComponent = GetComponent<Image>();
+        gameObject.SetActive(true);
     }
-    public void setImageAlpha(float value)
+    public void SetImageAlpha(float value)
     {
         Color tempColor = imageComponent.color;
         tempColor.a = value;
@@ -133,13 +135,5 @@ public class FadeBlack : MonoBehaviour
                 currentTime = 0f;
             }
         }
-        // else
-        // {
-        //     Color tempColor = imageComponent.color;
-        //     tempColor.r = toBlack - currentTime;
-        //     tempColor.g = toBlack - currentTime;
-        //     tempColor.b = toBlack - currentTime;
-        //     imageComponent.color = tempColor;
-        // }
     }
 }

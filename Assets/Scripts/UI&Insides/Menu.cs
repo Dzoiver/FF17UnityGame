@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
     {
         if (instance != null)
         {
+            Destroy(gameObject);
             Debug.LogWarning("More than one instance of Menu found!");
             return;
         }

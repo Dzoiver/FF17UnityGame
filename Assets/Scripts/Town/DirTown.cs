@@ -30,8 +30,8 @@ public class DirTown : MonoBehaviour
     {
         if (CharactersScript.instance.MembersNumber == 0)
         CharactersScript.instance.Add(player);
-        Instantiate(player.worldPrefab);
         Playerscript.instance.allowControl = false;
+        CameraScript.instance.FindPlayer();
         SetPlayerLocation();
     }
 

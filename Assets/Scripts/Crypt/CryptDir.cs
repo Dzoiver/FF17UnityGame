@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class CryptDir : MonoBehaviour
 {
-    [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject image;
     void Start()
     {
@@ -13,15 +14,13 @@ public class CryptDir : MonoBehaviour
             Finfor.instance.lastField = "Crypt";
             Playerscript.instance.gameObject.transform.position = Finfor.instance.startVector;
         }
+        CameraScript.instance.FindPlayer();
         Playerscript.instance.allowControl = false;
-        StartCoroutine(waitTime());
-    }
 
-    IEnumerator waitTime()
-    {
-        FadeBlack script = image.GetComponent<FadeBlack>();
-        script.FadeOut(1f);
-        yield return new WaitForSeconds(1f);
-        Playerscript.instance.allowControl = true;
+        image.SetActive(true);
+        image.GetComponent<Image>().DOFade(0, 1f).onComplete = () =>
+        {
+            Playerscript.instance.allowControl = true;
+        };
     }
 }

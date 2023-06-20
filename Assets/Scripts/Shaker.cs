@@ -6,11 +6,6 @@ public class Shaker : MonoBehaviour
 {
     float timer = 2f;
     float currentTime = 0f;
-    float interval = 0.2f;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
@@ -22,7 +17,6 @@ public class Shaker : MonoBehaviour
         else
         {
             CameraScript.instance.ChangeOffset(0);
-            CameraScript.instance.FindPlayer(Playerscript.instance.gameObject);
             Destroy(gameObject);
         }
         currentTime += Time.deltaTime;

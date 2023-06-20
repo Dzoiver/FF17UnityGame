@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using Positions;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Target : MonoBehaviour
 {
     public GameObject target1;
     public GameObject battleMenu;
     public GameObject director;
+    private BattleDirector dirScript;
 
-    int currentPos = 0;
-    int atbID;
+    private int currentPos = 0;
+    private int atbID;
+
+    private void Start()
+    {
+        dirScript = director.GetComponent<BattleDirector>();
+    }
 
     public void Activate(int index) // Shows the cursor on targets
     {
@@ -24,7 +31,6 @@ public class Target : MonoBehaviour
     {
         BattleMenu script = battleMenu.GetComponent<BattleMenu>(); 
         script.DeActivate();
-        BattleDirector dirScript = director.GetComponent<BattleDirector>(); 
         dirScript.ResetATB(atbID);
         dirScript.menuAppeared = false;
 
@@ -64,31 +70,33 @@ public class Target : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            gameObject.GetComponent<AudioSource>().Play();
-            HitSFX.GetComponent<AudioSource>().Play();
-            float dmg = Finfor.allyListScriptable[atbID].damage;
-
-            GameObject textObject = Instantiate(damageTextPrefab, transform, false);
-            textObject.transform.position = BattleDirector.enemyObjectList[currentPos].instanceObj.transform.position;
-            
-            Text text = textObject.GetComponent<Text>();
-            text.text = "-" + dmg;
-            textObject.SetActive(true);
-            
-            if (BattleDirector.enemyObjectList[atbID].hp <= 0)
-            {
-                Characters.enemies--;
-                DeathSFX.GetComponent<AudioSource>().Play(); // Enemy Death sound
-                BattleDirector.enemyObjectList[currentPos].Alive = false;
-                Pos.positionsList[currentPos].IsEmpty = true;
-                Destroy(BattleDirector.enemyObjectList[currentPos].instanceObj);
-            }
+            Sequence seq = DOTween.Sequence();
+            dirScript.isPlayerActing = true;
             DeActivate();
+            gameObject.GetComponent<AudioSource>().Play();
+            seq.AppendInterval(0.4f).onComplete = () =>
+            {
+                HitSFX.GetComponent<AudioSource>().Play();
+                float dmg = Finfor.allyListScriptable[atbID].damage;
+
+                GameObject textObject = Instantiate(damageTextPrefab, transform, false);
+                textObject.transform.position = BattleDirector.enemyObjectList[currentPos].instanceObj.transform.position;
+
+                Text text = textObject.GetComponent<Text>();
+                text.text = "-" + dmg;
+                textObject.SetActive(true);
+
+                if (BattleDirector.enemyObjectList[atbID].hp <= 0)
+                {
+                    Characters.enemies--;
+                    DeathSFX.GetComponent<AudioSource>().Play(); // Enemy Death sound
+                    BattleDirector.enemyObjectList[currentPos].Alive = false;
+                    Pos.positionsList[currentPos].IsEmpty = true;
+                    Destroy(BattleDirector.enemyObjectList[currentPos].instanceObj);
+                }
+                dirScript.isPlayerActing = false;
+            };
         }
-
-
-
-
     }
 
     void Right()
@@ -96,12 +104,12 @@ public class Target : MonoBehaviour
         
     }
 
-    void Left()
+    private void Left()
     {
         
     }
 
-    void GoToFirstEnemy()
+    private void GoToFirstEnemy()
     {
         for (int i = 0; i < BattleDirector.enemyObjectList.Count; i++)
         {
@@ -113,7 +121,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    void GoToPrevEnemy() // w
+    private void GoToPrevEnemy() // w
     {
         for (int i = currentPos - 1; i >= 0; i--) // Going from current to beginning
         {

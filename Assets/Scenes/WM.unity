@@ -766,6 +766,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 753172424}
     m_Modifications:
+    - target: {fileID: 2600936684281687514, guid: 755546260fb3c6d429d41d31b1e86184,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2600936684281687516, guid: 755546260fb3c6d429d41d31b1e86184,
         type: 3}
       propertyPath: m_Pivot.x
@@ -875,6 +880,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FadeToblack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600936684281687519, guid: 755546260fb3c6d429d41d31b1e86184,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 755546260fb3c6d429d41d31b1e86184, type: 3}
@@ -16017,7 +16027,6 @@ MonoBehaviour:
   cryptPos: {fileID: 934767417}
   townPos: {fileID: 2092806634}
   image: {fileID: 1192298733}
-  player: {fileID: 2326514749177199300, guid: 0792ad2e19bc2364d903f17b93e5c3ae, type: 3}
 --- !u!1001 &331866679608478416
 PrefabInstance:
   m_ObjectHideFlags: 0

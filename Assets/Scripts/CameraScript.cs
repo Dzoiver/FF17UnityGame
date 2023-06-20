@@ -19,21 +19,18 @@ public class CameraScript : MonoBehaviour
     }
     #endregion
 
-    private void Start()
-    {
-    }
-    Transform playerTransform;
-    bool attached = false;
-    float offset = 0f;
+    private Transform playerTransform;
+    private bool attached = false;
+    private float offset = 0f;
 
     public void ChangeOffset(float value)
     {
         offset = value;
     }
 
-    public void FindPlayer(GameObject player)
+    public void FindPlayer()
     {
-        playerTransform = player.transform;
+        playerTransform = Playerscript.instance.transform;
         attached = true;
     }
 
